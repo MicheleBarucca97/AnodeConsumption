@@ -316,4 +316,5 @@ for i in range(num_steps):
 '''vtx_u.close()
 vtx_p.close()'''
 
-xdmf.close()
+xdmf1.close()
+xdmf2.close()

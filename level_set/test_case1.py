@@ -18,7 +18,10 @@ dt = T / num_steps  # time step size
 
 # Define mesh
 nx, ny = 50, 50
-domain = mesh.create_rectangle(MPI.COMM_WORLD, [np.array([-2, -2]), np.array([2, 2])],
+# For arctan manufactured solution
+#domain = mesh.create_rectangle(MPI.COMM_WORLD, [np.array([-2, -2]), np.array([2, 2])],
+#                               [nx, ny], mesh.CellType.triangle)
+domain = mesh.create_rectangle(MPI.COMM_WORLD, [np.array([0, 0]), np.array([1, 1])],
                                [nx, ny], mesh.CellType.triangle)
 W = fem.FunctionSpace(domain, ("Lagrange", 1))
 n = FacetNormal(domain)
@@ -37,14 +40,16 @@ g_fe.interpolate(g)
 V = TrialFunction(W)
 csi = TestFunction(W)
 sigma = fem.Constant(domain, PETSc.ScalarType(500))
-a = sigma*dot(grad(V), grad(csi)) * dx
+a = sigma * dot(grad(V), grad(csi)) * dx
 
 # Force term in case V(x,y) = arctan(pi*y)
 def V_exact_ufl(mode):
-    return lambda x: mode.atan(mode.pi * x[1])
+    #return lambda x: mode.atan(mode.pi * x[1])
+    return lambda x: (10000 -8000 * x[1]) * x[1]
 
 def V_exact_numpy(mode):
-    return lambda x: mode.arctan(mode.pi * x[1])
+    #return lambda x: mode.arctan(mode.pi * x[1])
+    return lambda x: (10000 -8000 * x[1]) * x[1]
 
 V_numpy = V_exact_numpy(np) # which will be used for interpolation
 V_ufl = V_exact_ufl(ufl) # which will be used for defining the source term
@@ -53,25 +58,35 @@ V_ex = fem.Function(W)
 V_ex.interpolate(V_numpy)
 
 x = SpatialCoordinate(domain)
-f = -sigma * div(grad(V_ufl(x)))
+f = div(-sigma * grad(V_ufl(x)))
 g = sigma * dot(grad(V_ufl(x)), n)
-
+ds = ufl.Measure("ds", domain=domain) # This command or you can just import it from ufl
 L = f * csi * dx + g * csi * ds
 
 # Since for this problem the Potential is only determined up to a
-# constant, we pin the pressure at the point (2, 0)
-Gamma = mesh.locate_entities_boundary(domain, dim=1, marker=lambda x: np.logical_and.reduce((
+# constant, we pin the Potential at the point (1, 0)
+'''Gamma = mesh.locate_entities_boundary(domain, dim=1, marker=lambda x: np.logical_and.reduce((
+                                                                np.isclose(x[1], 1),  # y=0
+                                                                np.isclose(x[0], 0))))# x=0
+Gamma2 = mesh.locate_entities_boundary(domain, dim=1, marker=lambda x: np.logical_and.reduce((
                                                                 np.isclose(x[1], 0),  # y=0
-                                                                np.isclose(x[0], 2))))# x=2
+                                                                np.isclose(x[0], 1))))# x=0
 # The entity dimension in this case has to be set to zero, since you want to apply this condition only in one node.
 dofs_p = fem.locate_dofs_topological(W, 0, Gamma)
-BCs = [fem.dirichletbc(PETSc.ScalarType(0), dofs_p, W)]
+dofs_p2 = fem.locate_dofs_topological(W, 0, Gamma2)
+BCs = [fem.dirichletbc(PETSc.ScalarType(2000), dofs_p, W),fem.dirichletbc(PETSc.ScalarType(0), dofs_p2, W)]'''
 
-'''def boundary_D(x):
-    return np.logical_or(np.isclose(x[0], -2), np.isclose(x[0], 2))
+#################################
+'''
+Without Dirichlet boundary condition the simulation will not converge because the COMPATIBILITY CONDITION IS NOT 
+SATISFIED with this manifactured solution
+'''
+#################################
+def boundary_D(x):
+    return np.logical_or(np.isclose(x[0], 0), np.isclose(x[0], 1))
 dofs_D = fem.locate_dofs_geometrical(W, boundary_D)
 
-BCs = [fem.dirichletbc(V_ex, dofs_D)]'''
+BCs = [fem.dirichletbc(V_ex, dofs_D)]
 
 ########################################################################################################################
 '''
@@ -124,9 +139,28 @@ V_grid.point_data["V"] = Vh.x.array.real
 V_grid.set_active_scalars("V")
 V_plotter = pyvista.Plotter()
 V_plotter.add_mesh(V_grid, show_edges=True)
+_ = V_plotter.add_axes(
+    line_width=5,
+    cone_radius=0.6,
+    shaft_length=0.7,
+    tip_length=0.3,
+    ambient=0.5,
+    label_size=(0.4, 0.16),
+)
 V_plotter.view_xy()
 V_plotter.show()
 
+flux_V = grad(Vh)
+W_flux_V = fem.FunctionSpace(domain, VectorElement("DG", domain.ufl_cell(), 0)) # You should use a TensorFunctionSpace
+flux_V_expr = fem.Expression(flux_V, W_flux_V.element.interpolation_points())
+flux = fem.Function(W_flux_V)
+flux.interpolate(flux_V_expr)
+
+from dolfinx.io import XDMFFile
+xdmf1 = XDMFFile(domain.comm, "flux_potential.xdmf", "w")
+xdmf1.write_mesh(domain)
+xdmf1.write_function(flux)
+xdmf1.close()
 ########################################################################################################################
 '''
 In Alucell for the problem of the potential they also fix the value of it in one point in the boundary so that they have
@@ -142,20 +176,14 @@ j = TrialFunction(W_vec)
 tetha = TestFunction(W_vec)
 
 a2 = dot(j, tetha) * dx
-L2 = -sigma*dot(grad(Vh), tetha) *dx + f*tetha *dx
+L2 = -sigma*dot(grad(Vh), tetha) *dx - sigma * dot(grad(V_ufl(x)), tetha) *dx
 
 default_problem = fem.petsc.LinearProblem(a2, L2, bcs=[],
                                 petsc_options={"ksp_type": "preonly", "pc_type": "lu"})
 jh = default_problem.solve()
 
-########################################################################################################################
-'''
-LEVEL SET FUNCTION
-'''
-########################################################################################################################
+xdmf1 = XDMFFile(domain.comm, "current.xdmf", "w")
+xdmf1.write_mesh(domain)
+xdmf1.write_function(jh)
+xdmf1.close()
 
-
-
-# Create initial condition for level set function
-def initial_condition(x, a=0):
-    return 1./8 * x[0]**2 - 0.5
