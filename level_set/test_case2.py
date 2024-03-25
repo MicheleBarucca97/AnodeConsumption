@@ -32,20 +32,26 @@ n = FacetNormal(domain)
 Q = fem.FunctionSpace(domain, ("DG", 0))
 
 def Omega_0(x):
-    if x[0] <= 0.35:
-        return x[1] <= 0.5
-    elif 0.35 < x[0] <= 0.65:
-        return x[1] <= 0.75
-    elif x[0] > 0.65:
-        return x[1] <= 0.5
+    y = np.zeros(len(x[1]), dtype=bool)
+    for index, x_coord in enumerate(x[0]):
+        if x_coord <= 0.34 and x[1][index] <= 0.5:
+            y[index] = [True]
+        if 0.34 <= x_coord <= 0.64 and x[1][index] <= 0.74:
+            y[index] = [True]
+        if x_coord >= 0.64 and x[1][index] <= 0.5:
+            y[index] = [True]
+    return y
 def Omega_1(x):
-    if x[0] <= 0.35:
-        return x[1] >= 0.5
-    elif 0.35 < x[0] <= 0.65:
-        return x[1] >= 0.75
-    elif x[0] > 0.65:
-        return x[1] >= 0.5
+    y = np.zeros(len(x[1]), dtype=bool)
 
+    for index, x_coord in enumerate(x[0]):
+        if x_coord <= 0.34 and x[1][index] >= 0.5:
+            y[index] = [True]
+        if 0.34 <= x_coord <= 0.64 and x[1][index] >= 0.74:
+            y[index] = [True]
+        if x_coord >= 0.64 and x[1][index] >= 0.5:
+            y[index] = [True]
+    return y
 
 sigma = fem.Function(Q)
 cells_0 = mesh.locate_entities(domain, domain.topology.dim, Omega_0)
@@ -54,8 +60,9 @@ cells_1 = mesh.locate_entities(domain, domain.topology.dim, Omega_1)
 
 def anode_conductivity(T):
     return 1. / (5.929e-5 - T * 1.235e-8)
-sigma.x.array[cells_0] = np.full_like(cells_0, anode_conductivity(800), dtype=default_scalar_type)
-sigma.x.array[cells_1] = np.full_like(cells_1, 210, dtype=default_scalar_type)
+conductivity_anode = anode_conductivity(800)
+sigma.x.array[cells_0] = np.full_like(cells_0, 210, dtype=default_scalar_type)
+sigma.x.array[cells_1] = np.full_like(cells_1, conductivity_anode, dtype=default_scalar_type)
 
 from dolfinx.io import XDMFFile
 
@@ -68,7 +75,7 @@ with XDMFFile(MPI.COMM_WORLD, "marker_sigma.xdmf", "w") as xdmf:
 V = TrialFunction(W)
 csi = TestFunction(W)
 sigma = fem.Constant(domain, PETSc.ScalarType(500))
-a = sigma * dot(grad(V), grad(csi)) * dx
+a = inner(sigma * grad(V), grad(csi)) * dx
 
 # Force term in case V(x,y) = arctan(pi*y)
 def V_exact_ufl(mode):
@@ -88,7 +95,7 @@ V_ex.interpolate(V_numpy)
 x = SpatialCoordinate(domain)
 f = div(-sigma * grad(V_ufl(x)))
 g = sigma * dot(grad(V_ufl(x)), n)
-ds = ufl.Measure("ds", domain=domain) # This command or you can just import it from ufl
+#ds = ufl.Measure("ds", domain=domain) # This command or you can just import it from ufl
 L = f * csi * dx + g * csi * ds
 
 def boundary_D(x):
@@ -115,7 +122,6 @@ if domain.comm.rank == 0:
     print(f"Error_L2 : {error_L2:.2e}")
 
 # Plotting the solution
-pyvista.set_jupyter_backend('client')
 tdim = domain.topology.dim
 topology, cell_types, geometry = plot.vtk_mesh(domain, tdim)
 grid = pyvista.UnstructuredGrid(topology, cell_types, geometry)
@@ -137,3 +143,19 @@ _ = V_plotter.add_axes(
 )
 V_plotter.view_xy()
 V_plotter.show()
+
+flux_V = grad(Vh)
+W_flux_V = fem.FunctionSpace(domain, VectorElement("DG", domain.ufl_cell(), 0)) # You should use a TensorFunctionSpace
+flux_V_expr = fem.Expression(flux_V, W_flux_V.element.interpolation_points())
+flux = fem.Function(W_flux_V)
+flux.interpolate(flux_V_expr)
+
+from dolfinx.io import XDMFFile
+xdmf1 = XDMFFile(domain.comm, "flux_potential.xdmf", "w")
+xdmf1.write_mesh(domain)
+xdmf1.write_function(flux)
+xdmf1.close()
+
+##########################################################################################
+# LEVEL SET PROBLEM
+##########################################################################################

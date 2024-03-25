@@ -127,7 +127,7 @@ if domain.comm.rank == 0:
     print(f"Error_L2 : {error_L2:.2e}")
 
 # Plotting the solution
-pyvista.set_jupyter_backend('client')
+#pyvista.set_jupyter_backend('client')
 tdim = domain.topology.dim
 topology, cell_types, geometry = plot.vtk_mesh(domain, tdim)
 grid = pyvista.UnstructuredGrid(topology, cell_types, geometry)
