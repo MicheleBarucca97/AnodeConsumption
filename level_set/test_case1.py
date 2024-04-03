@@ -40,7 +40,7 @@ g_fe.interpolate(g)
 V = TrialFunction(W)
 csi = TestFunction(W)
 sigma = fem.Constant(domain, PETSc.ScalarType(500))
-a = sigma * dot(grad(V), grad(csi)) * dx
+a = dot(sigma * grad(V), grad(csi)) * dx
 
 # Force term in case V(x,y) = arctan(pi*y)
 def V_exact_ufl(mode):

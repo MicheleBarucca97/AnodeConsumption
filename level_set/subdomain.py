@@ -56,7 +56,7 @@ marker[cells_0] = 1
 marker[cells_1] = 2
 
 
-'''from dolfinx.io import XDMFFile
+from dolfinx.io import XDMFFile
 
 with XDMFFile(MPI.COMM_WORLD, "marker.xdmf", "w") as xdmf:
     xdmf.write_mesh(mesh)
@@ -69,9 +69,9 @@ with XDMFFile(MPI.COMM_WORLD, "velocity.xdmf", "w") as xdmf:
     xdmf.write_mesh(mesh)
     uh.name = 'U [m/s]'
     xdmf.write_function(uh)
-xdmf.close()'''
+xdmf.close()
 
-gmsh.initialize()
+'''gmsh.initialize()
 proc = MPI.COMM_WORLD.rank
 top_marker = 2
 bottom_marker = 1
@@ -118,5 +118,5 @@ if proc == 0:
 gmsh.finalize()
 
 mesh, cell_markers, facet_markers = gmshio.read_from_msh("mesh.msh", MPI.COMM_WORLD, gdim=2)
-
+'''
 

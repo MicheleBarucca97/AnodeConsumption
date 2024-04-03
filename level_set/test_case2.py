@@ -1,7 +1,7 @@
 import matplotlib.pyplot as plt
 import pyvista
 import ufl
-from ufl import SpatialCoordinate, TestFunction, TrialFunction, dot, ds, dx, grad, div, FacetNormal,VectorElement, inner
+from ufl import SpatialCoordinate, TestFunction, TrialFunction, dot, dx, grad, div, FacetNormal,VectorElement, inner
 import numpy as np
 from dolfinx import default_scalar_type
 
@@ -10,11 +10,8 @@ from mpi4py import MPI
 
 from dolfinx import fem, mesh, io, plot
 from dolfinx.fem.petsc import assemble_vector, assemble_matrix, create_vector, apply_lifting, set_bc
-########################################################################################################################
-'''
-LEVEL SET FUNCTION
-'''
-########################################################################################################################
+from dolfinx.io import XDMFFile
+
 # Define temporal parameters
 t = 0  # Start time
 T = 1.0  # Final time
@@ -35,22 +32,22 @@ def Omega_0(x):
     y = np.zeros(len(x[1]), dtype=bool)
     for index, x_coord in enumerate(x[0]):
         if x_coord <= 0.34 and x[1][index] <= 0.5:
-            y[index] = [True]
+            y[index] = True
         if 0.34 <= x_coord <= 0.64 and x[1][index] <= 0.74:
-            y[index] = [True]
+            y[index] = True
         if x_coord >= 0.64 and x[1][index] <= 0.5:
-            y[index] = [True]
+            y[index] = True
     return y
 def Omega_1(x):
     y = np.zeros(len(x[1]), dtype=bool)
 
     for index, x_coord in enumerate(x[0]):
         if x_coord <= 0.34 and x[1][index] >= 0.5:
-            y[index] = [True]
+            y[index] = True
         if 0.34 <= x_coord <= 0.64 and x[1][index] >= 0.74:
-            y[index] = [True]
+            y[index] = True
         if x_coord >= 0.64 and x[1][index] >= 0.5:
-            y[index] = [True]
+            y[index] = True
     return y
 
 sigma = fem.Function(Q)
@@ -64,17 +61,14 @@ conductivity_anode = anode_conductivity(800)
 sigma.x.array[cells_0] = np.full_like(cells_0, 210, dtype=default_scalar_type)
 sigma.x.array[cells_1] = np.full_like(cells_1, conductivity_anode, dtype=default_scalar_type)
 
-from dolfinx.io import XDMFFile
-
 with XDMFFile(MPI.COMM_WORLD, "marker_sigma.xdmf", "w") as xdmf:
     xdmf.write_mesh(domain)
-    sigma.name = 'markers [-]'
+    # sigma.name = 'markers [-]'
     xdmf.write_function(sigma)
 
 # Write the weak formulation
 V = TrialFunction(W)
 csi = TestFunction(W)
-sigma = fem.Constant(domain, PETSc.ScalarType(500))
 a = inner(sigma * grad(V), grad(csi)) * dx
 
 # Force term in case V(x,y) = arctan(pi*y)
@@ -86,8 +80,8 @@ def V_exact_numpy(mode):
     #return lambda x: mode.arctan(mode.pi * x[1])
     return lambda x: (10000 -8000 * x[1]) * x[1]
 
-V_numpy = V_exact_numpy(np) # which will be used for interpolation
-V_ufl = V_exact_ufl(ufl) # which will be used for defining the source term
+V_numpy = V_exact_numpy(np)  # which will be used for interpolation
+V_ufl = V_exact_ufl(ufl)  # which will be used for defining the source term
 
 V_ex = fem.Function(W)
 V_ex.interpolate(V_numpy)
@@ -95,7 +89,7 @@ V_ex.interpolate(V_numpy)
 x = SpatialCoordinate(domain)
 f = div(-sigma * grad(V_ufl(x)))
 g = sigma * dot(grad(V_ufl(x)), n)
-#ds = ufl.Measure("ds", domain=domain) # This command or you can just import it from ufl
+ds = ufl.Measure("ds", domain=domain) # This command or you can just import it from ufl
 L = f * csi * dx + g * csi * ds
 
 def boundary_D(x):
@@ -129,7 +123,7 @@ grid = pyvista.UnstructuredGrid(topology, cell_types, geometry)
 V_topology, V_cell_types, V_geometry = plot.vtk_mesh(W)
 
 V_grid = pyvista.UnstructuredGrid(V_topology, V_cell_types, V_geometry)
-V_grid.point_data["V"] = Vh.x.array.real
+V_grid.point_data["V"] = np.abs(Vh.x.array.real - V_ex.x.array.real)
 V_grid.set_active_scalars("V")
 V_plotter = pyvista.Plotter()
 V_plotter.add_mesh(V_grid, show_edges=True)
@@ -150,7 +144,6 @@ flux_V_expr = fem.Expression(flux_V, W_flux_V.element.interpolation_points())
 flux = fem.Function(W_flux_V)
 flux.interpolate(flux_V_expr)
 
-from dolfinx.io import XDMFFile
 xdmf1 = XDMFFile(domain.comm, "flux_potential.xdmf", "w")
 xdmf1.write_mesh(domain)
 xdmf1.write_function(flux)
