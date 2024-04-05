@@ -74,11 +74,11 @@ a = inner(sigma * grad(V), grad(csi)) * dx
 # Force term in case V(x,y) = arctan(pi*y)
 def V_exact_ufl(mode):
     #return lambda x: mode.atan(mode.pi * x[1])
-    return lambda x: (10000 -8000 * x[1]) * x[1]
+    return lambda x: (0.26 + 1.64 * x[1]) * x[1]
 
 def V_exact_numpy(mode):
     #return lambda x: mode.arctan(mode.pi * x[1])
-    return lambda x: (10000 -8000 * x[1]) * x[1]
+    return lambda x: (0.26 + 1.64 * x[1]) * x[1]
 
 V_numpy = V_exact_numpy(np)  # which will be used for interpolation
 V_ufl = V_exact_ufl(ufl)  # which will be used for defining the source term
