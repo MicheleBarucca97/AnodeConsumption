@@ -54,11 +54,6 @@ def project(e, target_func, bcs=[]):
 
 #def reinitialization():
 
-########################################################################################################################
-'''
-LEVEL SET FUNCTION
-'''
-########################################################################################################################
 # x = ufl.SpatialCoordinate(domain)
 # Define temporal parameters
 t = 0  # Start time
@@ -260,8 +255,8 @@ delta = h.max()/(2*L2_average)
 
 w = v + delta * dot(jh, grad(v))
 theta = 0.5
-a_levelSet = (phi * w * dx - dt * dot(jh, grad(phi)) * w * dx)
-L_levelSet = (phi_n * w * dx + dt * dot(jh, grad(phi_n)) * w * dx)
+a_levelSet = (phi * w * dx - (dt * theta) * dot(jh, grad(phi)) * w * dx)
+L_levelSet = (phi_n * w * dx + dt * (1-theta) * dot(jh, grad(phi_n)) * w * dx)
 
 #Preparing linear algebra structures for time dependent problems.
 bilinear_form = fem.form(a_levelSet)
