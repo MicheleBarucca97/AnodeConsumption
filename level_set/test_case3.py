@@ -12,8 +12,6 @@ from dolfinx import fem, mesh, io, plot, cpp
 from dolfinx.fem.petsc import assemble_vector, assemble_matrix, create_vector, apply_lifting, set_bc
 from dolfinx.io import XDMFFile
 
-#def reinitialization():
-
 ########################################################################################################################
 '''
 LEVEL SET FUNCTION
@@ -37,20 +35,10 @@ phi_n = fem.Function(W)  # Level set function
 
 # Initial condition for phi s.t. it is negative in the anode and positive in the bath
 # The unit normal in this case (n = Grad(phi)/||Grad(phi)||) will always point inside the bath (phi >0)
-def phi_zero(x, t, T):
-    y = np.ones(len(x))
-    for index, x_coord in enumerate(x):
-        y[index] = (((np.sin(np.pi*x_coord[0]))**2) * ((np.sin(np.pi*x_coord[1]))**2) * np.cos((np.pi*t)/T)) / np.pi
+def phi_zero():
+    return lambda x: abs(x[1] - 0.5)
 
-    return y
-
-'''
-ufl.SpatialCoordinate does not imply the “mesh-nodes” (meaning the vertices for linear meshes). 
-The x=ufl.SpatialCoordinate(mesh) represents any quadrature point used during integration in its physical space.
-'''
-points = domain.geometry.x
-phi_n.x.array[:] = phi_zero(points, t, T)
-phi_n.x.scatter_forward()
+phi_n.interpolate(phi_zero())
 
 xdmf_levelset = io.XDMFFile(domain.comm, "level_set.xdmf", "w")
 xdmf_levelset.write_mesh(domain)
@@ -58,19 +46,25 @@ xdmf_levelset.write_mesh(domain)
 # Define solution variable, and interpolate initial solution for visualization in Paraview
 phi_h = fem.Function(W)
 phi_h.name = "phi_h"
-phi_h.x.array[:] = phi_zero(points, t, T)
-phi_h.x.scatter_forward()
+phi_h.interpolate(phi_zero())
 xdmf_levelset.write_function(phi_h, t)
 
 '''
 Variational problem and solver for level set function
 '''
+# Create boundary condition
+fdim = domain.topology.dim - 1
+boundary_facets = mesh.locate_entities_boundary(
+    domain, fdim, lambda x: np.isclose(x[0], 0))
+BCs = fem.dirichletbc(PETSc.ScalarType(0), fem.locate_dofs_topological(W, fdim, boundary_facets), W)
+
 phi, v = ufl.TrialFunction(W), ufl.TestFunction(W)
 
 def u_ex(x):
     values = np.zeros((2, x.shape[1]))
-    values[0] = -2 * (np.sin(np.pi * x[0])**2) * np.sin(np.pi * x[1]) * np.cos(np.pi * x[1]) * np.cos((np.pi * t) / T)
-    values[1] = 2*np.cos(np.pi*x[0])*np.sin(np.pi*x[0])*((np.sin(np.pi*x[1]))**2)* np.cos((np.pi*t)/T)
+    '''values[0] = -2 * (np.sin(np.pi * x[0])**2) * np.sin(np.pi * x[1]) * np.cos(np.pi * x[1]) * np.cos((np.pi * t) / T)
+    values[1] = 2*np.cos(np.pi*x[0])*np.sin(np.pi*x[0])*((np.sin(np.pi*x[1]))**2)* np.cos((np.pi*t)/T)'''
+    values[1] = -1
     return values
 
 vec_fe = VectorElement("Lagrange", domain.ufl_cell(), 1)
@@ -101,7 +95,7 @@ linear_form = fem.form(L_levelSet)
 # Observe that the left hand side of the system does not change from one time step to another, thus we
 # only need to assemble it once. The right hand side, which is dependent on the previous time step u_n, has
 # to be assembled every time step.
-A = assemble_matrix(bilinear_form)
+A = assemble_matrix(bilinear_form, bcs=[BCs])
 A.assemble()
 b = create_vector(linear_form)
 
@@ -120,14 +114,15 @@ for i in range(num_steps):
     if domain.comm.rank == 0:
         print(f"Gradient distance : {L2_average_dist:.2e}")
 
-    A.zeroEntries()
-    fem.petsc.assemble_matrix(A, bilinear_form)  # type: ignore
-    A.assemble()
-
     # Update the right hand side reusing the initial vector
     with b.localForm() as loc_b:
         loc_b.set(0)
     assemble_vector(b, linear_form)
+
+    # Apply Dirichlet boundary condition to the vector
+    apply_lifting(b, [bilinear_form], [[BCs]])
+    b.ghostUpdate(addv=PETSc.InsertMode.ADD_VALUES, mode=PETSc.ScatterMode.REVERSE)
+    set_bc(b, [BCs])
 
     # Solve linear problem
     solver.solve(b, phi_h.vector)

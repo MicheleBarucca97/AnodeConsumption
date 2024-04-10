@@ -52,7 +52,6 @@ def project(e, target_func, bcs=[]):
     A.destroy()
     b.destroy()
 
-#def reinitialization():
 
 # x = ufl.SpatialCoordinate(domain)
 # Define temporal parameters
@@ -220,10 +219,10 @@ vec_fe = VectorElement("Lagrange", domain.ufl_cell(), 1)
 W_vec = fem.FunctionSpace(domain, vec_fe)
 
 j = TrialFunction(W_vec)
-tetha = TestFunction(W_vec)
+z = TestFunction(W_vec)
 
-a2 = dot(j, tetha) * dx
-L2 = -dot(sigma*grad(Vh), tetha) * dx - dot(sigma * grad(V_ufl(x)), tetha) *dx
+a2 = dot(j, z) * dx
+L2 = -dot(sigma*grad(Vh), z) * dx - dot(sigma * grad(V_ufl(x)), z) * dx
 
 left_form2 = fem.form(a2)
 right_form2 = fem.form(L2)
