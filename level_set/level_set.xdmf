@@ -1,0 +1,1773 @@
+<?xml version="1.0"?>
+<!DOCTYPE Xdmf SYSTEM "Xdmf.dtd" []>
+<Xdmf Version="3.0" xmlns:xi="https://www.w3.org/2001/XInclude">
+  <Domain>
+    <Grid Name="mesh" GridType="Uniform">
+      <Topology TopologyType="Triangle" NumberOfElements="2450" NodesPerElement="3">
+        <DataItem Dimensions="2450 3" NumberType="Int" Format="HDF">level_set.h5:/Mesh/mesh/topology</DataItem>
+      </Topology>
+      <Geometry GeometryType="XY">
+        <DataItem Dimensions="1296 2" Format="HDF">level_set.h5:/Mesh/mesh/geometry</DataItem>
+      </Geometry>
+    </Grid>
+    <Grid Name="phi_h" GridType="Collection" CollectionType="Temporal">
+      <Grid Name="phi_h" GridType="Uniform">
+        <xi:include xpointer="xpointer(/Xdmf/Domain/Grid[@GridType='Uniform'][1]/*[self::Topology or self::Geometry])" />
+        <Time Value="0" />
+        <Attribute Name="phi_h" AttributeType="Scalar" Center="Node">
+          <DataItem Dimensions="1296 1" Format="HDF">level_set.h5:/Function/phi_h/0</DataItem>
+        </Attribute>
+      </Grid>
+      <Grid Name="phi_h" GridType="Uniform">
+        <xi:include xpointer="xpointer(/Xdmf/Domain/Grid[@GridType='Uniform'][1]/*[self::Topology or self::Geometry])" />
+        <Time Value="0.0040000000000000001" />
+        <Attribute Name="phi_h" AttributeType="Scalar" Center="Node">
+          <DataItem Dimensions="1296 1" Format="HDF">level_set.h5:/Function/phi_h/0_0040000000000000001</DataItem>
+        </Attribute>
+      </Grid>
+      <Grid Name="phi_h" GridType="Uniform">
+        <xi:include xpointer="xpointer(/Xdmf/Domain/Grid[@GridType='Uniform'][1]/*[self::Topology or self::Geometry])" />
+        <Time Value="0.0080000000000000002" />
+        <Attribute Name="phi_h" AttributeType="Scalar" Center="Node">
+          <DataItem Dimensions="1296 1" Format="HDF">level_set.h5:/Function/phi_h/0_0080000000000000002</DataItem>
+        </Attribute>
+      </Grid>
+      <Grid Name="phi_h" GridType="Uniform">
+        <xi:include xpointer="xpointer(/Xdmf/Domain/Grid[@GridType='Uniform'][1]/*[self::Topology or self::Geometry])" />
+        <Time Value="0.012" />
+        <Attribute Name="phi_h" AttributeType="Scalar" Center="Node">
+          <DataItem Dimensions="1296 1" Format="HDF">level_set.h5:/Function/phi_h/0_012</DataItem>
+        </Attribute>
+      </Grid>
+      <Grid Name="phi_h" GridType="Uniform">
+        <xi:include xpointer="xpointer(/Xdmf/Domain/Grid[@GridType='Uniform'][1]/*[self::Topology or self::Geometry])" />
+        <Time Value="0.016" />
+        <Attribute Name="phi_h" AttributeType="Scalar" Center="Node">
+          <DataItem Dimensions="1296 1" Format="HDF">level_set.h5:/Function/phi_h/0_016</DataItem>
+        </Attribute>
+      </Grid>
+      <Grid Name="phi_h" GridType="Uniform">
+        <xi:include xpointer="xpointer(/Xdmf/Domain/Grid[@GridType='Uniform'][1]/*[self::Topology or self::Geometry])" />
+        <Time Value="0.02" />
+        <Attribute Name="phi_h" AttributeType="Scalar" Center="Node">
+          <DataItem Dimensions="1296 1" Format="HDF">level_set.h5:/Function/phi_h/0_02</DataItem>
+        </Attribute>
+      </Grid>
+      <Grid Name="phi_h" GridType="Uniform">
+        <xi:include xpointer="xpointer(/Xdmf/Domain/Grid[@GridType='Uniform'][1]/*[self::Topology or self::Geometry])" />
+        <Time Value="0.024" />
+        <Attribute Name="phi_h" AttributeType="Scalar" Center="Node">
+          <DataItem Dimensions="1296 1" Format="HDF">level_set.h5:/Function/phi_h/0_024</DataItem>
+        </Attribute>
+      </Grid>
+      <Grid Name="phi_h" GridType="Uniform">
+        <xi:include xpointer="xpointer(/Xdmf/Domain/Grid[@GridType='Uniform'][1]/*[self::Topology or self::Geometry])" />
+        <Time Value="0.028000000000000001" />
+        <Attribute Name="phi_h" AttributeType="Scalar" Center="Node">
+          <DataItem Dimensions="1296 1" Format="HDF">level_set.h5:/Function/phi_h/0_028000000000000001</DataItem>
+        </Attribute>
+      </Grid>
+      <Grid Name="phi_h" GridType="Uniform">
+        <xi:include xpointer="xpointer(/Xdmf/Domain/Grid[@GridType='Uniform'][1]/*[self::Topology or self::Geometry])" />
+        <Time Value="0.032000000000000001" />
+        <Attribute Name="phi_h" AttributeType="Scalar" Center="Node">
+          <DataItem Dimensions="1296 1" Format="HDF">level_set.h5:/Function/phi_h/0_032000000000000001</DataItem>
+        </Attribute>
+      </Grid>
+      <Grid Name="phi_h" GridType="Uniform">
+        <xi:include xpointer="xpointer(/Xdmf/Domain/Grid[@GridType='Uniform'][1]/*[self::Topology or self::Geometry])" />
+        <Time Value="0.036000000000000004" />
+        <Attribute Name="phi_h" AttributeType="Scalar" Center="Node">
+          <DataItem Dimensions="1296 1" Format="HDF">level_set.h5:/Function/phi_h/0_036000000000000004</DataItem>
+        </Attribute>
+      </Grid>
+      <Grid Name="phi_h" GridType="Uniform">
+        <xi:include xpointer="xpointer(/Xdmf/Domain/Grid[@GridType='Uniform'][1]/*[self::Topology or self::Geometry])" />
+        <Time Value="0.040000000000000008" />
+        <Attribute Name="phi_h" AttributeType="Scalar" Center="Node">
+          <DataItem Dimensions="1296 1" Format="HDF">level_set.h5:/Function/phi_h/0_040000000000000008</DataItem>
+        </Attribute>
+      </Grid>
+      <Grid Name="phi_h" GridType="Uniform">
+        <xi:include xpointer="xpointer(/Xdmf/Domain/Grid[@GridType='Uniform'][1]/*[self::Topology or self::Geometry])" />
+        <Time Value="0.044000000000000011" />
+        <Attribute Name="phi_h" AttributeType="Scalar" Center="Node">
+          <DataItem Dimensions="1296 1" Format="HDF">level_set.h5:/Function/phi_h/0_044000000000000011</DataItem>
+        </Attribute>
+      </Grid>
+      <Grid Name="phi_h" GridType="Uniform">
+        <xi:include xpointer="xpointer(/Xdmf/Domain/Grid[@GridType='Uniform'][1]/*[self::Topology or self::Geometry])" />
+        <Time Value="0.048000000000000015" />
+        <Attribute Name="phi_h" AttributeType="Scalar" Center="Node">
+          <DataItem Dimensions="1296 1" Format="HDF">level_set.h5:/Function/phi_h/0_048000000000000015</DataItem>
+        </Attribute>
+      </Grid>
+      <Grid Name="phi_h" GridType="Uniform">
+        <xi:include xpointer="xpointer(/Xdmf/Domain/Grid[@GridType='Uniform'][1]/*[self::Topology or self::Geometry])" />
+        <Time Value="0.052000000000000018" />
+        <Attribute Name="phi_h" AttributeType="Scalar" Center="Node">
+          <DataItem Dimensions="1296 1" Format="HDF">level_set.h5:/Function/phi_h/0_052000000000000018</DataItem>
+        </Attribute>
+      </Grid>
+      <Grid Name="phi_h" GridType="Uniform">
+        <xi:include xpointer="xpointer(/Xdmf/Domain/Grid[@GridType='Uniform'][1]/*[self::Topology or self::Geometry])" />
+        <Time Value="0.056000000000000022" />
+        <Attribute Name="phi_h" AttributeType="Scalar" Center="Node">
+          <DataItem Dimensions="1296 1" Format="HDF">level_set.h5:/Function/phi_h/0_056000000000000022</DataItem>
+        </Attribute>
+      </Grid>
+      <Grid Name="phi_h" GridType="Uniform">
+        <xi:include xpointer="xpointer(/Xdmf/Domain/Grid[@GridType='Uniform'][1]/*[self::Topology or self::Geometry])" />
+        <Time Value="0.060000000000000026" />
+        <Attribute Name="phi_h" AttributeType="Scalar" Center="Node">
+          <DataItem Dimensions="1296 1" Format="HDF">level_set.h5:/Function/phi_h/0_060000000000000026</DataItem>
+        </Attribute>
+      </Grid>
+      <Grid Name="phi_h" GridType="Uniform">
+        <xi:include xpointer="xpointer(/Xdmf/Domain/Grid[@GridType='Uniform'][1]/*[self::Topology or self::Geometry])" />
+        <Time Value="0.064000000000000029" />
+        <Attribute Name="phi_h" AttributeType="Scalar" Center="Node">
+          <DataItem Dimensions="1296 1" Format="HDF">level_set.h5:/Function/phi_h/0_064000000000000029</DataItem>
+        </Attribute>
+      </Grid>
+      <Grid Name="phi_h" GridType="Uniform">
+        <xi:include xpointer="xpointer(/Xdmf/Domain/Grid[@GridType='Uniform'][1]/*[self::Topology or self::Geometry])" />
+        <Time Value="0.068000000000000033" />
+        <Attribute Name="phi_h" AttributeType="Scalar" Center="Node">
+          <DataItem Dimensions="1296 1" Format="HDF">level_set.h5:/Function/phi_h/0_068000000000000033</DataItem>
+        </Attribute>
+      </Grid>
+      <Grid Name="phi_h" GridType="Uniform">
+        <xi:include xpointer="xpointer(/Xdmf/Domain/Grid[@GridType='Uniform'][1]/*[self::Topology or self::Geometry])" />
+        <Time Value="0.072000000000000036" />
+        <Attribute Name="phi_h" AttributeType="Scalar" Center="Node">
+          <DataItem Dimensions="1296 1" Format="HDF">level_set.h5:/Function/phi_h/0_072000000000000036</DataItem>
+        </Attribute>
+      </Grid>
+      <Grid Name="phi_h" GridType="Uniform">
+        <xi:include xpointer="xpointer(/Xdmf/Domain/Grid[@GridType='Uniform'][1]/*[self::Topology or self::Geometry])" />
+        <Time Value="0.07600000000000004" />
+        <Attribute Name="phi_h" AttributeType="Scalar" Center="Node">
+          <DataItem Dimensions="1296 1" Format="HDF">level_set.h5:/Function/phi_h/0_07600000000000004</DataItem>
+        </Attribute>
+      </Grid>
+      <Grid Name="phi_h" GridType="Uniform">
+        <xi:include xpointer="xpointer(/Xdmf/Domain/Grid[@GridType='Uniform'][1]/*[self::Topology or self::Geometry])" />
+        <Time Value="0.080000000000000043" />
+        <Attribute Name="phi_h" AttributeType="Scalar" Center="Node">
+          <DataItem Dimensions="1296 1" Format="HDF">level_set.h5:/Function/phi_h/0_080000000000000043</DataItem>
+        </Attribute>
+      </Grid>
+      <Grid Name="phi_h" GridType="Uniform">
+        <xi:include xpointer="xpointer(/Xdmf/Domain/Grid[@GridType='Uniform'][1]/*[self::Topology or self::Geometry])" />
+        <Time Value="0.084000000000000047" />
+        <Attribute Name="phi_h" AttributeType="Scalar" Center="Node">
+          <DataItem Dimensions="1296 1" Format="HDF">level_set.h5:/Function/phi_h/0_084000000000000047</DataItem>
+        </Attribute>
+      </Grid>
+      <Grid Name="phi_h" GridType="Uniform">
+        <xi:include xpointer="xpointer(/Xdmf/Domain/Grid[@GridType='Uniform'][1]/*[self::Topology or self::Geometry])" />
+        <Time Value="0.08800000000000005" />
+        <Attribute Name="phi_h" AttributeType="Scalar" Center="Node">
+          <DataItem Dimensions="1296 1" Format="HDF">level_set.h5:/Function/phi_h/0_08800000000000005</DataItem>
+        </Attribute>
+      </Grid>
+      <Grid Name="phi_h" GridType="Uniform">
+        <xi:include xpointer="xpointer(/Xdmf/Domain/Grid[@GridType='Uniform'][1]/*[self::Topology or self::Geometry])" />
+        <Time Value="0.092000000000000054" />
+        <Attribute Name="phi_h" AttributeType="Scalar" Center="Node">
+          <DataItem Dimensions="1296 1" Format="HDF">level_set.h5:/Function/phi_h/0_092000000000000054</DataItem>
+        </Attribute>
+      </Grid>
+      <Grid Name="phi_h" GridType="Uniform">
+        <xi:include xpointer="xpointer(/Xdmf/Domain/Grid[@GridType='Uniform'][1]/*[self::Topology or self::Geometry])" />
+        <Time Value="0.096000000000000058" />
+        <Attribute Name="phi_h" AttributeType="Scalar" Center="Node">
+          <DataItem Dimensions="1296 1" Format="HDF">level_set.h5:/Function/phi_h/0_096000000000000058</DataItem>
+        </Attribute>
+      </Grid>
+      <Grid Name="phi_h" GridType="Uniform">
+        <xi:include xpointer="xpointer(/Xdmf/Domain/Grid[@GridType='Uniform'][1]/*[self::Topology or self::Geometry])" />
+        <Time Value="0.10000000000000006" />
+        <Attribute Name="phi_h" AttributeType="Scalar" Center="Node">
+          <DataItem Dimensions="1296 1" Format="HDF">level_set.h5:/Function/phi_h/0_10000000000000006</DataItem>
+        </Attribute>
+      </Grid>
+      <Grid Name="phi_h" GridType="Uniform">
+        <xi:include xpointer="xpointer(/Xdmf/Domain/Grid[@GridType='Uniform'][1]/*[self::Topology or self::Geometry])" />
+        <Time Value="0.10400000000000006" />
+        <Attribute Name="phi_h" AttributeType="Scalar" Center="Node">
+          <DataItem Dimensions="1296 1" Format="HDF">level_set.h5:/Function/phi_h/0_10400000000000006</DataItem>
+        </Attribute>
+      </Grid>
+      <Grid Name="phi_h" GridType="Uniform">
+        <xi:include xpointer="xpointer(/Xdmf/Domain/Grid[@GridType='Uniform'][1]/*[self::Topology or self::Geometry])" />
+        <Time Value="0.10800000000000007" />
+        <Attribute Name="phi_h" AttributeType="Scalar" Center="Node">
+          <DataItem Dimensions="1296 1" Format="HDF">level_set.h5:/Function/phi_h/0_10800000000000007</DataItem>
+        </Attribute>
+      </Grid>
+      <Grid Name="phi_h" GridType="Uniform">
+        <xi:include xpointer="xpointer(/Xdmf/Domain/Grid[@GridType='Uniform'][1]/*[self::Topology or self::Geometry])" />
+        <Time Value="0.11200000000000007" />
+        <Attribute Name="phi_h" AttributeType="Scalar" Center="Node">
+          <DataItem Dimensions="1296 1" Format="HDF">level_set.h5:/Function/phi_h/0_11200000000000007</DataItem>
+        </Attribute>
+      </Grid>
+      <Grid Name="phi_h" GridType="Uniform">
+        <xi:include xpointer="xpointer(/Xdmf/Domain/Grid[@GridType='Uniform'][1]/*[self::Topology or self::Geometry])" />
+        <Time Value="0.11600000000000008" />
+        <Attribute Name="phi_h" AttributeType="Scalar" Center="Node">
+          <DataItem Dimensions="1296 1" Format="HDF">level_set.h5:/Function/phi_h/0_11600000000000008</DataItem>
+        </Attribute>
+      </Grid>
+      <Grid Name="phi_h" GridType="Uniform">
+        <xi:include xpointer="xpointer(/Xdmf/Domain/Grid[@GridType='Uniform'][1]/*[self::Topology or self::Geometry])" />
+        <Time Value="0.12000000000000008" />
+        <Attribute Name="phi_h" AttributeType="Scalar" Center="Node">
+          <DataItem Dimensions="1296 1" Format="HDF">level_set.h5:/Function/phi_h/0_12000000000000008</DataItem>
+        </Attribute>
+      </Grid>
+      <Grid Name="phi_h" GridType="Uniform">
+        <xi:include xpointer="xpointer(/Xdmf/Domain/Grid[@GridType='Uniform'][1]/*[self::Topology or self::Geometry])" />
+        <Time Value="0.12400000000000008" />
+        <Attribute Name="phi_h" AttributeType="Scalar" Center="Node">
+          <DataItem Dimensions="1296 1" Format="HDF">level_set.h5:/Function/phi_h/0_12400000000000008</DataItem>
+        </Attribute>
+      </Grid>
+      <Grid Name="phi_h" GridType="Uniform">
+        <xi:include xpointer="xpointer(/Xdmf/Domain/Grid[@GridType='Uniform'][1]/*[self::Topology or self::Geometry])" />
+        <Time Value="0.12800000000000009" />
+        <Attribute Name="phi_h" AttributeType="Scalar" Center="Node">
+          <DataItem Dimensions="1296 1" Format="HDF">level_set.h5:/Function/phi_h/0_12800000000000009</DataItem>
+        </Attribute>
+      </Grid>
+      <Grid Name="phi_h" GridType="Uniform">
+        <xi:include xpointer="xpointer(/Xdmf/Domain/Grid[@GridType='Uniform'][1]/*[self::Topology or self::Geometry])" />
+        <Time Value="0.13200000000000009" />
+        <Attribute Name="phi_h" AttributeType="Scalar" Center="Node">
+          <DataItem Dimensions="1296 1" Format="HDF">level_set.h5:/Function/phi_h/0_13200000000000009</DataItem>
+        </Attribute>
+      </Grid>
+      <Grid Name="phi_h" GridType="Uniform">
+        <xi:include xpointer="xpointer(/Xdmf/Domain/Grid[@GridType='Uniform'][1]/*[self::Topology or self::Geometry])" />
+        <Time Value="0.13600000000000009" />
+        <Attribute Name="phi_h" AttributeType="Scalar" Center="Node">
+          <DataItem Dimensions="1296 1" Format="HDF">level_set.h5:/Function/phi_h/0_13600000000000009</DataItem>
+        </Attribute>
+      </Grid>
+      <Grid Name="phi_h" GridType="Uniform">
+        <xi:include xpointer="xpointer(/Xdmf/Domain/Grid[@GridType='Uniform'][1]/*[self::Topology or self::Geometry])" />
+        <Time Value="0.1400000000000001" />
+        <Attribute Name="phi_h" AttributeType="Scalar" Center="Node">
+          <DataItem Dimensions="1296 1" Format="HDF">level_set.h5:/Function/phi_h/0_1400000000000001</DataItem>
+        </Attribute>
+      </Grid>
+      <Grid Name="phi_h" GridType="Uniform">
+        <xi:include xpointer="xpointer(/Xdmf/Domain/Grid[@GridType='Uniform'][1]/*[self::Topology or self::Geometry])" />
+        <Time Value="0.1440000000000001" />
+        <Attribute Name="phi_h" AttributeType="Scalar" Center="Node">
+          <DataItem Dimensions="1296 1" Format="HDF">level_set.h5:/Function/phi_h/0_1440000000000001</DataItem>
+        </Attribute>
+      </Grid>
+      <Grid Name="phi_h" GridType="Uniform">
+        <xi:include xpointer="xpointer(/Xdmf/Domain/Grid[@GridType='Uniform'][1]/*[self::Topology or self::Geometry])" />
+        <Time Value="0.1480000000000001" />
+        <Attribute Name="phi_h" AttributeType="Scalar" Center="Node">
+          <DataItem Dimensions="1296 1" Format="HDF">level_set.h5:/Function/phi_h/0_1480000000000001</DataItem>
+        </Attribute>
+      </Grid>
+      <Grid Name="phi_h" GridType="Uniform">
+        <xi:include xpointer="xpointer(/Xdmf/Domain/Grid[@GridType='Uniform'][1]/*[self::Topology or self::Geometry])" />
+        <Time Value="0.15200000000000011" />
+        <Attribute Name="phi_h" AttributeType="Scalar" Center="Node">
+          <DataItem Dimensions="1296 1" Format="HDF">level_set.h5:/Function/phi_h/0_15200000000000011</DataItem>
+        </Attribute>
+      </Grid>
+      <Grid Name="phi_h" GridType="Uniform">
+        <xi:include xpointer="xpointer(/Xdmf/Domain/Grid[@GridType='Uniform'][1]/*[self::Topology or self::Geometry])" />
+        <Time Value="0.15600000000000011" />
+        <Attribute Name="phi_h" AttributeType="Scalar" Center="Node">
+          <DataItem Dimensions="1296 1" Format="HDF">level_set.h5:/Function/phi_h/0_15600000000000011</DataItem>
+        </Attribute>
+      </Grid>
+      <Grid Name="phi_h" GridType="Uniform">
+        <xi:include xpointer="xpointer(/Xdmf/Domain/Grid[@GridType='Uniform'][1]/*[self::Topology or self::Geometry])" />
+        <Time Value="0.16000000000000011" />
+        <Attribute Name="phi_h" AttributeType="Scalar" Center="Node">
+          <DataItem Dimensions="1296 1" Format="HDF">level_set.h5:/Function/phi_h/0_16000000000000011</DataItem>
+        </Attribute>
+      </Grid>
+      <Grid Name="phi_h" GridType="Uniform">
+        <xi:include xpointer="xpointer(/Xdmf/Domain/Grid[@GridType='Uniform'][1]/*[self::Topology or self::Geometry])" />
+        <Time Value="0.16400000000000012" />
+        <Attribute Name="phi_h" AttributeType="Scalar" Center="Node">
+          <DataItem Dimensions="1296 1" Format="HDF">level_set.h5:/Function/phi_h/0_16400000000000012</DataItem>
+        </Attribute>
+      </Grid>
+      <Grid Name="phi_h" GridType="Uniform">
+        <xi:include xpointer="xpointer(/Xdmf/Domain/Grid[@GridType='Uniform'][1]/*[self::Topology or self::Geometry])" />
+        <Time Value="0.16800000000000012" />
+        <Attribute Name="phi_h" AttributeType="Scalar" Center="Node">
+          <DataItem Dimensions="1296 1" Format="HDF">level_set.h5:/Function/phi_h/0_16800000000000012</DataItem>
+        </Attribute>
+      </Grid>
+      <Grid Name="phi_h" GridType="Uniform">
+        <xi:include xpointer="xpointer(/Xdmf/Domain/Grid[@GridType='Uniform'][1]/*[self::Topology or self::Geometry])" />
+        <Time Value="0.17200000000000013" />
+        <Attribute Name="phi_h" AttributeType="Scalar" Center="Node">
+          <DataItem Dimensions="1296 1" Format="HDF">level_set.h5:/Function/phi_h/0_17200000000000013</DataItem>
+        </Attribute>
+      </Grid>
+      <Grid Name="phi_h" GridType="Uniform">
+        <xi:include xpointer="xpointer(/Xdmf/Domain/Grid[@GridType='Uniform'][1]/*[self::Topology or self::Geometry])" />
+        <Time Value="0.17600000000000013" />
+        <Attribute Name="phi_h" AttributeType="Scalar" Center="Node">
+          <DataItem Dimensions="1296 1" Format="HDF">level_set.h5:/Function/phi_h/0_17600000000000013</DataItem>
+        </Attribute>
+      </Grid>
+      <Grid Name="phi_h" GridType="Uniform">
+        <xi:include xpointer="xpointer(/Xdmf/Domain/Grid[@GridType='Uniform'][1]/*[self::Topology or self::Geometry])" />
+        <Time Value="0.18000000000000013" />
+        <Attribute Name="phi_h" AttributeType="Scalar" Center="Node">
+          <DataItem Dimensions="1296 1" Format="HDF">level_set.h5:/Function/phi_h/0_18000000000000013</DataItem>
+        </Attribute>
+      </Grid>
+      <Grid Name="phi_h" GridType="Uniform">
+        <xi:include xpointer="xpointer(/Xdmf/Domain/Grid[@GridType='Uniform'][1]/*[self::Topology or self::Geometry])" />
+        <Time Value="0.18400000000000014" />
+        <Attribute Name="phi_h" AttributeType="Scalar" Center="Node">
+          <DataItem Dimensions="1296 1" Format="HDF">level_set.h5:/Function/phi_h/0_18400000000000014</DataItem>
+        </Attribute>
+      </Grid>
+      <Grid Name="phi_h" GridType="Uniform">
+        <xi:include xpointer="xpointer(/Xdmf/Domain/Grid[@GridType='Uniform'][1]/*[self::Topology or self::Geometry])" />
+        <Time Value="0.18800000000000014" />
+        <Attribute Name="phi_h" AttributeType="Scalar" Center="Node">
+          <DataItem Dimensions="1296 1" Format="HDF">level_set.h5:/Function/phi_h/0_18800000000000014</DataItem>
+        </Attribute>
+      </Grid>
+      <Grid Name="phi_h" GridType="Uniform">
+        <xi:include xpointer="xpointer(/Xdmf/Domain/Grid[@GridType='Uniform'][1]/*[self::Topology or self::Geometry])" />
+        <Time Value="0.19200000000000014" />
+        <Attribute Name="phi_h" AttributeType="Scalar" Center="Node">
+          <DataItem Dimensions="1296 1" Format="HDF">level_set.h5:/Function/phi_h/0_19200000000000014</DataItem>
+        </Attribute>
+      </Grid>
+      <Grid Name="phi_h" GridType="Uniform">
+        <xi:include xpointer="xpointer(/Xdmf/Domain/Grid[@GridType='Uniform'][1]/*[self::Topology or self::Geometry])" />
+        <Time Value="0.19600000000000015" />
+        <Attribute Name="phi_h" AttributeType="Scalar" Center="Node">
+          <DataItem Dimensions="1296 1" Format="HDF">level_set.h5:/Function/phi_h/0_19600000000000015</DataItem>
+        </Attribute>
+      </Grid>
+      <Grid Name="phi_h" GridType="Uniform">
+        <xi:include xpointer="xpointer(/Xdmf/Domain/Grid[@GridType='Uniform'][1]/*[self::Topology or self::Geometry])" />
+        <Time Value="0.20000000000000015" />
+        <Attribute Name="phi_h" AttributeType="Scalar" Center="Node">
+          <DataItem Dimensions="1296 1" Format="HDF">level_set.h5:/Function/phi_h/0_20000000000000015</DataItem>
+        </Attribute>
+      </Grid>
+      <Grid Name="phi_h" GridType="Uniform">
+        <xi:include xpointer="xpointer(/Xdmf/Domain/Grid[@GridType='Uniform'][1]/*[self::Topology or self::Geometry])" />
+        <Time Value="0.20400000000000015" />
+        <Attribute Name="phi_h" AttributeType="Scalar" Center="Node">
+          <DataItem Dimensions="1296 1" Format="HDF">level_set.h5:/Function/phi_h/0_20400000000000015</DataItem>
+        </Attribute>
+      </Grid>
+      <Grid Name="phi_h" GridType="Uniform">
+        <xi:include xpointer="xpointer(/Xdmf/Domain/Grid[@GridType='Uniform'][1]/*[self::Topology or self::Geometry])" />
+        <Time Value="0.20800000000000016" />
+        <Attribute Name="phi_h" AttributeType="Scalar" Center="Node">
+          <DataItem Dimensions="1296 1" Format="HDF">level_set.h5:/Function/phi_h/0_20800000000000016</DataItem>
+        </Attribute>
+      </Grid>
+      <Grid Name="phi_h" GridType="Uniform">
+        <xi:include xpointer="xpointer(/Xdmf/Domain/Grid[@GridType='Uniform'][1]/*[self::Topology or self::Geometry])" />
+        <Time Value="0.21200000000000016" />
+        <Attribute Name="phi_h" AttributeType="Scalar" Center="Node">
+          <DataItem Dimensions="1296 1" Format="HDF">level_set.h5:/Function/phi_h/0_21200000000000016</DataItem>
+        </Attribute>
+      </Grid>
+      <Grid Name="phi_h" GridType="Uniform">
+        <xi:include xpointer="xpointer(/Xdmf/Domain/Grid[@GridType='Uniform'][1]/*[self::Topology or self::Geometry])" />
+        <Time Value="0.21600000000000016" />
+        <Attribute Name="phi_h" AttributeType="Scalar" Center="Node">
+          <DataItem Dimensions="1296 1" Format="HDF">level_set.h5:/Function/phi_h/0_21600000000000016</DataItem>
+        </Attribute>
+      </Grid>
+      <Grid Name="phi_h" GridType="Uniform">
+        <xi:include xpointer="xpointer(/Xdmf/Domain/Grid[@GridType='Uniform'][1]/*[self::Topology or self::Geometry])" />
+        <Time Value="0.22000000000000017" />
+        <Attribute Name="phi_h" AttributeType="Scalar" Center="Node">
+          <DataItem Dimensions="1296 1" Format="HDF">level_set.h5:/Function/phi_h/0_22000000000000017</DataItem>
+        </Attribute>
+      </Grid>
+      <Grid Name="phi_h" GridType="Uniform">
+        <xi:include xpointer="xpointer(/Xdmf/Domain/Grid[@GridType='Uniform'][1]/*[self::Topology or self::Geometry])" />
+        <Time Value="0.22400000000000017" />
+        <Attribute Name="phi_h" AttributeType="Scalar" Center="Node">
+          <DataItem Dimensions="1296 1" Format="HDF">level_set.h5:/Function/phi_h/0_22400000000000017</DataItem>
+        </Attribute>
+      </Grid>
+      <Grid Name="phi_h" GridType="Uniform">
+        <xi:include xpointer="xpointer(/Xdmf/Domain/Grid[@GridType='Uniform'][1]/*[self::Topology or self::Geometry])" />
+        <Time Value="0.22800000000000017" />
+        <Attribute Name="phi_h" AttributeType="Scalar" Center="Node">
+          <DataItem Dimensions="1296 1" Format="HDF">level_set.h5:/Function/phi_h/0_22800000000000017</DataItem>
+        </Attribute>
+      </Grid>
+      <Grid Name="phi_h" GridType="Uniform">
+        <xi:include xpointer="xpointer(/Xdmf/Domain/Grid[@GridType='Uniform'][1]/*[self::Topology or self::Geometry])" />
+        <Time Value="0.23200000000000018" />
+        <Attribute Name="phi_h" AttributeType="Scalar" Center="Node">
+          <DataItem Dimensions="1296 1" Format="HDF">level_set.h5:/Function/phi_h/0_23200000000000018</DataItem>
+        </Attribute>
+      </Grid>
+      <Grid Name="phi_h" GridType="Uniform">
+        <xi:include xpointer="xpointer(/Xdmf/Domain/Grid[@GridType='Uniform'][1]/*[self::Topology or self::Geometry])" />
+        <Time Value="0.23600000000000018" />
+        <Attribute Name="phi_h" AttributeType="Scalar" Center="Node">
+          <DataItem Dimensions="1296 1" Format="HDF">level_set.h5:/Function/phi_h/0_23600000000000018</DataItem>
+        </Attribute>
+      </Grid>
+      <Grid Name="phi_h" GridType="Uniform">
+        <xi:include xpointer="xpointer(/Xdmf/Domain/Grid[@GridType='Uniform'][1]/*[self::Topology or self::Geometry])" />
+        <Time Value="0.24000000000000019" />
+        <Attribute Name="phi_h" AttributeType="Scalar" Center="Node">
+          <DataItem Dimensions="1296 1" Format="HDF">level_set.h5:/Function/phi_h/0_24000000000000019</DataItem>
+        </Attribute>
+      </Grid>
+      <Grid Name="phi_h" GridType="Uniform">
+        <xi:include xpointer="xpointer(/Xdmf/Domain/Grid[@GridType='Uniform'][1]/*[self::Topology or self::Geometry])" />
+        <Time Value="0.24400000000000019" />
+        <Attribute Name="phi_h" AttributeType="Scalar" Center="Node">
+          <DataItem Dimensions="1296 1" Format="HDF">level_set.h5:/Function/phi_h/0_24400000000000019</DataItem>
+        </Attribute>
+      </Grid>
+      <Grid Name="phi_h" GridType="Uniform">
+        <xi:include xpointer="xpointer(/Xdmf/Domain/Grid[@GridType='Uniform'][1]/*[self::Topology or self::Geometry])" />
+        <Time Value="0.24800000000000019" />
+        <Attribute Name="phi_h" AttributeType="Scalar" Center="Node">
+          <DataItem Dimensions="1296 1" Format="HDF">level_set.h5:/Function/phi_h/0_24800000000000019</DataItem>
+        </Attribute>
+      </Grid>
+      <Grid Name="phi_h" GridType="Uniform">
+        <xi:include xpointer="xpointer(/Xdmf/Domain/Grid[@GridType='Uniform'][1]/*[self::Topology or self::Geometry])" />
+        <Time Value="0.25200000000000017" />
+        <Attribute Name="phi_h" AttributeType="Scalar" Center="Node">
+          <DataItem Dimensions="1296 1" Format="HDF">level_set.h5:/Function/phi_h/0_25200000000000017</DataItem>
+        </Attribute>
+      </Grid>
+      <Grid Name="phi_h" GridType="Uniform">
+        <xi:include xpointer="xpointer(/Xdmf/Domain/Grid[@GridType='Uniform'][1]/*[self::Topology or self::Geometry])" />
+        <Time Value="0.25600000000000017" />
+        <Attribute Name="phi_h" AttributeType="Scalar" Center="Node">
+          <DataItem Dimensions="1296 1" Format="HDF">level_set.h5:/Function/phi_h/0_25600000000000017</DataItem>
+        </Attribute>
+      </Grid>
+      <Grid Name="phi_h" GridType="Uniform">
+        <xi:include xpointer="xpointer(/Xdmf/Domain/Grid[@GridType='Uniform'][1]/*[self::Topology or self::Geometry])" />
+        <Time Value="0.26000000000000018" />
+        <Attribute Name="phi_h" AttributeType="Scalar" Center="Node">
+          <DataItem Dimensions="1296 1" Format="HDF">level_set.h5:/Function/phi_h/0_26000000000000018</DataItem>
+        </Attribute>
+      </Grid>
+      <Grid Name="phi_h" GridType="Uniform">
+        <xi:include xpointer="xpointer(/Xdmf/Domain/Grid[@GridType='Uniform'][1]/*[self::Topology or self::Geometry])" />
+        <Time Value="0.26400000000000018" />
+        <Attribute Name="phi_h" AttributeType="Scalar" Center="Node">
+          <DataItem Dimensions="1296 1" Format="HDF">level_set.h5:/Function/phi_h/0_26400000000000018</DataItem>
+        </Attribute>
+      </Grid>
+      <Grid Name="phi_h" GridType="Uniform">
+        <xi:include xpointer="xpointer(/Xdmf/Domain/Grid[@GridType='Uniform'][1]/*[self::Topology or self::Geometry])" />
+        <Time Value="0.26800000000000018" />
+        <Attribute Name="phi_h" AttributeType="Scalar" Center="Node">
+          <DataItem Dimensions="1296 1" Format="HDF">level_set.h5:/Function/phi_h/0_26800000000000018</DataItem>
+        </Attribute>
+      </Grid>
+      <Grid Name="phi_h" GridType="Uniform">
+        <xi:include xpointer="xpointer(/Xdmf/Domain/Grid[@GridType='Uniform'][1]/*[self::Topology or self::Geometry])" />
+        <Time Value="0.27200000000000019" />
+        <Attribute Name="phi_h" AttributeType="Scalar" Center="Node">
+          <DataItem Dimensions="1296 1" Format="HDF">level_set.h5:/Function/phi_h/0_27200000000000019</DataItem>
+        </Attribute>
+      </Grid>
+      <Grid Name="phi_h" GridType="Uniform">
+        <xi:include xpointer="xpointer(/Xdmf/Domain/Grid[@GridType='Uniform'][1]/*[self::Topology or self::Geometry])" />
+        <Time Value="0.27600000000000019" />
+        <Attribute Name="phi_h" AttributeType="Scalar" Center="Node">
+          <DataItem Dimensions="1296 1" Format="HDF">level_set.h5:/Function/phi_h/0_27600000000000019</DataItem>
+        </Attribute>
+      </Grid>
+      <Grid Name="phi_h" GridType="Uniform">
+        <xi:include xpointer="xpointer(/Xdmf/Domain/Grid[@GridType='Uniform'][1]/*[self::Topology or self::Geometry])" />
+        <Time Value="0.28000000000000019" />
+        <Attribute Name="phi_h" AttributeType="Scalar" Center="Node">
+          <DataItem Dimensions="1296 1" Format="HDF">level_set.h5:/Function/phi_h/0_28000000000000019</DataItem>
+        </Attribute>
+      </Grid>
+      <Grid Name="phi_h" GridType="Uniform">
+        <xi:include xpointer="xpointer(/Xdmf/Domain/Grid[@GridType='Uniform'][1]/*[self::Topology or self::Geometry])" />
+        <Time Value="0.2840000000000002" />
+        <Attribute Name="phi_h" AttributeType="Scalar" Center="Node">
+          <DataItem Dimensions="1296 1" Format="HDF">level_set.h5:/Function/phi_h/0_2840000000000002</DataItem>
+        </Attribute>
+      </Grid>
+      <Grid Name="phi_h" GridType="Uniform">
+        <xi:include xpointer="xpointer(/Xdmf/Domain/Grid[@GridType='Uniform'][1]/*[self::Topology or self::Geometry])" />
+        <Time Value="0.2880000000000002" />
+        <Attribute Name="phi_h" AttributeType="Scalar" Center="Node">
+          <DataItem Dimensions="1296 1" Format="HDF">level_set.h5:/Function/phi_h/0_2880000000000002</DataItem>
+        </Attribute>
+      </Grid>
+      <Grid Name="phi_h" GridType="Uniform">
+        <xi:include xpointer="xpointer(/Xdmf/Domain/Grid[@GridType='Uniform'][1]/*[self::Topology or self::Geometry])" />
+        <Time Value="0.2920000000000002" />
+        <Attribute Name="phi_h" AttributeType="Scalar" Center="Node">
+          <DataItem Dimensions="1296 1" Format="HDF">level_set.h5:/Function/phi_h/0_2920000000000002</DataItem>
+        </Attribute>
+      </Grid>
+      <Grid Name="phi_h" GridType="Uniform">
+        <xi:include xpointer="xpointer(/Xdmf/Domain/Grid[@GridType='Uniform'][1]/*[self::Topology or self::Geometry])" />
+        <Time Value="0.29600000000000021" />
+        <Attribute Name="phi_h" AttributeType="Scalar" Center="Node">
+          <DataItem Dimensions="1296 1" Format="HDF">level_set.h5:/Function/phi_h/0_29600000000000021</DataItem>
+        </Attribute>
+      </Grid>
+      <Grid Name="phi_h" GridType="Uniform">
+        <xi:include xpointer="xpointer(/Xdmf/Domain/Grid[@GridType='Uniform'][1]/*[self::Topology or self::Geometry])" />
+        <Time Value="0.30000000000000021" />
+        <Attribute Name="phi_h" AttributeType="Scalar" Center="Node">
+          <DataItem Dimensions="1296 1" Format="HDF">level_set.h5:/Function/phi_h/0_30000000000000021</DataItem>
+        </Attribute>
+      </Grid>
+      <Grid Name="phi_h" GridType="Uniform">
+        <xi:include xpointer="xpointer(/Xdmf/Domain/Grid[@GridType='Uniform'][1]/*[self::Topology or self::Geometry])" />
+        <Time Value="0.30400000000000021" />
+        <Attribute Name="phi_h" AttributeType="Scalar" Center="Node">
+          <DataItem Dimensions="1296 1" Format="HDF">level_set.h5:/Function/phi_h/0_30400000000000021</DataItem>
+        </Attribute>
+      </Grid>
+      <Grid Name="phi_h" GridType="Uniform">
+        <xi:include xpointer="xpointer(/Xdmf/Domain/Grid[@GridType='Uniform'][1]/*[self::Topology or self::Geometry])" />
+        <Time Value="0.30800000000000022" />
+        <Attribute Name="phi_h" AttributeType="Scalar" Center="Node">
+          <DataItem Dimensions="1296 1" Format="HDF">level_set.h5:/Function/phi_h/0_30800000000000022</DataItem>
+        </Attribute>
+      </Grid>
+      <Grid Name="phi_h" GridType="Uniform">
+        <xi:include xpointer="xpointer(/Xdmf/Domain/Grid[@GridType='Uniform'][1]/*[self::Topology or self::Geometry])" />
+        <Time Value="0.31200000000000022" />
+        <Attribute Name="phi_h" AttributeType="Scalar" Center="Node">
+          <DataItem Dimensions="1296 1" Format="HDF">level_set.h5:/Function/phi_h/0_31200000000000022</DataItem>
+        </Attribute>
+      </Grid>
+      <Grid Name="phi_h" GridType="Uniform">
+        <xi:include xpointer="xpointer(/Xdmf/Domain/Grid[@GridType='Uniform'][1]/*[self::Topology or self::Geometry])" />
+        <Time Value="0.31600000000000023" />
+        <Attribute Name="phi_h" AttributeType="Scalar" Center="Node">
+          <DataItem Dimensions="1296 1" Format="HDF">level_set.h5:/Function/phi_h/0_31600000000000023</DataItem>
+        </Attribute>
+      </Grid>
+      <Grid Name="phi_h" GridType="Uniform">
+        <xi:include xpointer="xpointer(/Xdmf/Domain/Grid[@GridType='Uniform'][1]/*[self::Topology or self::Geometry])" />
+        <Time Value="0.32000000000000023" />
+        <Attribute Name="phi_h" AttributeType="Scalar" Center="Node">
+          <DataItem Dimensions="1296 1" Format="HDF">level_set.h5:/Function/phi_h/0_32000000000000023</DataItem>
+        </Attribute>
+      </Grid>
+      <Grid Name="phi_h" GridType="Uniform">
+        <xi:include xpointer="xpointer(/Xdmf/Domain/Grid[@GridType='Uniform'][1]/*[self::Topology or self::Geometry])" />
+        <Time Value="0.32400000000000023" />
+        <Attribute Name="phi_h" AttributeType="Scalar" Center="Node">
+          <DataItem Dimensions="1296 1" Format="HDF">level_set.h5:/Function/phi_h/0_32400000000000023</DataItem>
+        </Attribute>
+      </Grid>
+      <Grid Name="phi_h" GridType="Uniform">
+        <xi:include xpointer="xpointer(/Xdmf/Domain/Grid[@GridType='Uniform'][1]/*[self::Topology or self::Geometry])" />
+        <Time Value="0.32800000000000024" />
+        <Attribute Name="phi_h" AttributeType="Scalar" Center="Node">
+          <DataItem Dimensions="1296 1" Format="HDF">level_set.h5:/Function/phi_h/0_32800000000000024</DataItem>
+        </Attribute>
+      </Grid>
+      <Grid Name="phi_h" GridType="Uniform">
+        <xi:include xpointer="xpointer(/Xdmf/Domain/Grid[@GridType='Uniform'][1]/*[self::Topology or self::Geometry])" />
+        <Time Value="0.33200000000000024" />
+        <Attribute Name="phi_h" AttributeType="Scalar" Center="Node">
+          <DataItem Dimensions="1296 1" Format="HDF">level_set.h5:/Function/phi_h/0_33200000000000024</DataItem>
+        </Attribute>
+      </Grid>
+      <Grid Name="phi_h" GridType="Uniform">
+        <xi:include xpointer="xpointer(/Xdmf/Domain/Grid[@GridType='Uniform'][1]/*[self::Topology or self::Geometry])" />
+        <Time Value="0.33600000000000024" />
+        <Attribute Name="phi_h" AttributeType="Scalar" Center="Node">
+          <DataItem Dimensions="1296 1" Format="HDF">level_set.h5:/Function/phi_h/0_33600000000000024</DataItem>
+        </Attribute>
+      </Grid>
+      <Grid Name="phi_h" GridType="Uniform">
+        <xi:include xpointer="xpointer(/Xdmf/Domain/Grid[@GridType='Uniform'][1]/*[self::Topology or self::Geometry])" />
+        <Time Value="0.34000000000000025" />
+        <Attribute Name="phi_h" AttributeType="Scalar" Center="Node">
+          <DataItem Dimensions="1296 1" Format="HDF">level_set.h5:/Function/phi_h/0_34000000000000025</DataItem>
+        </Attribute>
+      </Grid>
+      <Grid Name="phi_h" GridType="Uniform">
+        <xi:include xpointer="xpointer(/Xdmf/Domain/Grid[@GridType='Uniform'][1]/*[self::Topology or self::Geometry])" />
+        <Time Value="0.34400000000000025" />
+        <Attribute Name="phi_h" AttributeType="Scalar" Center="Node">
+          <DataItem Dimensions="1296 1" Format="HDF">level_set.h5:/Function/phi_h/0_34400000000000025</DataItem>
+        </Attribute>
+      </Grid>
+      <Grid Name="phi_h" GridType="Uniform">
+        <xi:include xpointer="xpointer(/Xdmf/Domain/Grid[@GridType='Uniform'][1]/*[self::Topology or self::Geometry])" />
+        <Time Value="0.34800000000000025" />
+        <Attribute Name="phi_h" AttributeType="Scalar" Center="Node">
+          <DataItem Dimensions="1296 1" Format="HDF">level_set.h5:/Function/phi_h/0_34800000000000025</DataItem>
+        </Attribute>
+      </Grid>
+      <Grid Name="phi_h" GridType="Uniform">
+        <xi:include xpointer="xpointer(/Xdmf/Domain/Grid[@GridType='Uniform'][1]/*[self::Topology or self::Geometry])" />
+        <Time Value="0.35200000000000026" />
+        <Attribute Name="phi_h" AttributeType="Scalar" Center="Node">
+          <DataItem Dimensions="1296 1" Format="HDF">level_set.h5:/Function/phi_h/0_35200000000000026</DataItem>
+        </Attribute>
+      </Grid>
+      <Grid Name="phi_h" GridType="Uniform">
+        <xi:include xpointer="xpointer(/Xdmf/Domain/Grid[@GridType='Uniform'][1]/*[self::Topology or self::Geometry])" />
+        <Time Value="0.35600000000000026" />
+        <Attribute Name="phi_h" AttributeType="Scalar" Center="Node">
+          <DataItem Dimensions="1296 1" Format="HDF">level_set.h5:/Function/phi_h/0_35600000000000026</DataItem>
+        </Attribute>
+      </Grid>
+      <Grid Name="phi_h" GridType="Uniform">
+        <xi:include xpointer="xpointer(/Xdmf/Domain/Grid[@GridType='Uniform'][1]/*[self::Topology or self::Geometry])" />
+        <Time Value="0.36000000000000026" />
+        <Attribute Name="phi_h" AttributeType="Scalar" Center="Node">
+          <DataItem Dimensions="1296 1" Format="HDF">level_set.h5:/Function/phi_h/0_36000000000000026</DataItem>
+        </Attribute>
+      </Grid>
+      <Grid Name="phi_h" GridType="Uniform">
+        <xi:include xpointer="xpointer(/Xdmf/Domain/Grid[@GridType='Uniform'][1]/*[self::Topology or self::Geometry])" />
+        <Time Value="0.36400000000000027" />
+        <Attribute Name="phi_h" AttributeType="Scalar" Center="Node">
+          <DataItem Dimensions="1296 1" Format="HDF">level_set.h5:/Function/phi_h/0_36400000000000027</DataItem>
+        </Attribute>
+      </Grid>
+      <Grid Name="phi_h" GridType="Uniform">
+        <xi:include xpointer="xpointer(/Xdmf/Domain/Grid[@GridType='Uniform'][1]/*[self::Topology or self::Geometry])" />
+        <Time Value="0.36800000000000027" />
+        <Attribute Name="phi_h" AttributeType="Scalar" Center="Node">
+          <DataItem Dimensions="1296 1" Format="HDF">level_set.h5:/Function/phi_h/0_36800000000000027</DataItem>
+        </Attribute>
+      </Grid>
+      <Grid Name="phi_h" GridType="Uniform">
+        <xi:include xpointer="xpointer(/Xdmf/Domain/Grid[@GridType='Uniform'][1]/*[self::Topology or self::Geometry])" />
+        <Time Value="0.37200000000000027" />
+        <Attribute Name="phi_h" AttributeType="Scalar" Center="Node">
+          <DataItem Dimensions="1296 1" Format="HDF">level_set.h5:/Function/phi_h/0_37200000000000027</DataItem>
+        </Attribute>
+      </Grid>
+      <Grid Name="phi_h" GridType="Uniform">
+        <xi:include xpointer="xpointer(/Xdmf/Domain/Grid[@GridType='Uniform'][1]/*[self::Topology or self::Geometry])" />
+        <Time Value="0.37600000000000028" />
+        <Attribute Name="phi_h" AttributeType="Scalar" Center="Node">
+          <DataItem Dimensions="1296 1" Format="HDF">level_set.h5:/Function/phi_h/0_37600000000000028</DataItem>
+        </Attribute>
+      </Grid>
+      <Grid Name="phi_h" GridType="Uniform">
+        <xi:include xpointer="xpointer(/Xdmf/Domain/Grid[@GridType='Uniform'][1]/*[self::Topology or self::Geometry])" />
+        <Time Value="0.38000000000000028" />
+        <Attribute Name="phi_h" AttributeType="Scalar" Center="Node">
+          <DataItem Dimensions="1296 1" Format="HDF">level_set.h5:/Function/phi_h/0_38000000000000028</DataItem>
+        </Attribute>
+      </Grid>
+      <Grid Name="phi_h" GridType="Uniform">
+        <xi:include xpointer="xpointer(/Xdmf/Domain/Grid[@GridType='Uniform'][1]/*[self::Topology or self::Geometry])" />
+        <Time Value="0.38400000000000029" />
+        <Attribute Name="phi_h" AttributeType="Scalar" Center="Node">
+          <DataItem Dimensions="1296 1" Format="HDF">level_set.h5:/Function/phi_h/0_38400000000000029</DataItem>
+        </Attribute>
+      </Grid>
+      <Grid Name="phi_h" GridType="Uniform">
+        <xi:include xpointer="xpointer(/Xdmf/Domain/Grid[@GridType='Uniform'][1]/*[self::Topology or self::Geometry])" />
+        <Time Value="0.38800000000000029" />
+        <Attribute Name="phi_h" AttributeType="Scalar" Center="Node">
+          <DataItem Dimensions="1296 1" Format="HDF">level_set.h5:/Function/phi_h/0_38800000000000029</DataItem>
+        </Attribute>
+      </Grid>
+      <Grid Name="phi_h" GridType="Uniform">
+        <xi:include xpointer="xpointer(/Xdmf/Domain/Grid[@GridType='Uniform'][1]/*[self::Topology or self::Geometry])" />
+        <Time Value="0.39200000000000029" />
+        <Attribute Name="phi_h" AttributeType="Scalar" Center="Node">
+          <DataItem Dimensions="1296 1" Format="HDF">level_set.h5:/Function/phi_h/0_39200000000000029</DataItem>
+        </Attribute>
+      </Grid>
+      <Grid Name="phi_h" GridType="Uniform">
+        <xi:include xpointer="xpointer(/Xdmf/Domain/Grid[@GridType='Uniform'][1]/*[self::Topology or self::Geometry])" />
+        <Time Value="0.3960000000000003" />
+        <Attribute Name="phi_h" AttributeType="Scalar" Center="Node">
+          <DataItem Dimensions="1296 1" Format="HDF">level_set.h5:/Function/phi_h/0_3960000000000003</DataItem>
+        </Attribute>
+      </Grid>
+      <Grid Name="phi_h" GridType="Uniform">
+        <xi:include xpointer="xpointer(/Xdmf/Domain/Grid[@GridType='Uniform'][1]/*[self::Topology or self::Geometry])" />
+        <Time Value="0.4000000000000003" />
+        <Attribute Name="phi_h" AttributeType="Scalar" Center="Node">
+          <DataItem Dimensions="1296 1" Format="HDF">level_set.h5:/Function/phi_h/0_4000000000000003</DataItem>
+        </Attribute>
+      </Grid>
+      <Grid Name="phi_h" GridType="Uniform">
+        <xi:include xpointer="xpointer(/Xdmf/Domain/Grid[@GridType='Uniform'][1]/*[self::Topology or self::Geometry])" />
+        <Time Value="0.4040000000000003" />
+        <Attribute Name="phi_h" AttributeType="Scalar" Center="Node">
+          <DataItem Dimensions="1296 1" Format="HDF">level_set.h5:/Function/phi_h/0_4040000000000003</DataItem>
+        </Attribute>
+      </Grid>
+      <Grid Name="phi_h" GridType="Uniform">
+        <xi:include xpointer="xpointer(/Xdmf/Domain/Grid[@GridType='Uniform'][1]/*[self::Topology or self::Geometry])" />
+        <Time Value="0.40800000000000031" />
+        <Attribute Name="phi_h" AttributeType="Scalar" Center="Node">
+          <DataItem Dimensions="1296 1" Format="HDF">level_set.h5:/Function/phi_h/0_40800000000000031</DataItem>
+        </Attribute>
+      </Grid>
+      <Grid Name="phi_h" GridType="Uniform">
+        <xi:include xpointer="xpointer(/Xdmf/Domain/Grid[@GridType='Uniform'][1]/*[self::Topology or self::Geometry])" />
+        <Time Value="0.41200000000000031" />
+        <Attribute Name="phi_h" AttributeType="Scalar" Center="Node">
+          <DataItem Dimensions="1296 1" Format="HDF">level_set.h5:/Function/phi_h/0_41200000000000031</DataItem>
+        </Attribute>
+      </Grid>
+      <Grid Name="phi_h" GridType="Uniform">
+        <xi:include xpointer="xpointer(/Xdmf/Domain/Grid[@GridType='Uniform'][1]/*[self::Topology or self::Geometry])" />
+        <Time Value="0.41600000000000031" />
+        <Attribute Name="phi_h" AttributeType="Scalar" Center="Node">
+          <DataItem Dimensions="1296 1" Format="HDF">level_set.h5:/Function/phi_h/0_41600000000000031</DataItem>
+        </Attribute>
+      </Grid>
+      <Grid Name="phi_h" GridType="Uniform">
+        <xi:include xpointer="xpointer(/Xdmf/Domain/Grid[@GridType='Uniform'][1]/*[self::Topology or self::Geometry])" />
+        <Time Value="0.42000000000000032" />
+        <Attribute Name="phi_h" AttributeType="Scalar" Center="Node">
+          <DataItem Dimensions="1296 1" Format="HDF">level_set.h5:/Function/phi_h/0_42000000000000032</DataItem>
+        </Attribute>
+      </Grid>
+      <Grid Name="phi_h" GridType="Uniform">
+        <xi:include xpointer="xpointer(/Xdmf/Domain/Grid[@GridType='Uniform'][1]/*[self::Topology or self::Geometry])" />
+        <Time Value="0.42400000000000032" />
+        <Attribute Name="phi_h" AttributeType="Scalar" Center="Node">
+          <DataItem Dimensions="1296 1" Format="HDF">level_set.h5:/Function/phi_h/0_42400000000000032</DataItem>
+        </Attribute>
+      </Grid>
+      <Grid Name="phi_h" GridType="Uniform">
+        <xi:include xpointer="xpointer(/Xdmf/Domain/Grid[@GridType='Uniform'][1]/*[self::Topology or self::Geometry])" />
+        <Time Value="0.42800000000000032" />
+        <Attribute Name="phi_h" AttributeType="Scalar" Center="Node">
+          <DataItem Dimensions="1296 1" Format="HDF">level_set.h5:/Function/phi_h/0_42800000000000032</DataItem>
+        </Attribute>
+      </Grid>
+      <Grid Name="phi_h" GridType="Uniform">
+        <xi:include xpointer="xpointer(/Xdmf/Domain/Grid[@GridType='Uniform'][1]/*[self::Topology or self::Geometry])" />
+        <Time Value="0.43200000000000033" />
+        <Attribute Name="phi_h" AttributeType="Scalar" Center="Node">
+          <DataItem Dimensions="1296 1" Format="HDF">level_set.h5:/Function/phi_h/0_43200000000000033</DataItem>
+        </Attribute>
+      </Grid>
+      <Grid Name="phi_h" GridType="Uniform">
+        <xi:include xpointer="xpointer(/Xdmf/Domain/Grid[@GridType='Uniform'][1]/*[self::Topology or self::Geometry])" />
+        <Time Value="0.43600000000000033" />
+        <Attribute Name="phi_h" AttributeType="Scalar" Center="Node">
+          <DataItem Dimensions="1296 1" Format="HDF">level_set.h5:/Function/phi_h/0_43600000000000033</DataItem>
+        </Attribute>
+      </Grid>
+      <Grid Name="phi_h" GridType="Uniform">
+        <xi:include xpointer="xpointer(/Xdmf/Domain/Grid[@GridType='Uniform'][1]/*[self::Topology or self::Geometry])" />
+        <Time Value="0.44000000000000034" />
+        <Attribute Name="phi_h" AttributeType="Scalar" Center="Node">
+          <DataItem Dimensions="1296 1" Format="HDF">level_set.h5:/Function/phi_h/0_44000000000000034</DataItem>
+        </Attribute>
+      </Grid>
+      <Grid Name="phi_h" GridType="Uniform">
+        <xi:include xpointer="xpointer(/Xdmf/Domain/Grid[@GridType='Uniform'][1]/*[self::Topology or self::Geometry])" />
+        <Time Value="0.44400000000000034" />
+        <Attribute Name="phi_h" AttributeType="Scalar" Center="Node">
+          <DataItem Dimensions="1296 1" Format="HDF">level_set.h5:/Function/phi_h/0_44400000000000034</DataItem>
+        </Attribute>
+      </Grid>
+      <Grid Name="phi_h" GridType="Uniform">
+        <xi:include xpointer="xpointer(/Xdmf/Domain/Grid[@GridType='Uniform'][1]/*[self::Topology or self::Geometry])" />
+        <Time Value="0.44800000000000034" />
+        <Attribute Name="phi_h" AttributeType="Scalar" Center="Node">
+          <DataItem Dimensions="1296 1" Format="HDF">level_set.h5:/Function/phi_h/0_44800000000000034</DataItem>
+        </Attribute>
+      </Grid>
+      <Grid Name="phi_h" GridType="Uniform">
+        <xi:include xpointer="xpointer(/Xdmf/Domain/Grid[@GridType='Uniform'][1]/*[self::Topology or self::Geometry])" />
+        <Time Value="0.45200000000000035" />
+        <Attribute Name="phi_h" AttributeType="Scalar" Center="Node">
+          <DataItem Dimensions="1296 1" Format="HDF">level_set.h5:/Function/phi_h/0_45200000000000035</DataItem>
+        </Attribute>
+      </Grid>
+      <Grid Name="phi_h" GridType="Uniform">
+        <xi:include xpointer="xpointer(/Xdmf/Domain/Grid[@GridType='Uniform'][1]/*[self::Topology or self::Geometry])" />
+        <Time Value="0.45600000000000035" />
+        <Attribute Name="phi_h" AttributeType="Scalar" Center="Node">
+          <DataItem Dimensions="1296 1" Format="HDF">level_set.h5:/Function/phi_h/0_45600000000000035</DataItem>
+        </Attribute>
+      </Grid>
+      <Grid Name="phi_h" GridType="Uniform">
+        <xi:include xpointer="xpointer(/Xdmf/Domain/Grid[@GridType='Uniform'][1]/*[self::Topology or self::Geometry])" />
+        <Time Value="0.46000000000000035" />
+        <Attribute Name="phi_h" AttributeType="Scalar" Center="Node">
+          <DataItem Dimensions="1296 1" Format="HDF">level_set.h5:/Function/phi_h/0_46000000000000035</DataItem>
+        </Attribute>
+      </Grid>
+      <Grid Name="phi_h" GridType="Uniform">
+        <xi:include xpointer="xpointer(/Xdmf/Domain/Grid[@GridType='Uniform'][1]/*[self::Topology or self::Geometry])" />
+        <Time Value="0.46400000000000036" />
+        <Attribute Name="phi_h" AttributeType="Scalar" Center="Node">
+          <DataItem Dimensions="1296 1" Format="HDF">level_set.h5:/Function/phi_h/0_46400000000000036</DataItem>
+        </Attribute>
+      </Grid>
+      <Grid Name="phi_h" GridType="Uniform">
+        <xi:include xpointer="xpointer(/Xdmf/Domain/Grid[@GridType='Uniform'][1]/*[self::Topology or self::Geometry])" />
+        <Time Value="0.46800000000000036" />
+        <Attribute Name="phi_h" AttributeType="Scalar" Center="Node">
+          <DataItem Dimensions="1296 1" Format="HDF">level_set.h5:/Function/phi_h/0_46800000000000036</DataItem>
+        </Attribute>
+      </Grid>
+      <Grid Name="phi_h" GridType="Uniform">
+        <xi:include xpointer="xpointer(/Xdmf/Domain/Grid[@GridType='Uniform'][1]/*[self::Topology or self::Geometry])" />
+        <Time Value="0.47200000000000036" />
+        <Attribute Name="phi_h" AttributeType="Scalar" Center="Node">
+          <DataItem Dimensions="1296 1" Format="HDF">level_set.h5:/Function/phi_h/0_47200000000000036</DataItem>
+        </Attribute>
+      </Grid>
+      <Grid Name="phi_h" GridType="Uniform">
+        <xi:include xpointer="xpointer(/Xdmf/Domain/Grid[@GridType='Uniform'][1]/*[self::Topology or self::Geometry])" />
+        <Time Value="0.47600000000000037" />
+        <Attribute Name="phi_h" AttributeType="Scalar" Center="Node">
+          <DataItem Dimensions="1296 1" Format="HDF">level_set.h5:/Function/phi_h/0_47600000000000037</DataItem>
+        </Attribute>
+      </Grid>
+      <Grid Name="phi_h" GridType="Uniform">
+        <xi:include xpointer="xpointer(/Xdmf/Domain/Grid[@GridType='Uniform'][1]/*[self::Topology or self::Geometry])" />
+        <Time Value="0.48000000000000037" />
+        <Attribute Name="phi_h" AttributeType="Scalar" Center="Node">
+          <DataItem Dimensions="1296 1" Format="HDF">level_set.h5:/Function/phi_h/0_48000000000000037</DataItem>
+        </Attribute>
+      </Grid>
+      <Grid Name="phi_h" GridType="Uniform">
+        <xi:include xpointer="xpointer(/Xdmf/Domain/Grid[@GridType='Uniform'][1]/*[self::Topology or self::Geometry])" />
+        <Time Value="0.48400000000000037" />
+        <Attribute Name="phi_h" AttributeType="Scalar" Center="Node">
+          <DataItem Dimensions="1296 1" Format="HDF">level_set.h5:/Function/phi_h/0_48400000000000037</DataItem>
+        </Attribute>
+      </Grid>
+      <Grid Name="phi_h" GridType="Uniform">
+        <xi:include xpointer="xpointer(/Xdmf/Domain/Grid[@GridType='Uniform'][1]/*[self::Topology or self::Geometry])" />
+        <Time Value="0.48800000000000038" />
+        <Attribute Name="phi_h" AttributeType="Scalar" Center="Node">
+          <DataItem Dimensions="1296 1" Format="HDF">level_set.h5:/Function/phi_h/0_48800000000000038</DataItem>
+        </Attribute>
+      </Grid>
+      <Grid Name="phi_h" GridType="Uniform">
+        <xi:include xpointer="xpointer(/Xdmf/Domain/Grid[@GridType='Uniform'][1]/*[self::Topology or self::Geometry])" />
+        <Time Value="0.49200000000000038" />
+        <Attribute Name="phi_h" AttributeType="Scalar" Center="Node">
+          <DataItem Dimensions="1296 1" Format="HDF">level_set.h5:/Function/phi_h/0_49200000000000038</DataItem>
+        </Attribute>
+      </Grid>
+      <Grid Name="phi_h" GridType="Uniform">
+        <xi:include xpointer="xpointer(/Xdmf/Domain/Grid[@GridType='Uniform'][1]/*[self::Topology or self::Geometry])" />
+        <Time Value="0.49600000000000039" />
+        <Attribute Name="phi_h" AttributeType="Scalar" Center="Node">
+          <DataItem Dimensions="1296 1" Format="HDF">level_set.h5:/Function/phi_h/0_49600000000000039</DataItem>
+        </Attribute>
+      </Grid>
+      <Grid Name="phi_h" GridType="Uniform">
+        <xi:include xpointer="xpointer(/Xdmf/Domain/Grid[@GridType='Uniform'][1]/*[self::Topology or self::Geometry])" />
+        <Time Value="0.50000000000000033" />
+        <Attribute Name="phi_h" AttributeType="Scalar" Center="Node">
+          <DataItem Dimensions="1296 1" Format="HDF">level_set.h5:/Function/phi_h/0_50000000000000033</DataItem>
+        </Attribute>
+      </Grid>
+      <Grid Name="phi_h" GridType="Uniform">
+        <xi:include xpointer="xpointer(/Xdmf/Domain/Grid[@GridType='Uniform'][1]/*[self::Topology or self::Geometry])" />
+        <Time Value="0.50400000000000034" />
+        <Attribute Name="phi_h" AttributeType="Scalar" Center="Node">
+          <DataItem Dimensions="1296 1" Format="HDF">level_set.h5:/Function/phi_h/0_50400000000000034</DataItem>
+        </Attribute>
+      </Grid>
+      <Grid Name="phi_h" GridType="Uniform">
+        <xi:include xpointer="xpointer(/Xdmf/Domain/Grid[@GridType='Uniform'][1]/*[self::Topology or self::Geometry])" />
+        <Time Value="0.50800000000000034" />
+        <Attribute Name="phi_h" AttributeType="Scalar" Center="Node">
+          <DataItem Dimensions="1296 1" Format="HDF">level_set.h5:/Function/phi_h/0_50800000000000034</DataItem>
+        </Attribute>
+      </Grid>
+      <Grid Name="phi_h" GridType="Uniform">
+        <xi:include xpointer="xpointer(/Xdmf/Domain/Grid[@GridType='Uniform'][1]/*[self::Topology or self::Geometry])" />
+        <Time Value="0.51200000000000034" />
+        <Attribute Name="phi_h" AttributeType="Scalar" Center="Node">
+          <DataItem Dimensions="1296 1" Format="HDF">level_set.h5:/Function/phi_h/0_51200000000000034</DataItem>
+        </Attribute>
+      </Grid>
+      <Grid Name="phi_h" GridType="Uniform">
+        <xi:include xpointer="xpointer(/Xdmf/Domain/Grid[@GridType='Uniform'][1]/*[self::Topology or self::Geometry])" />
+        <Time Value="0.51600000000000035" />
+        <Attribute Name="phi_h" AttributeType="Scalar" Center="Node">
+          <DataItem Dimensions="1296 1" Format="HDF">level_set.h5:/Function/phi_h/0_51600000000000035</DataItem>
+        </Attribute>
+      </Grid>
+      <Grid Name="phi_h" GridType="Uniform">
+        <xi:include xpointer="xpointer(/Xdmf/Domain/Grid[@GridType='Uniform'][1]/*[self::Topology or self::Geometry])" />
+        <Time Value="0.52000000000000035" />
+        <Attribute Name="phi_h" AttributeType="Scalar" Center="Node">
+          <DataItem Dimensions="1296 1" Format="HDF">level_set.h5:/Function/phi_h/0_52000000000000035</DataItem>
+        </Attribute>
+      </Grid>
+      <Grid Name="phi_h" GridType="Uniform">
+        <xi:include xpointer="xpointer(/Xdmf/Domain/Grid[@GridType='Uniform'][1]/*[self::Topology or self::Geometry])" />
+        <Time Value="0.52400000000000035" />
+        <Attribute Name="phi_h" AttributeType="Scalar" Center="Node">
+          <DataItem Dimensions="1296 1" Format="HDF">level_set.h5:/Function/phi_h/0_52400000000000035</DataItem>
+        </Attribute>
+      </Grid>
+      <Grid Name="phi_h" GridType="Uniform">
+        <xi:include xpointer="xpointer(/Xdmf/Domain/Grid[@GridType='Uniform'][1]/*[self::Topology or self::Geometry])" />
+        <Time Value="0.52800000000000036" />
+        <Attribute Name="phi_h" AttributeType="Scalar" Center="Node">
+          <DataItem Dimensions="1296 1" Format="HDF">level_set.h5:/Function/phi_h/0_52800000000000036</DataItem>
+        </Attribute>
+      </Grid>
+      <Grid Name="phi_h" GridType="Uniform">
+        <xi:include xpointer="xpointer(/Xdmf/Domain/Grid[@GridType='Uniform'][1]/*[self::Topology or self::Geometry])" />
+        <Time Value="0.53200000000000036" />
+        <Attribute Name="phi_h" AttributeType="Scalar" Center="Node">
+          <DataItem Dimensions="1296 1" Format="HDF">level_set.h5:/Function/phi_h/0_53200000000000036</DataItem>
+        </Attribute>
+      </Grid>
+      <Grid Name="phi_h" GridType="Uniform">
+        <xi:include xpointer="xpointer(/Xdmf/Domain/Grid[@GridType='Uniform'][1]/*[self::Topology or self::Geometry])" />
+        <Time Value="0.53600000000000037" />
+        <Attribute Name="phi_h" AttributeType="Scalar" Center="Node">
+          <DataItem Dimensions="1296 1" Format="HDF">level_set.h5:/Function/phi_h/0_53600000000000037</DataItem>
+        </Attribute>
+      </Grid>
+      <Grid Name="phi_h" GridType="Uniform">
+        <xi:include xpointer="xpointer(/Xdmf/Domain/Grid[@GridType='Uniform'][1]/*[self::Topology or self::Geometry])" />
+        <Time Value="0.54000000000000037" />
+        <Attribute Name="phi_h" AttributeType="Scalar" Center="Node">
+          <DataItem Dimensions="1296 1" Format="HDF">level_set.h5:/Function/phi_h/0_54000000000000037</DataItem>
+        </Attribute>
+      </Grid>
+      <Grid Name="phi_h" GridType="Uniform">
+        <xi:include xpointer="xpointer(/Xdmf/Domain/Grid[@GridType='Uniform'][1]/*[self::Topology or self::Geometry])" />
+        <Time Value="0.54400000000000037" />
+        <Attribute Name="phi_h" AttributeType="Scalar" Center="Node">
+          <DataItem Dimensions="1296 1" Format="HDF">level_set.h5:/Function/phi_h/0_54400000000000037</DataItem>
+        </Attribute>
+      </Grid>
+      <Grid Name="phi_h" GridType="Uniform">
+        <xi:include xpointer="xpointer(/Xdmf/Domain/Grid[@GridType='Uniform'][1]/*[self::Topology or self::Geometry])" />
+        <Time Value="0.54800000000000038" />
+        <Attribute Name="phi_h" AttributeType="Scalar" Center="Node">
+          <DataItem Dimensions="1296 1" Format="HDF">level_set.h5:/Function/phi_h/0_54800000000000038</DataItem>
+        </Attribute>
+      </Grid>
+      <Grid Name="phi_h" GridType="Uniform">
+        <xi:include xpointer="xpointer(/Xdmf/Domain/Grid[@GridType='Uniform'][1]/*[self::Topology or self::Geometry])" />
+        <Time Value="0.55200000000000038" />
+        <Attribute Name="phi_h" AttributeType="Scalar" Center="Node">
+          <DataItem Dimensions="1296 1" Format="HDF">level_set.h5:/Function/phi_h/0_55200000000000038</DataItem>
+        </Attribute>
+      </Grid>
+      <Grid Name="phi_h" GridType="Uniform">
+        <xi:include xpointer="xpointer(/Xdmf/Domain/Grid[@GridType='Uniform'][1]/*[self::Topology or self::Geometry])" />
+        <Time Value="0.55600000000000038" />
+        <Attribute Name="phi_h" AttributeType="Scalar" Center="Node">
+          <DataItem Dimensions="1296 1" Format="HDF">level_set.h5:/Function/phi_h/0_55600000000000038</DataItem>
+        </Attribute>
+      </Grid>
+      <Grid Name="phi_h" GridType="Uniform">
+        <xi:include xpointer="xpointer(/Xdmf/Domain/Grid[@GridType='Uniform'][1]/*[self::Topology or self::Geometry])" />
+        <Time Value="0.56000000000000039" />
+        <Attribute Name="phi_h" AttributeType="Scalar" Center="Node">
+          <DataItem Dimensions="1296 1" Format="HDF">level_set.h5:/Function/phi_h/0_56000000000000039</DataItem>
+        </Attribute>
+      </Grid>
+      <Grid Name="phi_h" GridType="Uniform">
+        <xi:include xpointer="xpointer(/Xdmf/Domain/Grid[@GridType='Uniform'][1]/*[self::Topology or self::Geometry])" />
+        <Time Value="0.56400000000000039" />
+        <Attribute Name="phi_h" AttributeType="Scalar" Center="Node">
+          <DataItem Dimensions="1296 1" Format="HDF">level_set.h5:/Function/phi_h/0_56400000000000039</DataItem>
+        </Attribute>
+      </Grid>
+      <Grid Name="phi_h" GridType="Uniform">
+        <xi:include xpointer="xpointer(/Xdmf/Domain/Grid[@GridType='Uniform'][1]/*[self::Topology or self::Geometry])" />
+        <Time Value="0.56800000000000039" />
+        <Attribute Name="phi_h" AttributeType="Scalar" Center="Node">
+          <DataItem Dimensions="1296 1" Format="HDF">level_set.h5:/Function/phi_h/0_56800000000000039</DataItem>
+        </Attribute>
+      </Grid>
+      <Grid Name="phi_h" GridType="Uniform">
+        <xi:include xpointer="xpointer(/Xdmf/Domain/Grid[@GridType='Uniform'][1]/*[self::Topology or self::Geometry])" />
+        <Time Value="0.5720000000000004" />
+        <Attribute Name="phi_h" AttributeType="Scalar" Center="Node">
+          <DataItem Dimensions="1296 1" Format="HDF">level_set.h5:/Function/phi_h/0_5720000000000004</DataItem>
+        </Attribute>
+      </Grid>
+      <Grid Name="phi_h" GridType="Uniform">
+        <xi:include xpointer="xpointer(/Xdmf/Domain/Grid[@GridType='Uniform'][1]/*[self::Topology or self::Geometry])" />
+        <Time Value="0.5760000000000004" />
+        <Attribute Name="phi_h" AttributeType="Scalar" Center="Node">
+          <DataItem Dimensions="1296 1" Format="HDF">level_set.h5:/Function/phi_h/0_5760000000000004</DataItem>
+        </Attribute>
+      </Grid>
+      <Grid Name="phi_h" GridType="Uniform">
+        <xi:include xpointer="xpointer(/Xdmf/Domain/Grid[@GridType='Uniform'][1]/*[self::Topology or self::Geometry])" />
+        <Time Value="0.5800000000000004" />
+        <Attribute Name="phi_h" AttributeType="Scalar" Center="Node">
+          <DataItem Dimensions="1296 1" Format="HDF">level_set.h5:/Function/phi_h/0_5800000000000004</DataItem>
+        </Attribute>
+      </Grid>
+      <Grid Name="phi_h" GridType="Uniform">
+        <xi:include xpointer="xpointer(/Xdmf/Domain/Grid[@GridType='Uniform'][1]/*[self::Topology or self::Geometry])" />
+        <Time Value="0.58400000000000041" />
+        <Attribute Name="phi_h" AttributeType="Scalar" Center="Node">
+          <DataItem Dimensions="1296 1" Format="HDF">level_set.h5:/Function/phi_h/0_58400000000000041</DataItem>
+        </Attribute>
+      </Grid>
+      <Grid Name="phi_h" GridType="Uniform">
+        <xi:include xpointer="xpointer(/Xdmf/Domain/Grid[@GridType='Uniform'][1]/*[self::Topology or self::Geometry])" />
+        <Time Value="0.58800000000000041" />
+        <Attribute Name="phi_h" AttributeType="Scalar" Center="Node">
+          <DataItem Dimensions="1296 1" Format="HDF">level_set.h5:/Function/phi_h/0_58800000000000041</DataItem>
+        </Attribute>
+      </Grid>
+      <Grid Name="phi_h" GridType="Uniform">
+        <xi:include xpointer="xpointer(/Xdmf/Domain/Grid[@GridType='Uniform'][1]/*[self::Topology or self::Geometry])" />
+        <Time Value="0.59200000000000041" />
+        <Attribute Name="phi_h" AttributeType="Scalar" Center="Node">
+          <DataItem Dimensions="1296 1" Format="HDF">level_set.h5:/Function/phi_h/0_59200000000000041</DataItem>
+        </Attribute>
+      </Grid>
+      <Grid Name="phi_h" GridType="Uniform">
+        <xi:include xpointer="xpointer(/Xdmf/Domain/Grid[@GridType='Uniform'][1]/*[self::Topology or self::Geometry])" />
+        <Time Value="0.59600000000000042" />
+        <Attribute Name="phi_h" AttributeType="Scalar" Center="Node">
+          <DataItem Dimensions="1296 1" Format="HDF">level_set.h5:/Function/phi_h/0_59600000000000042</DataItem>
+        </Attribute>
+      </Grid>
+      <Grid Name="phi_h" GridType="Uniform">
+        <xi:include xpointer="xpointer(/Xdmf/Domain/Grid[@GridType='Uniform'][1]/*[self::Topology or self::Geometry])" />
+        <Time Value="0.60000000000000042" />
+        <Attribute Name="phi_h" AttributeType="Scalar" Center="Node">
+          <DataItem Dimensions="1296 1" Format="HDF">level_set.h5:/Function/phi_h/0_60000000000000042</DataItem>
+        </Attribute>
+      </Grid>
+      <Grid Name="phi_h" GridType="Uniform">
+        <xi:include xpointer="xpointer(/Xdmf/Domain/Grid[@GridType='Uniform'][1]/*[self::Topology or self::Geometry])" />
+        <Time Value="0.60400000000000043" />
+        <Attribute Name="phi_h" AttributeType="Scalar" Center="Node">
+          <DataItem Dimensions="1296 1" Format="HDF">level_set.h5:/Function/phi_h/0_60400000000000043</DataItem>
+        </Attribute>
+      </Grid>
+      <Grid Name="phi_h" GridType="Uniform">
+        <xi:include xpointer="xpointer(/Xdmf/Domain/Grid[@GridType='Uniform'][1]/*[self::Topology or self::Geometry])" />
+        <Time Value="0.60800000000000043" />
+        <Attribute Name="phi_h" AttributeType="Scalar" Center="Node">
+          <DataItem Dimensions="1296 1" Format="HDF">level_set.h5:/Function/phi_h/0_60800000000000043</DataItem>
+        </Attribute>
+      </Grid>
+      <Grid Name="phi_h" GridType="Uniform">
+        <xi:include xpointer="xpointer(/Xdmf/Domain/Grid[@GridType='Uniform'][1]/*[self::Topology or self::Geometry])" />
+        <Time Value="0.61200000000000043" />
+        <Attribute Name="phi_h" AttributeType="Scalar" Center="Node">
+          <DataItem Dimensions="1296 1" Format="HDF">level_set.h5:/Function/phi_h/0_61200000000000043</DataItem>
+        </Attribute>
+      </Grid>
+      <Grid Name="phi_h" GridType="Uniform">
+        <xi:include xpointer="xpointer(/Xdmf/Domain/Grid[@GridType='Uniform'][1]/*[self::Topology or self::Geometry])" />
+        <Time Value="0.61600000000000044" />
+        <Attribute Name="phi_h" AttributeType="Scalar" Center="Node">
+          <DataItem Dimensions="1296 1" Format="HDF">level_set.h5:/Function/phi_h/0_61600000000000044</DataItem>
+        </Attribute>
+      </Grid>
+      <Grid Name="phi_h" GridType="Uniform">
+        <xi:include xpointer="xpointer(/Xdmf/Domain/Grid[@GridType='Uniform'][1]/*[self::Topology or self::Geometry])" />
+        <Time Value="0.62000000000000044" />
+        <Attribute Name="phi_h" AttributeType="Scalar" Center="Node">
+          <DataItem Dimensions="1296 1" Format="HDF">level_set.h5:/Function/phi_h/0_62000000000000044</DataItem>
+        </Attribute>
+      </Grid>
+      <Grid Name="phi_h" GridType="Uniform">
+        <xi:include xpointer="xpointer(/Xdmf/Domain/Grid[@GridType='Uniform'][1]/*[self::Topology or self::Geometry])" />
+        <Time Value="0.62400000000000044" />
+        <Attribute Name="phi_h" AttributeType="Scalar" Center="Node">
+          <DataItem Dimensions="1296 1" Format="HDF">level_set.h5:/Function/phi_h/0_62400000000000044</DataItem>
+        </Attribute>
+      </Grid>
+      <Grid Name="phi_h" GridType="Uniform">
+        <xi:include xpointer="xpointer(/Xdmf/Domain/Grid[@GridType='Uniform'][1]/*[self::Topology or self::Geometry])" />
+        <Time Value="0.62800000000000045" />
+        <Attribute Name="phi_h" AttributeType="Scalar" Center="Node">
+          <DataItem Dimensions="1296 1" Format="HDF">level_set.h5:/Function/phi_h/0_62800000000000045</DataItem>
+        </Attribute>
+      </Grid>
+      <Grid Name="phi_h" GridType="Uniform">
+        <xi:include xpointer="xpointer(/Xdmf/Domain/Grid[@GridType='Uniform'][1]/*[self::Topology or self::Geometry])" />
+        <Time Value="0.63200000000000045" />
+        <Attribute Name="phi_h" AttributeType="Scalar" Center="Node">
+          <DataItem Dimensions="1296 1" Format="HDF">level_set.h5:/Function/phi_h/0_63200000000000045</DataItem>
+        </Attribute>
+      </Grid>
+      <Grid Name="phi_h" GridType="Uniform">
+        <xi:include xpointer="xpointer(/Xdmf/Domain/Grid[@GridType='Uniform'][1]/*[self::Topology or self::Geometry])" />
+        <Time Value="0.63600000000000045" />
+        <Attribute Name="phi_h" AttributeType="Scalar" Center="Node">
+          <DataItem Dimensions="1296 1" Format="HDF">level_set.h5:/Function/phi_h/0_63600000000000045</DataItem>
+        </Attribute>
+      </Grid>
+      <Grid Name="phi_h" GridType="Uniform">
+        <xi:include xpointer="xpointer(/Xdmf/Domain/Grid[@GridType='Uniform'][1]/*[self::Topology or self::Geometry])" />
+        <Time Value="0.64000000000000046" />
+        <Attribute Name="phi_h" AttributeType="Scalar" Center="Node">
+          <DataItem Dimensions="1296 1" Format="HDF">level_set.h5:/Function/phi_h/0_64000000000000046</DataItem>
+        </Attribute>
+      </Grid>
+      <Grid Name="phi_h" GridType="Uniform">
+        <xi:include xpointer="xpointer(/Xdmf/Domain/Grid[@GridType='Uniform'][1]/*[self::Topology or self::Geometry])" />
+        <Time Value="0.64400000000000046" />
+        <Attribute Name="phi_h" AttributeType="Scalar" Center="Node">
+          <DataItem Dimensions="1296 1" Format="HDF">level_set.h5:/Function/phi_h/0_64400000000000046</DataItem>
+        </Attribute>
+      </Grid>
+      <Grid Name="phi_h" GridType="Uniform">
+        <xi:include xpointer="xpointer(/Xdmf/Domain/Grid[@GridType='Uniform'][1]/*[self::Topology or self::Geometry])" />
+        <Time Value="0.64800000000000046" />
+        <Attribute Name="phi_h" AttributeType="Scalar" Center="Node">
+          <DataItem Dimensions="1296 1" Format="HDF">level_set.h5:/Function/phi_h/0_64800000000000046</DataItem>
+        </Attribute>
+      </Grid>
+      <Grid Name="phi_h" GridType="Uniform">
+        <xi:include xpointer="xpointer(/Xdmf/Domain/Grid[@GridType='Uniform'][1]/*[self::Topology or self::Geometry])" />
+        <Time Value="0.65200000000000047" />
+        <Attribute Name="phi_h" AttributeType="Scalar" Center="Node">
+          <DataItem Dimensions="1296 1" Format="HDF">level_set.h5:/Function/phi_h/0_65200000000000047</DataItem>
+        </Attribute>
+      </Grid>
+      <Grid Name="phi_h" GridType="Uniform">
+        <xi:include xpointer="xpointer(/Xdmf/Domain/Grid[@GridType='Uniform'][1]/*[self::Topology or self::Geometry])" />
+        <Time Value="0.65600000000000047" />
+        <Attribute Name="phi_h" AttributeType="Scalar" Center="Node">
+          <DataItem Dimensions="1296 1" Format="HDF">level_set.h5:/Function/phi_h/0_65600000000000047</DataItem>
+        </Attribute>
+      </Grid>
+      <Grid Name="phi_h" GridType="Uniform">
+        <xi:include xpointer="xpointer(/Xdmf/Domain/Grid[@GridType='Uniform'][1]/*[self::Topology or self::Geometry])" />
+        <Time Value="0.66000000000000048" />
+        <Attribute Name="phi_h" AttributeType="Scalar" Center="Node">
+          <DataItem Dimensions="1296 1" Format="HDF">level_set.h5:/Function/phi_h/0_66000000000000048</DataItem>
+        </Attribute>
+      </Grid>
+      <Grid Name="phi_h" GridType="Uniform">
+        <xi:include xpointer="xpointer(/Xdmf/Domain/Grid[@GridType='Uniform'][1]/*[self::Topology or self::Geometry])" />
+        <Time Value="0.66400000000000048" />
+        <Attribute Name="phi_h" AttributeType="Scalar" Center="Node">
+          <DataItem Dimensions="1296 1" Format="HDF">level_set.h5:/Function/phi_h/0_66400000000000048</DataItem>
+        </Attribute>
+      </Grid>
+      <Grid Name="phi_h" GridType="Uniform">
+        <xi:include xpointer="xpointer(/Xdmf/Domain/Grid[@GridType='Uniform'][1]/*[self::Topology or self::Geometry])" />
+        <Time Value="0.66800000000000048" />
+        <Attribute Name="phi_h" AttributeType="Scalar" Center="Node">
+          <DataItem Dimensions="1296 1" Format="HDF">level_set.h5:/Function/phi_h/0_66800000000000048</DataItem>
+        </Attribute>
+      </Grid>
+      <Grid Name="phi_h" GridType="Uniform">
+        <xi:include xpointer="xpointer(/Xdmf/Domain/Grid[@GridType='Uniform'][1]/*[self::Topology or self::Geometry])" />
+        <Time Value="0.67200000000000049" />
+        <Attribute Name="phi_h" AttributeType="Scalar" Center="Node">
+          <DataItem Dimensions="1296 1" Format="HDF">level_set.h5:/Function/phi_h/0_67200000000000049</DataItem>
+        </Attribute>
+      </Grid>
+      <Grid Name="phi_h" GridType="Uniform">
+        <xi:include xpointer="xpointer(/Xdmf/Domain/Grid[@GridType='Uniform'][1]/*[self::Topology or self::Geometry])" />
+        <Time Value="0.67600000000000049" />
+        <Attribute Name="phi_h" AttributeType="Scalar" Center="Node">
+          <DataItem Dimensions="1296 1" Format="HDF">level_set.h5:/Function/phi_h/0_67600000000000049</DataItem>
+        </Attribute>
+      </Grid>
+      <Grid Name="phi_h" GridType="Uniform">
+        <xi:include xpointer="xpointer(/Xdmf/Domain/Grid[@GridType='Uniform'][1]/*[self::Topology or self::Geometry])" />
+        <Time Value="0.68000000000000049" />
+        <Attribute Name="phi_h" AttributeType="Scalar" Center="Node">
+          <DataItem Dimensions="1296 1" Format="HDF">level_set.h5:/Function/phi_h/0_68000000000000049</DataItem>
+        </Attribute>
+      </Grid>
+      <Grid Name="phi_h" GridType="Uniform">
+        <xi:include xpointer="xpointer(/Xdmf/Domain/Grid[@GridType='Uniform'][1]/*[self::Topology or self::Geometry])" />
+        <Time Value="0.6840000000000005" />
+        <Attribute Name="phi_h" AttributeType="Scalar" Center="Node">
+          <DataItem Dimensions="1296 1" Format="HDF">level_set.h5:/Function/phi_h/0_6840000000000005</DataItem>
+        </Attribute>
+      </Grid>
+      <Grid Name="phi_h" GridType="Uniform">
+        <xi:include xpointer="xpointer(/Xdmf/Domain/Grid[@GridType='Uniform'][1]/*[self::Topology or self::Geometry])" />
+        <Time Value="0.6880000000000005" />
+        <Attribute Name="phi_h" AttributeType="Scalar" Center="Node">
+          <DataItem Dimensions="1296 1" Format="HDF">level_set.h5:/Function/phi_h/0_6880000000000005</DataItem>
+        </Attribute>
+      </Grid>
+      <Grid Name="phi_h" GridType="Uniform">
+        <xi:include xpointer="xpointer(/Xdmf/Domain/Grid[@GridType='Uniform'][1]/*[self::Topology or self::Geometry])" />
+        <Time Value="0.6920000000000005" />
+        <Attribute Name="phi_h" AttributeType="Scalar" Center="Node">
+          <DataItem Dimensions="1296 1" Format="HDF">level_set.h5:/Function/phi_h/0_6920000000000005</DataItem>
+        </Attribute>
+      </Grid>
+      <Grid Name="phi_h" GridType="Uniform">
+        <xi:include xpointer="xpointer(/Xdmf/Domain/Grid[@GridType='Uniform'][1]/*[self::Topology or self::Geometry])" />
+        <Time Value="0.69600000000000051" />
+        <Attribute Name="phi_h" AttributeType="Scalar" Center="Node">
+          <DataItem Dimensions="1296 1" Format="HDF">level_set.h5:/Function/phi_h/0_69600000000000051</DataItem>
+        </Attribute>
+      </Grid>
+      <Grid Name="phi_h" GridType="Uniform">
+        <xi:include xpointer="xpointer(/Xdmf/Domain/Grid[@GridType='Uniform'][1]/*[self::Topology or self::Geometry])" />
+        <Time Value="0.70000000000000051" />
+        <Attribute Name="phi_h" AttributeType="Scalar" Center="Node">
+          <DataItem Dimensions="1296 1" Format="HDF">level_set.h5:/Function/phi_h/0_70000000000000051</DataItem>
+        </Attribute>
+      </Grid>
+      <Grid Name="phi_h" GridType="Uniform">
+        <xi:include xpointer="xpointer(/Xdmf/Domain/Grid[@GridType='Uniform'][1]/*[self::Topology or self::Geometry])" />
+        <Time Value="0.70400000000000051" />
+        <Attribute Name="phi_h" AttributeType="Scalar" Center="Node">
+          <DataItem Dimensions="1296 1" Format="HDF">level_set.h5:/Function/phi_h/0_70400000000000051</DataItem>
+        </Attribute>
+      </Grid>
+      <Grid Name="phi_h" GridType="Uniform">
+        <xi:include xpointer="xpointer(/Xdmf/Domain/Grid[@GridType='Uniform'][1]/*[self::Topology or self::Geometry])" />
+        <Time Value="0.70800000000000052" />
+        <Attribute Name="phi_h" AttributeType="Scalar" Center="Node">
+          <DataItem Dimensions="1296 1" Format="HDF">level_set.h5:/Function/phi_h/0_70800000000000052</DataItem>
+        </Attribute>
+      </Grid>
+      <Grid Name="phi_h" GridType="Uniform">
+        <xi:include xpointer="xpointer(/Xdmf/Domain/Grid[@GridType='Uniform'][1]/*[self::Topology or self::Geometry])" />
+        <Time Value="0.71200000000000052" />
+        <Attribute Name="phi_h" AttributeType="Scalar" Center="Node">
+          <DataItem Dimensions="1296 1" Format="HDF">level_set.h5:/Function/phi_h/0_71200000000000052</DataItem>
+        </Attribute>
+      </Grid>
+      <Grid Name="phi_h" GridType="Uniform">
+        <xi:include xpointer="xpointer(/Xdmf/Domain/Grid[@GridType='Uniform'][1]/*[self::Topology or self::Geometry])" />
+        <Time Value="0.71600000000000052" />
+        <Attribute Name="phi_h" AttributeType="Scalar" Center="Node">
+          <DataItem Dimensions="1296 1" Format="HDF">level_set.h5:/Function/phi_h/0_71600000000000052</DataItem>
+        </Attribute>
+      </Grid>
+      <Grid Name="phi_h" GridType="Uniform">
+        <xi:include xpointer="xpointer(/Xdmf/Domain/Grid[@GridType='Uniform'][1]/*[self::Topology or self::Geometry])" />
+        <Time Value="0.72000000000000053" />
+        <Attribute Name="phi_h" AttributeType="Scalar" Center="Node">
+          <DataItem Dimensions="1296 1" Format="HDF">level_set.h5:/Function/phi_h/0_72000000000000053</DataItem>
+        </Attribute>
+      </Grid>
+      <Grid Name="phi_h" GridType="Uniform">
+        <xi:include xpointer="xpointer(/Xdmf/Domain/Grid[@GridType='Uniform'][1]/*[self::Topology or self::Geometry])" />
+        <Time Value="0.72400000000000053" />
+        <Attribute Name="phi_h" AttributeType="Scalar" Center="Node">
+          <DataItem Dimensions="1296 1" Format="HDF">level_set.h5:/Function/phi_h/0_72400000000000053</DataItem>
+        </Attribute>
+      </Grid>
+      <Grid Name="phi_h" GridType="Uniform">
+        <xi:include xpointer="xpointer(/Xdmf/Domain/Grid[@GridType='Uniform'][1]/*[self::Topology or self::Geometry])" />
+        <Time Value="0.72800000000000054" />
+        <Attribute Name="phi_h" AttributeType="Scalar" Center="Node">
+          <DataItem Dimensions="1296 1" Format="HDF">level_set.h5:/Function/phi_h/0_72800000000000054</DataItem>
+        </Attribute>
+      </Grid>
+      <Grid Name="phi_h" GridType="Uniform">
+        <xi:include xpointer="xpointer(/Xdmf/Domain/Grid[@GridType='Uniform'][1]/*[self::Topology or self::Geometry])" />
+        <Time Value="0.73200000000000054" />
+        <Attribute Name="phi_h" AttributeType="Scalar" Center="Node">
+          <DataItem Dimensions="1296 1" Format="HDF">level_set.h5:/Function/phi_h/0_73200000000000054</DataItem>
+        </Attribute>
+      </Grid>
+      <Grid Name="phi_h" GridType="Uniform">
+        <xi:include xpointer="xpointer(/Xdmf/Domain/Grid[@GridType='Uniform'][1]/*[self::Topology or self::Geometry])" />
+        <Time Value="0.73600000000000054" />
+        <Attribute Name="phi_h" AttributeType="Scalar" Center="Node">
+          <DataItem Dimensions="1296 1" Format="HDF">level_set.h5:/Function/phi_h/0_73600000000000054</DataItem>
+        </Attribute>
+      </Grid>
+      <Grid Name="phi_h" GridType="Uniform">
+        <xi:include xpointer="xpointer(/Xdmf/Domain/Grid[@GridType='Uniform'][1]/*[self::Topology or self::Geometry])" />
+        <Time Value="0.74000000000000055" />
+        <Attribute Name="phi_h" AttributeType="Scalar" Center="Node">
+          <DataItem Dimensions="1296 1" Format="HDF">level_set.h5:/Function/phi_h/0_74000000000000055</DataItem>
+        </Attribute>
+      </Grid>
+      <Grid Name="phi_h" GridType="Uniform">
+        <xi:include xpointer="xpointer(/Xdmf/Domain/Grid[@GridType='Uniform'][1]/*[self::Topology or self::Geometry])" />
+        <Time Value="0.74400000000000055" />
+        <Attribute Name="phi_h" AttributeType="Scalar" Center="Node">
+          <DataItem Dimensions="1296 1" Format="HDF">level_set.h5:/Function/phi_h/0_74400000000000055</DataItem>
+        </Attribute>
+      </Grid>
+      <Grid Name="phi_h" GridType="Uniform">
+        <xi:include xpointer="xpointer(/Xdmf/Domain/Grid[@GridType='Uniform'][1]/*[self::Topology or self::Geometry])" />
+        <Time Value="0.74800000000000055" />
+        <Attribute Name="phi_h" AttributeType="Scalar" Center="Node">
+          <DataItem Dimensions="1296 1" Format="HDF">level_set.h5:/Function/phi_h/0_74800000000000055</DataItem>
+        </Attribute>
+      </Grid>
+      <Grid Name="phi_h" GridType="Uniform">
+        <xi:include xpointer="xpointer(/Xdmf/Domain/Grid[@GridType='Uniform'][1]/*[self::Topology or self::Geometry])" />
+        <Time Value="0.75200000000000056" />
+        <Attribute Name="phi_h" AttributeType="Scalar" Center="Node">
+          <DataItem Dimensions="1296 1" Format="HDF">level_set.h5:/Function/phi_h/0_75200000000000056</DataItem>
+        </Attribute>
+      </Grid>
+      <Grid Name="phi_h" GridType="Uniform">
+        <xi:include xpointer="xpointer(/Xdmf/Domain/Grid[@GridType='Uniform'][1]/*[self::Topology or self::Geometry])" />
+        <Time Value="0.75600000000000056" />
+        <Attribute Name="phi_h" AttributeType="Scalar" Center="Node">
+          <DataItem Dimensions="1296 1" Format="HDF">level_set.h5:/Function/phi_h/0_75600000000000056</DataItem>
+        </Attribute>
+      </Grid>
+      <Grid Name="phi_h" GridType="Uniform">
+        <xi:include xpointer="xpointer(/Xdmf/Domain/Grid[@GridType='Uniform'][1]/*[self::Topology or self::Geometry])" />
+        <Time Value="0.76000000000000056" />
+        <Attribute Name="phi_h" AttributeType="Scalar" Center="Node">
+          <DataItem Dimensions="1296 1" Format="HDF">level_set.h5:/Function/phi_h/0_76000000000000056</DataItem>
+        </Attribute>
+      </Grid>
+      <Grid Name="phi_h" GridType="Uniform">
+        <xi:include xpointer="xpointer(/Xdmf/Domain/Grid[@GridType='Uniform'][1]/*[self::Topology or self::Geometry])" />
+        <Time Value="0.76400000000000057" />
+        <Attribute Name="phi_h" AttributeType="Scalar" Center="Node">
+          <DataItem Dimensions="1296 1" Format="HDF">level_set.h5:/Function/phi_h/0_76400000000000057</DataItem>
+        </Attribute>
+      </Grid>
+      <Grid Name="phi_h" GridType="Uniform">
+        <xi:include xpointer="xpointer(/Xdmf/Domain/Grid[@GridType='Uniform'][1]/*[self::Topology or self::Geometry])" />
+        <Time Value="0.76800000000000057" />
+        <Attribute Name="phi_h" AttributeType="Scalar" Center="Node">
+          <DataItem Dimensions="1296 1" Format="HDF">level_set.h5:/Function/phi_h/0_76800000000000057</DataItem>
+        </Attribute>
+      </Grid>
+      <Grid Name="phi_h" GridType="Uniform">
+        <xi:include xpointer="xpointer(/Xdmf/Domain/Grid[@GridType='Uniform'][1]/*[self::Topology or self::Geometry])" />
+        <Time Value="0.77200000000000057" />
+        <Attribute Name="phi_h" AttributeType="Scalar" Center="Node">
+          <DataItem Dimensions="1296 1" Format="HDF">level_set.h5:/Function/phi_h/0_77200000000000057</DataItem>
+        </Attribute>
+      </Grid>
+      <Grid Name="phi_h" GridType="Uniform">
+        <xi:include xpointer="xpointer(/Xdmf/Domain/Grid[@GridType='Uniform'][1]/*[self::Topology or self::Geometry])" />
+        <Time Value="0.77600000000000058" />
+        <Attribute Name="phi_h" AttributeType="Scalar" Center="Node">
+          <DataItem Dimensions="1296 1" Format="HDF">level_set.h5:/Function/phi_h/0_77600000000000058</DataItem>
+        </Attribute>
+      </Grid>
+      <Grid Name="phi_h" GridType="Uniform">
+        <xi:include xpointer="xpointer(/Xdmf/Domain/Grid[@GridType='Uniform'][1]/*[self::Topology or self::Geometry])" />
+        <Time Value="0.78000000000000058" />
+        <Attribute Name="phi_h" AttributeType="Scalar" Center="Node">
+          <DataItem Dimensions="1296 1" Format="HDF">level_set.h5:/Function/phi_h/0_78000000000000058</DataItem>
+        </Attribute>
+      </Grid>
+      <Grid Name="phi_h" GridType="Uniform">
+        <xi:include xpointer="xpointer(/Xdmf/Domain/Grid[@GridType='Uniform'][1]/*[self::Topology or self::Geometry])" />
+        <Time Value="0.78400000000000059" />
+        <Attribute Name="phi_h" AttributeType="Scalar" Center="Node">
+          <DataItem Dimensions="1296 1" Format="HDF">level_set.h5:/Function/phi_h/0_78400000000000059</DataItem>
+        </Attribute>
+      </Grid>
+      <Grid Name="phi_h" GridType="Uniform">
+        <xi:include xpointer="xpointer(/Xdmf/Domain/Grid[@GridType='Uniform'][1]/*[self::Topology or self::Geometry])" />
+        <Time Value="0.78800000000000059" />
+        <Attribute Name="phi_h" AttributeType="Scalar" Center="Node">
+          <DataItem Dimensions="1296 1" Format="HDF">level_set.h5:/Function/phi_h/0_78800000000000059</DataItem>
+        </Attribute>
+      </Grid>
+      <Grid Name="phi_h" GridType="Uniform">
+        <xi:include xpointer="xpointer(/Xdmf/Domain/Grid[@GridType='Uniform'][1]/*[self::Topology or self::Geometry])" />
+        <Time Value="0.79200000000000059" />
+        <Attribute Name="phi_h" AttributeType="Scalar" Center="Node">
+          <DataItem Dimensions="1296 1" Format="HDF">level_set.h5:/Function/phi_h/0_79200000000000059</DataItem>
+        </Attribute>
+      </Grid>
+      <Grid Name="phi_h" GridType="Uniform">
+        <xi:include xpointer="xpointer(/Xdmf/Domain/Grid[@GridType='Uniform'][1]/*[self::Topology or self::Geometry])" />
+        <Time Value="0.7960000000000006" />
+        <Attribute Name="phi_h" AttributeType="Scalar" Center="Node">
+          <DataItem Dimensions="1296 1" Format="HDF">level_set.h5:/Function/phi_h/0_7960000000000006</DataItem>
+        </Attribute>
+      </Grid>
+      <Grid Name="phi_h" GridType="Uniform">
+        <xi:include xpointer="xpointer(/Xdmf/Domain/Grid[@GridType='Uniform'][1]/*[self::Topology or self::Geometry])" />
+        <Time Value="0.8000000000000006" />
+        <Attribute Name="phi_h" AttributeType="Scalar" Center="Node">
+          <DataItem Dimensions="1296 1" Format="HDF">level_set.h5:/Function/phi_h/0_8000000000000006</DataItem>
+        </Attribute>
+      </Grid>
+      <Grid Name="phi_h" GridType="Uniform">
+        <xi:include xpointer="xpointer(/Xdmf/Domain/Grid[@GridType='Uniform'][1]/*[self::Topology or self::Geometry])" />
+        <Time Value="0.8040000000000006" />
+        <Attribute Name="phi_h" AttributeType="Scalar" Center="Node">
+          <DataItem Dimensions="1296 1" Format="HDF">level_set.h5:/Function/phi_h/0_8040000000000006</DataItem>
+        </Attribute>
+      </Grid>
+      <Grid Name="phi_h" GridType="Uniform">
+        <xi:include xpointer="xpointer(/Xdmf/Domain/Grid[@GridType='Uniform'][1]/*[self::Topology or self::Geometry])" />
+        <Time Value="0.80800000000000061" />
+        <Attribute Name="phi_h" AttributeType="Scalar" Center="Node">
+          <DataItem Dimensions="1296 1" Format="HDF">level_set.h5:/Function/phi_h/0_80800000000000061</DataItem>
+        </Attribute>
+      </Grid>
+      <Grid Name="phi_h" GridType="Uniform">
+        <xi:include xpointer="xpointer(/Xdmf/Domain/Grid[@GridType='Uniform'][1]/*[self::Topology or self::Geometry])" />
+        <Time Value="0.81200000000000061" />
+        <Attribute Name="phi_h" AttributeType="Scalar" Center="Node">
+          <DataItem Dimensions="1296 1" Format="HDF">level_set.h5:/Function/phi_h/0_81200000000000061</DataItem>
+        </Attribute>
+      </Grid>
+      <Grid Name="phi_h" GridType="Uniform">
+        <xi:include xpointer="xpointer(/Xdmf/Domain/Grid[@GridType='Uniform'][1]/*[self::Topology or self::Geometry])" />
+        <Time Value="0.81600000000000061" />
+        <Attribute Name="phi_h" AttributeType="Scalar" Center="Node">
+          <DataItem Dimensions="1296 1" Format="HDF">level_set.h5:/Function/phi_h/0_81600000000000061</DataItem>
+        </Attribute>
+      </Grid>
+      <Grid Name="phi_h" GridType="Uniform">
+        <xi:include xpointer="xpointer(/Xdmf/Domain/Grid[@GridType='Uniform'][1]/*[self::Topology or self::Geometry])" />
+        <Time Value="0.82000000000000062" />
+        <Attribute Name="phi_h" AttributeType="Scalar" Center="Node">
+          <DataItem Dimensions="1296 1" Format="HDF">level_set.h5:/Function/phi_h/0_82000000000000062</DataItem>
+        </Attribute>
+      </Grid>
+      <Grid Name="phi_h" GridType="Uniform">
+        <xi:include xpointer="xpointer(/Xdmf/Domain/Grid[@GridType='Uniform'][1]/*[self::Topology or self::Geometry])" />
+        <Time Value="0.82400000000000062" />
+        <Attribute Name="phi_h" AttributeType="Scalar" Center="Node">
+          <DataItem Dimensions="1296 1" Format="HDF">level_set.h5:/Function/phi_h/0_82400000000000062</DataItem>
+        </Attribute>
+      </Grid>
+      <Grid Name="phi_h" GridType="Uniform">
+        <xi:include xpointer="xpointer(/Xdmf/Domain/Grid[@GridType='Uniform'][1]/*[self::Topology or self::Geometry])" />
+        <Time Value="0.82800000000000062" />
+        <Attribute Name="phi_h" AttributeType="Scalar" Center="Node">
+          <DataItem Dimensions="1296 1" Format="HDF">level_set.h5:/Function/phi_h/0_82800000000000062</DataItem>
+        </Attribute>
+      </Grid>
+      <Grid Name="phi_h" GridType="Uniform">
+        <xi:include xpointer="xpointer(/Xdmf/Domain/Grid[@GridType='Uniform'][1]/*[self::Topology or self::Geometry])" />
+        <Time Value="0.83200000000000063" />
+        <Attribute Name="phi_h" AttributeType="Scalar" Center="Node">
+          <DataItem Dimensions="1296 1" Format="HDF">level_set.h5:/Function/phi_h/0_83200000000000063</DataItem>
+        </Attribute>
+      </Grid>
+      <Grid Name="phi_h" GridType="Uniform">
+        <xi:include xpointer="xpointer(/Xdmf/Domain/Grid[@GridType='Uniform'][1]/*[self::Topology or self::Geometry])" />
+        <Time Value="0.83600000000000063" />
+        <Attribute Name="phi_h" AttributeType="Scalar" Center="Node">
+          <DataItem Dimensions="1296 1" Format="HDF">level_set.h5:/Function/phi_h/0_83600000000000063</DataItem>
+        </Attribute>
+      </Grid>
+      <Grid Name="phi_h" GridType="Uniform">
+        <xi:include xpointer="xpointer(/Xdmf/Domain/Grid[@GridType='Uniform'][1]/*[self::Topology or self::Geometry])" />
+        <Time Value="0.84000000000000064" />
+        <Attribute Name="phi_h" AttributeType="Scalar" Center="Node">
+          <DataItem Dimensions="1296 1" Format="HDF">level_set.h5:/Function/phi_h/0_84000000000000064</DataItem>
+        </Attribute>
+      </Grid>
+      <Grid Name="phi_h" GridType="Uniform">
+        <xi:include xpointer="xpointer(/Xdmf/Domain/Grid[@GridType='Uniform'][1]/*[self::Topology or self::Geometry])" />
+        <Time Value="0.84400000000000064" />
+        <Attribute Name="phi_h" AttributeType="Scalar" Center="Node">
+          <DataItem Dimensions="1296 1" Format="HDF">level_set.h5:/Function/phi_h/0_84400000000000064</DataItem>
+        </Attribute>
+      </Grid>
+      <Grid Name="phi_h" GridType="Uniform">
+        <xi:include xpointer="xpointer(/Xdmf/Domain/Grid[@GridType='Uniform'][1]/*[self::Topology or self::Geometry])" />
+        <Time Value="0.84800000000000064" />
+        <Attribute Name="phi_h" AttributeType="Scalar" Center="Node">
+          <DataItem Dimensions="1296 1" Format="HDF">level_set.h5:/Function/phi_h/0_84800000000000064</DataItem>
+        </Attribute>
+      </Grid>
+      <Grid Name="phi_h" GridType="Uniform">
+        <xi:include xpointer="xpointer(/Xdmf/Domain/Grid[@GridType='Uniform'][1]/*[self::Topology or self::Geometry])" />
+        <Time Value="0.85200000000000065" />
+        <Attribute Name="phi_h" AttributeType="Scalar" Center="Node">
+          <DataItem Dimensions="1296 1" Format="HDF">level_set.h5:/Function/phi_h/0_85200000000000065</DataItem>
+        </Attribute>
+      </Grid>
+      <Grid Name="phi_h" GridType="Uniform">
+        <xi:include xpointer="xpointer(/Xdmf/Domain/Grid[@GridType='Uniform'][1]/*[self::Topology or self::Geometry])" />
+        <Time Value="0.85600000000000065" />
+        <Attribute Name="phi_h" AttributeType="Scalar" Center="Node">
+          <DataItem Dimensions="1296 1" Format="HDF">level_set.h5:/Function/phi_h/0_85600000000000065</DataItem>
+        </Attribute>
+      </Grid>
+      <Grid Name="phi_h" GridType="Uniform">
+        <xi:include xpointer="xpointer(/Xdmf/Domain/Grid[@GridType='Uniform'][1]/*[self::Topology or self::Geometry])" />
+        <Time Value="0.86000000000000065" />
+        <Attribute Name="phi_h" AttributeType="Scalar" Center="Node">
+          <DataItem Dimensions="1296 1" Format="HDF">level_set.h5:/Function/phi_h/0_86000000000000065</DataItem>
+        </Attribute>
+      </Grid>
+      <Grid Name="phi_h" GridType="Uniform">
+        <xi:include xpointer="xpointer(/Xdmf/Domain/Grid[@GridType='Uniform'][1]/*[self::Topology or self::Geometry])" />
+        <Time Value="0.86400000000000066" />
+        <Attribute Name="phi_h" AttributeType="Scalar" Center="Node">
+          <DataItem Dimensions="1296 1" Format="HDF">level_set.h5:/Function/phi_h/0_86400000000000066</DataItem>
+        </Attribute>
+      </Grid>
+      <Grid Name="phi_h" GridType="Uniform">
+        <xi:include xpointer="xpointer(/Xdmf/Domain/Grid[@GridType='Uniform'][1]/*[self::Topology or self::Geometry])" />
+        <Time Value="0.86800000000000066" />
+        <Attribute Name="phi_h" AttributeType="Scalar" Center="Node">
+          <DataItem Dimensions="1296 1" Format="HDF">level_set.h5:/Function/phi_h/0_86800000000000066</DataItem>
+        </Attribute>
+      </Grid>
+      <Grid Name="phi_h" GridType="Uniform">
+        <xi:include xpointer="xpointer(/Xdmf/Domain/Grid[@GridType='Uniform'][1]/*[self::Topology or self::Geometry])" />
+        <Time Value="0.87200000000000066" />
+        <Attribute Name="phi_h" AttributeType="Scalar" Center="Node">
+          <DataItem Dimensions="1296 1" Format="HDF">level_set.h5:/Function/phi_h/0_87200000000000066</DataItem>
+        </Attribute>
+      </Grid>
+      <Grid Name="phi_h" GridType="Uniform">
+        <xi:include xpointer="xpointer(/Xdmf/Domain/Grid[@GridType='Uniform'][1]/*[self::Topology or self::Geometry])" />
+        <Time Value="0.87600000000000067" />
+        <Attribute Name="phi_h" AttributeType="Scalar" Center="Node">
+          <DataItem Dimensions="1296 1" Format="HDF">level_set.h5:/Function/phi_h/0_87600000000000067</DataItem>
+        </Attribute>
+      </Grid>
+      <Grid Name="phi_h" GridType="Uniform">
+        <xi:include xpointer="xpointer(/Xdmf/Domain/Grid[@GridType='Uniform'][1]/*[self::Topology or self::Geometry])" />
+        <Time Value="0.88000000000000067" />
+        <Attribute Name="phi_h" AttributeType="Scalar" Center="Node">
+          <DataItem Dimensions="1296 1" Format="HDF">level_set.h5:/Function/phi_h/0_88000000000000067</DataItem>
+        </Attribute>
+      </Grid>
+      <Grid Name="phi_h" GridType="Uniform">
+        <xi:include xpointer="xpointer(/Xdmf/Domain/Grid[@GridType='Uniform'][1]/*[self::Topology or self::Geometry])" />
+        <Time Value="0.88400000000000067" />
+        <Attribute Name="phi_h" AttributeType="Scalar" Center="Node">
+          <DataItem Dimensions="1296 1" Format="HDF">level_set.h5:/Function/phi_h/0_88400000000000067</DataItem>
+        </Attribute>
+      </Grid>
+      <Grid Name="phi_h" GridType="Uniform">
+        <xi:include xpointer="xpointer(/Xdmf/Domain/Grid[@GridType='Uniform'][1]/*[self::Topology or self::Geometry])" />
+        <Time Value="0.88800000000000068" />
+        <Attribute Name="phi_h" AttributeType="Scalar" Center="Node">
+          <DataItem Dimensions="1296 1" Format="HDF">level_set.h5:/Function/phi_h/0_88800000000000068</DataItem>
+        </Attribute>
+      </Grid>
+      <Grid Name="phi_h" GridType="Uniform">
+        <xi:include xpointer="xpointer(/Xdmf/Domain/Grid[@GridType='Uniform'][1]/*[self::Topology or self::Geometry])" />
+        <Time Value="0.89200000000000068" />
+        <Attribute Name="phi_h" AttributeType="Scalar" Center="Node">
+          <DataItem Dimensions="1296 1" Format="HDF">level_set.h5:/Function/phi_h/0_89200000000000068</DataItem>
+        </Attribute>
+      </Grid>
+      <Grid Name="phi_h" GridType="Uniform">
+        <xi:include xpointer="xpointer(/Xdmf/Domain/Grid[@GridType='Uniform'][1]/*[self::Topology or self::Geometry])" />
+        <Time Value="0.89600000000000068" />
+        <Attribute Name="phi_h" AttributeType="Scalar" Center="Node">
+          <DataItem Dimensions="1296 1" Format="HDF">level_set.h5:/Function/phi_h/0_89600000000000068</DataItem>
+        </Attribute>
+      </Grid>
+      <Grid Name="phi_h" GridType="Uniform">
+        <xi:include xpointer="xpointer(/Xdmf/Domain/Grid[@GridType='Uniform'][1]/*[self::Topology or self::Geometry])" />
+        <Time Value="0.90000000000000069" />
+        <Attribute Name="phi_h" AttributeType="Scalar" Center="Node">
+          <DataItem Dimensions="1296 1" Format="HDF">level_set.h5:/Function/phi_h/0_90000000000000069</DataItem>
+        </Attribute>
+      </Grid>
+      <Grid Name="phi_h" GridType="Uniform">
+        <xi:include xpointer="xpointer(/Xdmf/Domain/Grid[@GridType='Uniform'][1]/*[self::Topology or self::Geometry])" />
+        <Time Value="0.90400000000000069" />
+        <Attribute Name="phi_h" AttributeType="Scalar" Center="Node">
+          <DataItem Dimensions="1296 1" Format="HDF">level_set.h5:/Function/phi_h/0_90400000000000069</DataItem>
+        </Attribute>
+      </Grid>
+      <Grid Name="phi_h" GridType="Uniform">
+        <xi:include xpointer="xpointer(/Xdmf/Domain/Grid[@GridType='Uniform'][1]/*[self::Topology or self::Geometry])" />
+        <Time Value="0.9080000000000007" />
+        <Attribute Name="phi_h" AttributeType="Scalar" Center="Node">
+          <DataItem Dimensions="1296 1" Format="HDF">level_set.h5:/Function/phi_h/0_9080000000000007</DataItem>
+        </Attribute>
+      </Grid>
+      <Grid Name="phi_h" GridType="Uniform">
+        <xi:include xpointer="xpointer(/Xdmf/Domain/Grid[@GridType='Uniform'][1]/*[self::Topology or self::Geometry])" />
+        <Time Value="0.9120000000000007" />
+        <Attribute Name="phi_h" AttributeType="Scalar" Center="Node">
+          <DataItem Dimensions="1296 1" Format="HDF">level_set.h5:/Function/phi_h/0_9120000000000007</DataItem>
+        </Attribute>
+      </Grid>
+      <Grid Name="phi_h" GridType="Uniform">
+        <xi:include xpointer="xpointer(/Xdmf/Domain/Grid[@GridType='Uniform'][1]/*[self::Topology or self::Geometry])" />
+        <Time Value="0.9160000000000007" />
+        <Attribute Name="phi_h" AttributeType="Scalar" Center="Node">
+          <DataItem Dimensions="1296 1" Format="HDF">level_set.h5:/Function/phi_h/0_9160000000000007</DataItem>
+        </Attribute>
+      </Grid>
+      <Grid Name="phi_h" GridType="Uniform">
+        <xi:include xpointer="xpointer(/Xdmf/Domain/Grid[@GridType='Uniform'][1]/*[self::Topology or self::Geometry])" />
+        <Time Value="0.92000000000000071" />
+        <Attribute Name="phi_h" AttributeType="Scalar" Center="Node">
+          <DataItem Dimensions="1296 1" Format="HDF">level_set.h5:/Function/phi_h/0_92000000000000071</DataItem>
+        </Attribute>
+      </Grid>
+      <Grid Name="phi_h" GridType="Uniform">
+        <xi:include xpointer="xpointer(/Xdmf/Domain/Grid[@GridType='Uniform'][1]/*[self::Topology or self::Geometry])" />
+        <Time Value="0.92400000000000071" />
+        <Attribute Name="phi_h" AttributeType="Scalar" Center="Node">
+          <DataItem Dimensions="1296 1" Format="HDF">level_set.h5:/Function/phi_h/0_92400000000000071</DataItem>
+        </Attribute>
+      </Grid>
+      <Grid Name="phi_h" GridType="Uniform">
+        <xi:include xpointer="xpointer(/Xdmf/Domain/Grid[@GridType='Uniform'][1]/*[self::Topology or self::Geometry])" />
+        <Time Value="0.92800000000000071" />
+        <Attribute Name="phi_h" AttributeType="Scalar" Center="Node">
+          <DataItem Dimensions="1296 1" Format="HDF">level_set.h5:/Function/phi_h/0_92800000000000071</DataItem>
+        </Attribute>
+      </Grid>
+      <Grid Name="phi_h" GridType="Uniform">
+        <xi:include xpointer="xpointer(/Xdmf/Domain/Grid[@GridType='Uniform'][1]/*[self::Topology or self::Geometry])" />
+        <Time Value="0.93200000000000072" />
+        <Attribute Name="phi_h" AttributeType="Scalar" Center="Node">
+          <DataItem Dimensions="1296 1" Format="HDF">level_set.h5:/Function/phi_h/0_93200000000000072</DataItem>
+        </Attribute>
+      </Grid>
+      <Grid Name="phi_h" GridType="Uniform">
+        <xi:include xpointer="xpointer(/Xdmf/Domain/Grid[@GridType='Uniform'][1]/*[self::Topology or self::Geometry])" />
+        <Time Value="0.93600000000000072" />
+        <Attribute Name="phi_h" AttributeType="Scalar" Center="Node">
+          <DataItem Dimensions="1296 1" Format="HDF">level_set.h5:/Function/phi_h/0_93600000000000072</DataItem>
+        </Attribute>
+      </Grid>
+      <Grid Name="phi_h" GridType="Uniform">
+        <xi:include xpointer="xpointer(/Xdmf/Domain/Grid[@GridType='Uniform'][1]/*[self::Topology or self::Geometry])" />
+        <Time Value="0.94000000000000072" />
+        <Attribute Name="phi_h" AttributeType="Scalar" Center="Node">
+          <DataItem Dimensions="1296 1" Format="HDF">level_set.h5:/Function/phi_h/0_94000000000000072</DataItem>
+        </Attribute>
+      </Grid>
+      <Grid Name="phi_h" GridType="Uniform">
+        <xi:include xpointer="xpointer(/Xdmf/Domain/Grid[@GridType='Uniform'][1]/*[self::Topology or self::Geometry])" />
+        <Time Value="0.94400000000000073" />
+        <Attribute Name="phi_h" AttributeType="Scalar" Center="Node">
+          <DataItem Dimensions="1296 1" Format="HDF">level_set.h5:/Function/phi_h/0_94400000000000073</DataItem>
+        </Attribute>
+      </Grid>
+      <Grid Name="phi_h" GridType="Uniform">
+        <xi:include xpointer="xpointer(/Xdmf/Domain/Grid[@GridType='Uniform'][1]/*[self::Topology or self::Geometry])" />
+        <Time Value="0.94800000000000073" />
+        <Attribute Name="phi_h" AttributeType="Scalar" Center="Node">
+          <DataItem Dimensions="1296 1" Format="HDF">level_set.h5:/Function/phi_h/0_94800000000000073</DataItem>
+        </Attribute>
+      </Grid>
+      <Grid Name="phi_h" GridType="Uniform">
+        <xi:include xpointer="xpointer(/Xdmf/Domain/Grid[@GridType='Uniform'][1]/*[self::Topology or self::Geometry])" />
+        <Time Value="0.95200000000000073" />
+        <Attribute Name="phi_h" AttributeType="Scalar" Center="Node">
+          <DataItem Dimensions="1296 1" Format="HDF">level_set.h5:/Function/phi_h/0_95200000000000073</DataItem>
+        </Attribute>
+      </Grid>
+      <Grid Name="phi_h" GridType="Uniform">
+        <xi:include xpointer="xpointer(/Xdmf/Domain/Grid[@GridType='Uniform'][1]/*[self::Topology or self::Geometry])" />
+        <Time Value="0.95600000000000074" />
+        <Attribute Name="phi_h" AttributeType="Scalar" Center="Node">
+          <DataItem Dimensions="1296 1" Format="HDF">level_set.h5:/Function/phi_h/0_95600000000000074</DataItem>
+        </Attribute>
+      </Grid>
+      <Grid Name="phi_h" GridType="Uniform">
+        <xi:include xpointer="xpointer(/Xdmf/Domain/Grid[@GridType='Uniform'][1]/*[self::Topology or self::Geometry])" />
+        <Time Value="0.96000000000000074" />
+        <Attribute Name="phi_h" AttributeType="Scalar" Center="Node">
+          <DataItem Dimensions="1296 1" Format="HDF">level_set.h5:/Function/phi_h/0_96000000000000074</DataItem>
+        </Attribute>
+      </Grid>
+      <Grid Name="phi_h" GridType="Uniform">
+        <xi:include xpointer="xpointer(/Xdmf/Domain/Grid[@GridType='Uniform'][1]/*[self::Topology or self::Geometry])" />
+        <Time Value="0.96400000000000075" />
+        <Attribute Name="phi_h" AttributeType="Scalar" Center="Node">
+          <DataItem Dimensions="1296 1" Format="HDF">level_set.h5:/Function/phi_h/0_96400000000000075</DataItem>
+        </Attribute>
+      </Grid>
+      <Grid Name="phi_h" GridType="Uniform">
+        <xi:include xpointer="xpointer(/Xdmf/Domain/Grid[@GridType='Uniform'][1]/*[self::Topology or self::Geometry])" />
+        <Time Value="0.96800000000000075" />
+        <Attribute Name="phi_h" AttributeType="Scalar" Center="Node">
+          <DataItem Dimensions="1296 1" Format="HDF">level_set.h5:/Function/phi_h/0_96800000000000075</DataItem>
+        </Attribute>
+      </Grid>
+      <Grid Name="phi_h" GridType="Uniform">
+        <xi:include xpointer="xpointer(/Xdmf/Domain/Grid[@GridType='Uniform'][1]/*[self::Topology or self::Geometry])" />
+        <Time Value="0.97200000000000075" />
+        <Attribute Name="phi_h" AttributeType="Scalar" Center="Node">
+          <DataItem Dimensions="1296 1" Format="HDF">level_set.h5:/Function/phi_h/0_97200000000000075</DataItem>
+        </Attribute>
+      </Grid>
+      <Grid Name="phi_h" GridType="Uniform">
+        <xi:include xpointer="xpointer(/Xdmf/Domain/Grid[@GridType='Uniform'][1]/*[self::Topology or self::Geometry])" />
+        <Time Value="0.97600000000000076" />
+        <Attribute Name="phi_h" AttributeType="Scalar" Center="Node">
+          <DataItem Dimensions="1296 1" Format="HDF">level_set.h5:/Function/phi_h/0_97600000000000076</DataItem>
+        </Attribute>
+      </Grid>
+      <Grid Name="phi_h" GridType="Uniform">
+        <xi:include xpointer="xpointer(/Xdmf/Domain/Grid[@GridType='Uniform'][1]/*[self::Topology or self::Geometry])" />
+        <Time Value="0.98000000000000076" />
+        <Attribute Name="phi_h" AttributeType="Scalar" Center="Node">
+          <DataItem Dimensions="1296 1" Format="HDF">level_set.h5:/Function/phi_h/0_98000000000000076</DataItem>
+        </Attribute>
+      </Grid>
+      <Grid Name="phi_h" GridType="Uniform">
+        <xi:include xpointer="xpointer(/Xdmf/Domain/Grid[@GridType='Uniform'][1]/*[self::Topology or self::Geometry])" />
+        <Time Value="0.98400000000000076" />
+        <Attribute Name="phi_h" AttributeType="Scalar" Center="Node">
+          <DataItem Dimensions="1296 1" Format="HDF">level_set.h5:/Function/phi_h/0_98400000000000076</DataItem>
+        </Attribute>
+      </Grid>
+      <Grid Name="phi_h" GridType="Uniform">
+        <xi:include xpointer="xpointer(/Xdmf/Domain/Grid[@GridType='Uniform'][1]/*[self::Topology or self::Geometry])" />
+        <Time Value="0.98800000000000077" />
+        <Attribute Name="phi_h" AttributeType="Scalar" Center="Node">
+          <DataItem Dimensions="1296 1" Format="HDF">level_set.h5:/Function/phi_h/0_98800000000000077</DataItem>
+        </Attribute>
+      </Grid>
+      <Grid Name="phi_h" GridType="Uniform">
+        <xi:include xpointer="xpointer(/Xdmf/Domain/Grid[@GridType='Uniform'][1]/*[self::Topology or self::Geometry])" />
+        <Time Value="0.99200000000000077" />
+        <Attribute Name="phi_h" AttributeType="Scalar" Center="Node">
+          <DataItem Dimensions="1296 1" Format="HDF">level_set.h5:/Function/phi_h/0_99200000000000077</DataItem>
+        </Attribute>
+      </Grid>
+      <Grid Name="phi_h" GridType="Uniform">
+        <xi:include xpointer="xpointer(/Xdmf/Domain/Grid[@GridType='Uniform'][1]/*[self::Topology or self::Geometry])" />
+        <Time Value="0.99600000000000077" />
+        <Attribute Name="phi_h" AttributeType="Scalar" Center="Node">
+          <DataItem Dimensions="1296 1" Format="HDF">level_set.h5:/Function/phi_h/0_99600000000000077</DataItem>
+        </Attribute>
+      </Grid>
+      <Grid Name="phi_h" GridType="Uniform">
+        <xi:include xpointer="xpointer(/Xdmf/Domain/Grid[@GridType='Uniform'][1]/*[self::Topology or self::Geometry])" />
+        <Time Value="1.0000000000000007" />
+        <Attribute Name="phi_h" AttributeType="Scalar" Center="Node">
+          <DataItem Dimensions="1296 1" Format="HDF">level_set.h5:/Function/phi_h/1_0000000000000007</DataItem>
+        </Attribute>
+      </Grid>
+    </Grid>
+  </Domain>
+</Xdmf>

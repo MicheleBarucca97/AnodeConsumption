@@ -5,14 +5,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="109a5dda-3f34-46c5-8086-1faad2340c4d" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/level_set.h5" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/level_set.xdmf" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/level_set.h5" beforeDir="false" afterPath="$PROJECT_DIR$/level_set.h5" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/level_set.xdmf" beforeDir="false" afterPath="$PROJECT_DIR$/level_set.xdmf" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/phi_n.txt" beforeDir="false" afterPath="$PROJECT_DIR$/phi_n.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/sigma.h5" beforeDir="false" afterPath="$PROJECT_DIR$/sigma.h5" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/sigma.xdmf" beforeDir="false" afterPath="$PROJECT_DIR$/sigma.xdmf" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/test_case3.py" beforeDir="false" afterPath="$PROJECT_DIR$/test_case3.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/test_pyhton3.py" beforeDir="false" afterPath="$PROJECT_DIR$/test_pyhton3.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -41,15 +37,15 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;ASKED_ADD_EXTERNAL_FILES&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;configurable.group.appearance&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "ASKED_ADD_EXTERNAL_FILES": "true",
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "git-widget-placeholder": "main",
+    "settings.editor.selected.configurable": "preferences.pluginManager"
   }
-}</component>
+}]]></component>
   <component name="SharedIndexes">
     <attachedChunks>
       <set>

@@ -21,11 +21,11 @@ LEVEL SET FUNCTION
 # Define temporal parameters
 t = 0  # Start time
 T = 1.0  # Final time
-num_steps = 650
+num_steps = 250
 dt = T / num_steps  # time step size
 
 # Define mesh
-nx, ny = 65, 65
+nx, ny = 35, 35
 domain = mesh.create_rectangle(MPI.COMM_WORLD, [np.array([0, 0]), np.array([1, 1])],
                                [nx, ny], mesh.CellType.triangle)
 W = fem.FunctionSpace(domain, ("Lagrange", 1))
@@ -36,7 +36,7 @@ phi_n = fem.Function(W)  # Level set function
 # Initial condition for phi s.t. it is negative in the anode and positive in the bath
 # The unit normal in this case (n = Grad(phi)/||Grad(phi)||) will always point inside the bath (phi >0)
 def phi_zero():
-    return lambda x: abs(x[1] - 0.5)
+    return lambda x: x[1] - 0.5
 
 phi_n.interpolate(phi_zero())
 
@@ -53,10 +53,15 @@ xdmf_levelset.write_function(phi_h, t)
 Variational problem and solver for level set function
 '''
 # Create boundary condition
-fdim = domain.topology.dim - 1
+'''fdim = domain.topology.dim - 1
 boundary_facets = mesh.locate_entities_boundary(
-    domain, fdim, lambda x: np.isclose(x[0], 0))
-BCs = fem.dirichletbc(PETSc.ScalarType(0), fem.locate_dofs_topological(W, fdim, boundary_facets), W)
+    domain, fdim, lambda x: np.isclose(x[1], 1))
+BCs = fem.dirichletbc(PETSc.ScalarType(0), fem.locate_dofs_topological(W, fdim, boundary_facets), W)'''
+def boundary_D(x):
+    return np.isclose(x[1], 1)
+dofs_D = fem.locate_dofs_geometrical(W, boundary_D)
+phi_ex = phi_n
+BCs = fem.dirichletbc(phi_ex, dofs_D)
 
 phi, v = ufl.TrialFunction(W), ufl.TestFunction(W)
 
@@ -64,7 +69,7 @@ def u_ex(x):
     values = np.zeros((2, x.shape[1]))
     '''values[0] = -2 * (np.sin(np.pi * x[0])**2) * np.sin(np.pi * x[1]) * np.cos(np.pi * x[1]) * np.cos((np.pi * t) / T)
     values[1] = 2*np.cos(np.pi*x[0])*np.sin(np.pi*x[0])*((np.sin(np.pi*x[1]))**2)* np.cos((np.pi*t)/T)'''
-    values[1] = -1
+    values[1] = -0.01
     return values
 
 vec_fe = VectorElement("Lagrange", domain.ufl_cell(), 1)
@@ -130,6 +135,7 @@ for i in range(num_steps):
 
     # Update solution at previous time step (u_n)
     phi_n.x.array[:] = phi_h.x.array
+    phi_n.x.scatter_forward()
 
     # Write solution to file
     xdmf_levelset.write_function(phi_h, t)
