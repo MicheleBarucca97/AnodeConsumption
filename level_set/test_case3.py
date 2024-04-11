@@ -21,11 +21,11 @@ LEVEL SET FUNCTION
 # Define temporal parameters
 t = 0  # Start time
 T = 1.0  # Final time
-num_steps = 1600
+num_steps = 400
 dt = T / num_steps  # time step size
 
 # Define mesh
-nx, ny = 80, 80
+nx, ny = 20, 20
 domain = mesh.create_rectangle(MPI.COMM_WORLD, [np.array([0, 0]), np.array([1, 1])],
                                [nx, ny], mesh.CellType.triangle)
 W = fem.FunctionSpace(domain, ("Lagrange", 1))
@@ -35,10 +35,20 @@ phi_n = fem.Function(W)  # Level set function
 
 # Initial condition for phi s.t. it is negative in the anode and positive in the bath
 # The unit normal in this case (n = Grad(phi)/||Grad(phi)||) will always point inside the bath (phi >0)
-def phi_zero():
-    return lambda x: x[1] - 0.5
 
-phi_n.interpolate(phi_zero())
+'''
+Variational problem and solver for level set function
+'''
+class exact_solution():
+    def __init__(self, t):
+        self.t = t
+
+    def __call__(self, x):
+        return x[1] - 0.5 - 0.01*self.t
+
+phi_ex = exact_solution(t)
+
+phi_n.interpolate(phi_ex)
 
 xdmf_levelset = io.XDMFFile(domain.comm, "level_set.xdmf", "w")
 xdmf_levelset.write_mesh(domain)
@@ -46,26 +56,22 @@ xdmf_levelset.write_mesh(domain)
 # Define solution variable, and interpolate initial solution for visualization in Paraview
 phi_h = fem.Function(W)
 phi_h.name = "phi_h"
-phi_h.interpolate(phi_zero())
+phi_h.interpolate(phi_ex)
 xdmf_levelset.write_function(phi_h, t)
 
-'''
-Variational problem and solver for level set function
-'''
+def boundary_D(x):
+    return np.isclose(x[1], 1)
+dofs_D = fem.locate_dofs_geometrical(W, boundary_D)
+
+phi_D = fem.Function(W)
+phi_D.interpolate(phi_ex)
+
+BCs = fem.dirichletbc(phi_D, dofs_D) ########################### YOu have to update those every iteration
 # Create boundary condition
-fdim = domain.topology.dim - 1
+'''fdim = domain.topology.dim - 1
 boundary_facets = mesh.locate_entities_boundary(
     domain, fdim, lambda x: np.isclose(x[1], 1))
-BCs = fem.dirichletbc(PETSc.ScalarType(0.5), fem.locate_dofs_topological(W, fdim, boundary_facets), W)
-
-class exact_solution():
-    def __init__(self, t):
-        self.t = t
-
-    def __call__(self, x):
-        return x[1] - 0.5 + self.t
-
-phi_ex = exact_solution(t)
+BCs = fem.dirichletbc(PETSc.ScalarType(0.5), fem.locate_dofs_topological(W, fdim, boundary_facets), W)'''
 
 phi, v = ufl.TrialFunction(W), ufl.TestFunction(W)
 
@@ -116,6 +122,7 @@ solver.getPC().setType(PETSc.PC.Type.LU)
 
 for i in range(num_steps):
     phi_ex.t += dt
+    phi_D.interpolate(phi_ex)
     t += dt
 
     distance = fem.form(inner(grad(phi_n), grad(phi_n)) * dx)
@@ -145,10 +152,8 @@ for i in range(num_steps):
     # Write solution to file
     xdmf_levelset.write_function(phi_h, t)
 
-phi_exact = fem.Function(W)
-phi_exact.interpolate(phi_ex)
-error_L2 = np.sqrt(domain.comm.allreduce(fem.assemble_scalar(fem.form((phi_n-phi_exact)**2 * ufl.dx)), op=MPI.SUM))
-eh = phi_n-phi_exact
+error_L2 = np.sqrt(domain.comm.allreduce(fem.assemble_scalar(fem.form((phi_n-phi_D)**2 * ufl.dx)), op=MPI.SUM))
+eh = phi_n-phi_D
 error_H10 = fem.form(inner(grad(eh), grad(eh)) * dx)
 E_H10 = np.sqrt(domain.comm.allreduce(fem.assemble_scalar(error_H10), op=MPI.SUM))
 if domain.comm.rank == 0:
