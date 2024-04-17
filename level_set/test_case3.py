@@ -9,7 +9,7 @@ from petsc4py import PETSc
 from mpi4py import MPI
 
 from dolfinx import fem, mesh, io, plot, cpp
-from dolfinx.fem.petsc import assemble_vector, assemble_matrix, create_vector, apply_lifting, set_bc
+from dolfinx.fem.petsc import assemble_vector, assemble_matrix, create_vector, apply_lifting, set_bc, create_matrix
 from dolfinx.io import XDMFFile
 
 ########################################################################################################################
@@ -20,13 +20,15 @@ LEVEL SET FUNCTION
 # x = ufl.SpatialCoordinate(domain)
 # Define temporal parameters
 t = 0  # Start time
-T = 1.0  # Final time
-num_steps = 400
-dt = T / num_steps  # time step size
+T = 0.45  # Final time
+alpha = 5
 
 # Define mesh
-nx, ny = 20, 20
-domain = mesh.create_rectangle(MPI.COMM_WORLD, [np.array([0, 0]), np.array([1, 1])],
+nx, ny = 80, 80
+space_step = 1/nx
+dt = alpha * space_step**2 # time step size
+num_steps = int(T/dt)
+domain = mesh.create_rectangle(MPI.COMM_WORLD, [np.array([-1, -1]), np.array([1, 1])],
                                [nx, ny], mesh.CellType.triangle)
 W = fem.FunctionSpace(domain, ("Lagrange", 1))
 n = FacetNormal(domain)
@@ -44,7 +46,8 @@ class exact_solution():
         self.t = t
 
     def __call__(self, x):
-        return x[1] - 0.5 - 0.01*self.t
+        return x[1] - 0.5 - self.t*np.sin(2*np.pi*x[0])/8 # Rio Tinto Thesis Sonia PAIN
+        # return x[1] - 0.5 - 0.01*self.t
 
 phi_ex = exact_solution(t)
 
@@ -75,33 +78,53 @@ BCs = fem.dirichletbc(PETSc.ScalarType(0.5), fem.locate_dofs_topological(W, fdim
 
 phi, v = ufl.TrialFunction(W), ufl.TestFunction(W)
 
-def u_ex(x):
+'''def u_ex(x):
     values = np.zeros((2, x.shape[1]))
-    '''values[0] = -2 * (np.sin(np.pi * x[0])**2) * np.sin(np.pi * x[1]) * np.cos(np.pi * x[1]) * np.cos((np.pi * t) / T)
-    values[1] = 2*np.cos(np.pi*x[0])*np.sin(np.pi*x[0])*((np.sin(np.pi*x[1]))**2)* np.cos((np.pi*t)/T)'''
+    values[0] = -2 * (np.sin(np.pi * x[0])**2) * np.sin(np.pi * x[1]) * np.cos(np.pi * x[1]) * np.cos((np.pi * t) / T)
+    values[1] = 2*np.cos(np.pi*x[0])*np.sin(np.pi*x[0])*((np.sin(np.pi*x[1]))**2)* np.cos((np.pi*t)/T)
     values[1] = -0.01
-    return values
+    return values'''
+
+class u_exact():
+    def __init__(self, t):
+        self.t = t
+
+    def __call__(self, x):
+        values = np.zeros((2, x.shape[1]))
+        values[0] = x[0]*(1-x[0])
+        values[1] = np.sin(2*x[0]*np.pi)/8 + x[0]*(1-x[0])*2*np.pi*self.t*np.cos(2*x[0]*np.pi)/8
+        return values
 
 vec_fe = VectorElement("Lagrange", domain.ufl_cell(), 1)
 W_vec = fem.FunctionSpace(domain, vec_fe)
 
+u_ex = u_exact(t)
 jh = fem.Function(W_vec)
 jh.interpolate(u_ex)
 
-average_potGrad = fem.form(inner(jh, jh) * dx)
-average = fem.assemble_scalar(average_potGrad)
-L2_average = np.sqrt(domain.comm.allreduce(average, op=MPI.SUM))
 # Retrieve the cells dimensions
 tdim = domain.topology.dim
 num_cells = domain.topology.index_map(tdim).size_local
 h = cpp.mesh.h(domain._cpp_object, tdim, range(num_cells))
-delta = h.max()/(2*L2_average)
+class delta_func():
+    def __init__(self, t, jh, h):
+        self.t = t
+        self.jh = jh
+        self.h = h
 
+    def __call__(self, x):
+        average_potGrad = fem.form(inner(self.jh, self.jh) * dx)
+        average = fem.assemble_scalar(average_potGrad)
+        L2_average = np.sqrt(domain.comm.allreduce(average, op=MPI.SUM))
 
-w = v + delta * dot(jh, grad(v))
+        return self.h.max()/(2*L2_average)
+
+delta = delta_func(t, jh, h)
+
+w = v + delta(t) * dot(jh, grad(v))
 theta = 0.5
-a_levelSet = (phi * w * dx - (dt * theta) * dot(jh, grad(phi)) * w * dx)
-L_levelSet = (phi_n * w * dx + dt * (1-theta) * dot(jh, grad(phi_n)) * w * dx)
+a_levelSet = (phi * w * dx + (dt * theta) * dot(jh, grad(phi)) * w * dx)
+L_levelSet = (phi_n * w * dx - dt * (1-theta) * dot(jh, grad(phi_n)) * w * dx)
 
 #Preparing linear algebra structures for time dependent problems.
 bilinear_form = fem.form(a_levelSet)
@@ -110,8 +133,9 @@ linear_form = fem.form(L_levelSet)
 # Observe that the left hand side of the system does not change from one time step to another, thus we
 # only need to assemble it once. The right hand side, which is dependent on the previous time step u_n, has
 # to be assembled every time step.
-A = assemble_matrix(bilinear_form, bcs=[BCs])
-A.assemble()
+A = create_matrix(bilinear_form)
+# A = assemble_matrix(bilinear_form, bcs=[BCs])
+# A.assemble()
 b = create_vector(linear_form)
 
 # We create a linear algebra solver using PETSc, and assign the matrix A to the solver
@@ -121,9 +145,15 @@ solver.setType(PETSc.KSP.Type.PREONLY)
 solver.getPC().setType(PETSc.PC.Type.LU)
 
 for i in range(num_steps):
-    phi_ex.t += dt
-    phi_D.interpolate(phi_ex)
     t += dt
+
+    phi_ex.t = t
+    phi_D.interpolate(phi_ex)
+
+    u_ex.t = (t + (t-dt))/2
+    jh.interpolate(u_ex)
+
+    delta.jh = jh
 
     distance = fem.form(inner(grad(phi_n), grad(phi_n)) * dx)
     average_dist = fem.assemble_scalar(distance)
@@ -131,6 +161,9 @@ for i in range(num_steps):
     if domain.comm.rank == 0:
         print(f"Gradient distance : {L2_average_dist:.2e}")
 
+    A.zeroEntries()
+    assemble_matrix(A, bilinear_form, bcs=[BCs])
+    A.assemble()
     # Update the right hand side reusing the initial vector
     with b.localForm() as loc_b:
         loc_b.set(0)

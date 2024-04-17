@@ -7,7 +7,6 @@
     <list default="true" id="109a5dda-3f34-46c5-8086-1faad2340c4d" name="Changes" comment="">
       <change afterPath="$PROJECT_DIR$/level_set.h5" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/level_set.xdmf" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/test_case3.py" beforeDir="false" afterPath="$PROJECT_DIR$/test_case3.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
