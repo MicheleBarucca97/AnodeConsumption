@@ -63,7 +63,7 @@ phi_h.interpolate(phi_ex)
 xdmf_levelset.write_function(phi_h, t)
 
 def boundary_D(x):
-    return np.isclose(x[1], 1)
+    return np.isclose(x[1], 0)
 dofs_D = fem.locate_dofs_geometrical(W, boundary_D)
 
 phi_D = fem.Function(W)
