@@ -57,8 +57,8 @@ def project(e, target_func, bcs=[]):
 # x = ufl.SpatialCoordinate(domain)
 # Define temporal parameters
 t = 0  # Start time
-T = 0.45  # Final time
-alpha = 5
+T = 0.1  # Final time
+alpha = 2
 
 # Define mesh
 nx, ny = 80, 80
@@ -79,8 +79,12 @@ class exact_solution():
     def __init__(self, t):
         self.t = t
     def __call__(self, x):
-        return x[1] - 0.5
-
+        # return x[1] - 0.5
+        value = np.zeros(x.shape[1])
+        value[x[0] < 0.35] = x[1][x[0] < 0.35] - 0.5
+        value[x[0] > 0.65] = x[1][x[0] > 0.65] - 0.5
+        value[(x[0] >= 0.35) & (x[0] <= 0.65)] = x[1][(x[0] >= 0.35) & (x[0] <= 0.65)] - 0.7
+        return value
 phi_ex = exact_solution(t)
 
 phi_n.interpolate(phi_ex)
@@ -179,18 +183,22 @@ sorted_facets = np.argsort(facet_indices)
 facet_tag = dolfinx.mesh.meshtags(domain, fdim, facet_indices[sorted_facets], facet_markers[sorted_facets])
 
 domain.topology.create_connectivity(domain.topology.dim-1, domain.topology.dim)
-with XDMFFile(domain.comm, "facet_tags.xdmf", "w") as xdmf:
+'''with XDMFFile(domain.comm, "facet_tags.xdmf", "w") as xdmf:
     xdmf.write_mesh(domain)
-    xdmf.write_meshtags(facet_tag, domain.geometry)
+    xdmf.write_meshtags(facet_tag, domain.geometry)'''
 # We can then inspect individual boundaries using the Threshold-filter in Paraview
 ds = ufl.Measure("ds", domain=domain, subdomain_data=facet_tag)
 
 # Dirichlet condition
 facets = facet_tag.find(3)
 dofs = fem.locate_dofs_topological(W, fdim, facets)
-BCs = [fem.dirichletbc(PETSc.ScalarType(0.26), dofs, W)]
+facets2 = facet_tag.find(4)
+dofs2 = fem.locate_dofs_topological(W, fdim, facets2)
+BCs = [fem.dirichletbc(PETSc.ScalarType(0.26), dofs, W), fem.dirichletbc(PETSc.ScalarType(1.9), dofs2, W)]
 
-L = inner(0, csi) * ds(1) + inner(0, csi) * ds(2) + inner(1.9, csi) * ds(4)
+#L = inner(0, csi) * ds(1) + inner(0, csi) * ds(2) + inner(1.9, csi) * ds(4)
+
+L = fem.Constant(domain, PETSc.ScalarType(0.))*csi*dx
 
 left_form = fem.form(a)
 right_form = fem.form(L)
@@ -240,10 +248,12 @@ class delta_func():
 
 delta = delta_func(t, jh, h)
 
-w = v + delta(t) * dot(-jh, grad(v))
+# Add a coefficient k to slow done the velocity of consumption of the anode
+k = -0.01
+w = v + delta(t) * dot(k*jh, grad(v))
 theta = 0.5
-a_levelSet = (phi * w * dx + (dt * theta) * dot(-jh, grad(phi)) * w * dx)
-L_levelSet = (phi_n * w * dx - dt * (1-theta) * dot(-jh, grad(phi_n)) * w * dx)
+a_levelSet = (phi * w * dx + (dt * theta) * dot(k*jh, grad(phi)) * w * dx)
+L_levelSet = (phi_n * w * dx - dt * (1-theta) * dot(k*jh, grad(phi_n)) * w * dx)
 
 #Preparing linear algebra structures for time dependent problems.
 bilinear_form = fem.form(a_levelSet)
@@ -319,4 +329,3 @@ for i in range(num_steps):
 
 xdmf_levelset.close()
 xdmf_sigma.close()
-

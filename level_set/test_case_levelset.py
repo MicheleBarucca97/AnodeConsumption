@@ -17,14 +17,13 @@ from dolfinx.io import XDMFFile
 LEVEL SET FUNCTION
 '''
 ########################################################################################################################
-# x = ufl.SpatialCoordinate(domain)
 # Define temporal parameters
 t = 0  # Start time
 T = 0.45  # Final time
-alpha = 5
+alpha = 10e-8
 
 # Define mesh
-nx, ny = 80, 80
+nx, ny = 40, 40
 space_step = 1/nx
 dt = alpha * space_step**2 # time step size
 num_steps = int(T/dt)
@@ -102,6 +101,7 @@ u_ex = u_exact(t)
 jh = fem.Function(W_vec)
 jh.interpolate(u_ex)
 
+
 # Retrieve the cells dimensions
 tdim = domain.topology.dim
 num_cells = domain.topology.index_map(tdim).size_local
@@ -113,9 +113,9 @@ class delta_func():
         self.h = h
 
     def __call__(self, x):
-        average_potGrad = fem.form(inner(self.jh, self.jh) * dx)
-        average = fem.assemble_scalar(average_potGrad)
-        L2_average = np.sqrt(domain.comm.allreduce(average, op=MPI.SUM))
+        '''average_potGrad = fem.form(inner(self.jh, self.jh) * dx)
+        average = fem.assemble_scalar(average_potGrad)'''
+        L2_average = 0.5 #np.sqrt(domain.comm.allreduce(average, op=MPI.SUM))
 
         return self.h.max()/(2*L2_average)
 
@@ -185,12 +185,16 @@ for i in range(num_steps):
     # Write solution to file
     xdmf_levelset.write_function(phi_h, t)
 
-error_L2 = np.sqrt(domain.comm.allreduce(fem.assemble_scalar(fem.form((phi_n-phi_D)**2 * ufl.dx)), op=MPI.SUM))
-eh = phi_n-phi_D
-error_H10 = fem.form(inner(grad(eh), grad(eh)) * dx)
-E_H10 = np.sqrt(domain.comm.allreduce(fem.assemble_scalar(error_H10), op=MPI.SUM))
-if domain.comm.rank == 0:
-    print(f"L2-error: {error_L2:.2e}")
-    print(f"H01-error: {E_H10:.2e}")
+    if i == 1000:
+        error_L2 = np.sqrt(
+            domain.comm.allreduce(fem.assemble_scalar(fem.form((phi_n - phi_D) ** 2 * ufl.dx)), op=MPI.SUM))
+        eh = phi_n - phi_D
+        error_H10 = fem.form(inner(grad(eh), grad(eh)) * dx)
+        E_H10 = np.sqrt(domain.comm.allreduce(fem.assemble_scalar(error_H10), op=MPI.SUM))
+        if domain.comm.rank == 0:
+            print(f"L2-error: {error_L2:.2e}")
+            print(f"H01-error: {E_H10:.2e}")
+        break
+
 
 xdmf_levelset.close()
