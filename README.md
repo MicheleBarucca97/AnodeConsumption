@@ -1,6 +1,10 @@
 # AnodeConsumption
 Use level set method coupled with elettromagnetic equations to simulate the consumption of the anode
 
+<script type="text/javascript" async
+  src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-MML-AM_CHTML">
+</script>
+
 \[
 -\nabla \cdot \sigma \nabla V = f \quad \text{in } \Omega
 \]
