@@ -19,16 +19,16 @@ LEVEL SET FUNCTION
 ########################################################################################################################
 # Define temporal parameters
 t = 0  # Start time
-T = 0.45  # Final time
-alpha = 10e-8
+T = 0.05  # Final time
+alpha = 0.1
 
 # Define mesh
-nx, ny = 40, 40
-space_step = 1/nx
+N = 80
+space_step = 1/N
 dt = alpha * space_step**2 # time step size
 num_steps = int(T/dt)
-domain = mesh.create_rectangle(MPI.COMM_WORLD, [np.array([-1, -1]), np.array([1, 1])],
-                               [nx, ny], mesh.CellType.triangle)
+domain = mesh.create_rectangle(MPI.COMM_WORLD, [np.array([0, 0]), np.array([1, 1])],
+                               [N, N], mesh.CellType.triangle)
 W = fem.FunctionSpace(domain, ("Lagrange", 1))
 n = FacetNormal(domain)
 
@@ -45,8 +45,8 @@ class exact_solution():
         self.t = t
 
     def __call__(self, x):
-        return x[1] - 0.5 - self.t*np.sin(2*np.pi*x[0])/8 # Rio Tinto Thesis Sonia PAIN
-        # return x[1] - 0.5 - 0.01*self.t
+        # return x[1] - 0.5 - self.t*np.sin(2*np.pi*x[0])/8 # Rio Tinto Thesis Sonia PAIN
+        return np.tanh(-60*((x[1] - 10*self.t - (10*self.t**3)/3 - 0.25)**2 - 0.01))
 
 phi_ex = exact_solution(t)
 
@@ -90,8 +90,9 @@ class u_exact():
 
     def __call__(self, x):
         values = np.zeros((2, x.shape[1]))
-        values[0] = x[0]*(1-x[0])
-        values[1] = np.sin(2*x[0]*np.pi)/8 + x[0]*(1-x[0])*2*np.pi*self.t*np.cos(2*x[0]*np.pi)/8
+        #values[0] = x[0]*(1-x[0])
+        #values[1] = np.sin(2*x[0]*np.pi)/8 + x[0]*(1-x[0])*2*np.pi*self.t*np.cos(2*x[0]*np.pi)/8
+        values[1] = 10 + 10*self.t**2
         return values
 
 vec_fe = VectorElement("Lagrange", domain.ufl_cell(), 1)
@@ -112,16 +113,15 @@ class delta_func():
         self.jh = jh
         self.h = h
 
-    def __call__(self, x):
-        '''average_potGrad = fem.form(inner(self.jh, self.jh) * dx)
-        average = fem.assemble_scalar(average_potGrad)'''
-        L2_average = 0.5 #np.sqrt(domain.comm.allreduce(average, op=MPI.SUM))
-
+    def __call__(self):
+        average_potGrad = fem.form(inner(self.jh, self.jh) * dx)
+        average = fem.assemble_scalar(average_potGrad)
+        L2_average = np.sqrt(domain.comm.allreduce(average, op=MPI.SUM))
         return self.h.max()/(2*L2_average)
 
 delta = delta_func(t, jh, h)
 
-w = v + delta(t) * dot(jh, grad(v))
+w = v + delta() * dot(jh, grad(v))
 theta = 0.5
 a_levelSet = (phi * w * dx + (dt * theta) * dot(jh, grad(phi)) * w * dx)
 L_levelSet = (phi_n * w * dx - dt * (1-theta) * dot(jh, grad(phi_n)) * w * dx)
@@ -158,8 +158,8 @@ for i in range(num_steps):
     distance = fem.form(inner(grad(phi_n), grad(phi_n)) * dx)
     average_dist = fem.assemble_scalar(distance)
     L2_average_dist = np.sqrt(domain.comm.allreduce(average_dist, op=MPI.SUM))
-    if domain.comm.rank == 0:
-        print(f"Gradient distance : {L2_average_dist:.2e}")
+    #if domain.comm.rank == 0:
+        #print(f"Gradient distance : {L2_average_dist:.2e}")
 
     A.zeroEntries()
     assemble_matrix(A, bilinear_form, bcs=[BCs])
@@ -185,7 +185,7 @@ for i in range(num_steps):
     # Write solution to file
     xdmf_levelset.write_function(phi_h, t)
 
-    if i == 1000:
+    '''if i == 1000:
         error_L2 = np.sqrt(
             domain.comm.allreduce(fem.assemble_scalar(fem.form((phi_n - phi_D) ** 2 * ufl.dx)), op=MPI.SUM))
         eh = phi_n - phi_D
@@ -194,7 +194,15 @@ for i in range(num_steps):
         if domain.comm.rank == 0:
             print(f"L2-error: {error_L2:.2e}")
             print(f"H01-error: {E_H10:.2e}")
-        break
+        break'''
 
+error_L2 = np.sqrt(
+            domain.comm.allreduce(fem.assemble_scalar(fem.form((phi_n - phi_D) ** 2 * ufl.dx)), op=MPI.SUM))
+eh = phi_n - phi_D
+error_H10 = fem.form(inner(grad(eh), grad(eh)) * dx)
+E_H10 = np.sqrt(domain.comm.allreduce(fem.assemble_scalar(error_H10), op=MPI.SUM))
+if domain.comm.rank == 0:
+    print(f"L2-error: {error_L2:.2e}")
+    print(f"H01-error: {E_H10:.2e}")
 
 xdmf_levelset.close()

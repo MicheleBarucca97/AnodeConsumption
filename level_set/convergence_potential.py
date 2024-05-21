@@ -6,29 +6,29 @@ import numpy as np
 from dolfinx import default_scalar_type
 from petsc4py import PETSc
 from mpi4py import MPI
-
+from dolfinx.io import XDMFFile
 from dolfinx import fem, mesh, io, plot
 from dolfinx.fem.petsc import assemble_vector, assemble_matrix, create_vector, apply_lifting, set_bc
 
-def V_exact(mode):
+def V_exact(mode, interface_position):
     #return lambda x: mode.atan(mode.pi * x[1])
     # return lambda x: (10000 -8000 * x[1]) * x[1]
-    return lambda x: -mode.cos(mode.pi*x[1])
+    return lambda x: mode.cos(mode.pi*x[1]/interface_position)
 
-V_numpy = V_exact(np) # which will be used for interpolation
-V_ufl = V_exact(ufl) # which will be used for defining the source term
+interface_position = 0.47
+V_numpy = V_exact(np, interface_position)  # which will be used for interpolation
+V_ufl = V_exact(ufl, interface_position)  # which will be used for defining the source term
 
 def solve_poisson(N, degree=1):
     domain = mesh.create_rectangle(MPI.COMM_WORLD, [np.array([0, 0]), np.array([1, 1])],
                           [N, N], mesh.CellType.triangle)
 
     Q = fem.FunctionSpace(domain, ("DG", 0))
+
     def Omega_0(x):
-        return x[1] <= 0.50
+        return x[1] <= interface_position
     def Omega_1(x):
-        return x[1] >= 0.50
-    def inerface(x):
-        return x[1] == 0.50
+        return x[1] >= interface_position
 
     x = SpatialCoordinate(domain)
     sigma = fem.Function(Q)
@@ -45,13 +45,12 @@ def solve_poisson(N, degree=1):
     csi = TestFunction(W)
     a = dot(sigma * grad(V), grad(csi)) * dx
 
-    # We start by identifying the facets contained in each boundary and create a custom integration measure ds
+    # Boundary conditions
     boundaries = [(1, lambda x: np.isclose(x[0], 0)),
                   (2, lambda x: np.isclose(x[0], 1)),
                   (3, lambda x: np.isclose(x[1], 0)),
                   (4, lambda x: np.isclose(x[1], 1)),
-                  (5, lambda x: np.isclose(x[1], 0.5))]
-    # We now loop through all the boundary conditions and create MeshTags identifying the facets for each boundary condition
+                  (5, lambda x: np.isclose(x[1], interface_position))]
     facet_indices, facet_markers = [], []
     fdim = domain.topology.dim - 1
     for (marker, locator) in boundaries:
@@ -64,16 +63,19 @@ def solve_poisson(N, degree=1):
     facet_tag = mesh.meshtags(domain, fdim, facet_indices[sorted_facets], facet_markers[sorted_facets])
 
     domain.topology.create_connectivity(domain.topology.dim - 1, domain.topology.dim)
+    with XDMFFile(domain.comm, "facet_tags.xdmf", "w") as xdmf:
+        xdmf.write_mesh(domain)
+        xdmf.write_meshtags(facet_tag, domain.geometry)
     # We can then inspect individual boundaries using the Threshold-filter in Paraview
     ds = ufl.Measure("ds", domain=domain, subdomain_data=facet_tag)
 
-    L = f * csi * dx + ufl.pi*ufl.sin(ufl.pi*0.5)*(sigma('+')*csi('+') + sigma('-')*csi('-'))*ds(5)
+    L = (f * csi * dx)  #+ 2*ufl.pi*ufl.cos(2*ufl.pi*interface_position) * (sigma('+')*csi('+') - sigma('-')*csi('-'))*ds(5))
     # Dirichlet condition
     facets = facet_tag.find(3)
     dofs = fem.locate_dofs_topological(W, fdim, facets)
     facets2 = facet_tag.find(4)
     dofs2 = fem.locate_dofs_topological(W, fdim, facets2)
-    BCs = [fem.dirichletbc(PETSc.ScalarType(-1), dofs, W), fem.dirichletbc(PETSc.ScalarType(1), dofs2, W)]
+    BCs = [fem.dirichletbc(PETSc.ScalarType(1), dofs, W), fem.dirichletbc(PETSc.ScalarType(np.cos(np.pi/interface_position)), dofs2, W)]
 
     default_problem = fem.petsc.LinearProblem(a, L, bcs=BCs,
                                               petsc_options={"ksp_type": "preonly", "pc_type": "lu"})
@@ -109,7 +111,7 @@ def error_L2_func(Vh, V_ex, degree_raise=3):
     error_global = mesh.comm.allreduce(error_local, op=MPI.SUM)
     return np.sqrt(error_global)
 
-N = [40, 80, 160, 320, 640]
+N = [20, 40, 80, 160, 320, 640]
 error_L2 = []
 error_H1 = []
 h = []
@@ -136,9 +138,11 @@ if mpi_rank == 0:
 
     plt.loglog(N, error_L2, label='$L^2$ error')
     plt.loglog(N, error_H1, label='$H^1$ error')
-    plt.loglog(N, h)
+    plt.loglog(N, h, label='h')
     h_square = [x**2 for x in h]
-    plt.loglog(N, h_square)
+    plt.loglog(N, h_square, label='$h^2$')
+    h_half = [x ** 0.5 for x in h]
+    plt.loglog(N, h_half, label='$\sqrt{h}$')
 
     plt.xlabel('N')
     plt.ylabel('Error')
