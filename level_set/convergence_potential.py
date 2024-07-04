@@ -15,13 +15,13 @@ def V_exact(mode, interface_position):
     # return lambda x: (10000 -8000 * x[1]) * x[1]
     return lambda x: mode.cos(mode.pi*x[1]/interface_position)
 
-interface_position = 0.47
-V_numpy = V_exact(np, interface_position)  # which will be used for interpolation
-V_ufl = V_exact(ufl, interface_position)  # which will be used for defining the source term
+interface_position = [0.27, 0.33, 0.5, 0.54, 0.67, 0.7]
 
-def solve_poisson(N, degree=1):
-    domain = mesh.create_rectangle(MPI.COMM_WORLD, [np.array([0, 0]), np.array([1, 1])],
-                          [N, N], mesh.CellType.triangle)
+
+def solve_poisson(domain, interface_position, iter, degree=1):
+
+    '''domain = mesh.create_rectangle(MPI.COMM_WORLD, [np.array([0, 0]), np.array([1, 1])],
+                          [N, N], mesh.CellType.triangle)'''
 
     Q = fem.FunctionSpace(domain, ("DG", 0))
 
@@ -38,6 +38,7 @@ def solve_poisson(N, degree=1):
         return 1. / (5.929e-5 - T * 1.235e-8)
     sigma.x.array[cells_0] = np.full_like(cells_0, 210, dtype=default_scalar_type)
     sigma.x.array[cells_1] = np.full_like(cells_1, anode_conductivity(800), dtype=default_scalar_type)
+    xdmf_sigma.write_function(sigma, iter)
     # sigma = fem.Constant(domain, PETSc.ScalarType(500))
     f = div(-sigma * grad(V_ufl(x)))
     W = fem.FunctionSpace(domain, ("Lagrange", 1))
@@ -77,10 +78,32 @@ def solve_poisson(N, degree=1):
     dofs2 = fem.locate_dofs_topological(W, fdim, facets2)
     BCs = [fem.dirichletbc(PETSc.ScalarType(1), dofs, W), fem.dirichletbc(PETSc.ScalarType(np.cos(np.pi/interface_position)), dofs2, W)]
 
-    default_problem = fem.petsc.LinearProblem(a, L, bcs=BCs,
-                                              petsc_options={"ksp_type": "preonly", "pc_type": "lu"})
+    # petsc_options={"ksp_type": "preonly", "pc_type": "lu"}
+    '''default_problem = fem.petsc.LinearProblem(a, L, bcs=BCs,
+                                              petsc_options={"ksp_type": "cg", "pc_type": "ilu", "monitor_convergence": True})
+    name_file = f"gmres_output_{iter}.txt"
+    gmres_solver = default_problem.solver
+    viewer = PETSc.Viewer().createASCII(name_file)
+    gmres_solver.view(viewer)'''
 
-    return default_problem.solve(), V_ufl(x)
+    solver = PETSc.KSP().create(domain.comm)
+    A = assemble_matrix(fem.form(a), bcs=BCs)
+    A.assemble()
+    solver.setOperators(A)
+    solver.setType(PETSc.KSP.Type.CG)
+    pc1 = solver.getPC()
+    pc1.setType(PETSc.PC.Type.ILU)
+    opts = PETSc.Options()
+    opts["monitor_convergence"] = True
+    b = assemble_vector(fem.form(L))
+    apply_lifting(b, [fem.form(a)], [BCs])
+    b.ghostUpdate(addv=PETSc.InsertMode.ADD_VALUES, mode=PETSc.ScatterMode.REVERSE)
+    set_bc(b, BCs)
+    Vh = fem.Function(W)
+    solver.solve(b, Vh.vector)
+
+    return Vh.x.scatter_forward(), V_ufl(x)
+    #return default_problem.solve(), V_ufl(x)
 
 def error_L2_func(Vh, V_ex, degree_raise=3):
     # Create higher order function space
@@ -116,8 +139,18 @@ error_L2 = []
 error_H1 = []
 h = []
 mpi_rank = 5
-for i in range(len(N)):
-    Vh, Vex = solve_poisson(N[i])
+
+domain = mesh.create_rectangle(MPI.COMM_WORLD, [np.array([0, 0]), np.array([1, 1])],
+                                   [N[1], N[1]], mesh.CellType.triangle)
+
+xdmf_sigma = io.XDMFFile(domain.comm, "sigma.xdmf", "w")
+xdmf_sigma.write_mesh(domain)
+
+for i in range(len(interface_position)):
+    V_numpy = V_exact(np, interface_position[i])  # which will be used for interpolation
+    V_ufl = V_exact(ufl, interface_position[i])  # which will be used for defining the source term
+
+    Vh, Vex = solve_poisson(domain, interface_position[i], i)
     comm = Vh.function_space.mesh.comm
     error_L2 += [error_L2_func(Vh, V_numpy)]
 
@@ -126,14 +159,25 @@ for i in range(len(N)):
     E_H10 = np.sqrt(comm.allreduce(fem.assemble_scalar(error_H10), op=MPI.SUM))
     error_H1 += [E_H10]
 
-    h += [1. / N[i]]
+    h += [1. / N[1]]
 
     if comm.rank == 0:
         mpi_rank = comm.rank
         print(f"h: {h[i]:.2e} Error L2: {error_L2[i]:.2e}")
         print(f"h: {h[i]:.2e} Error H1: {error_H1[i]:.2e}")
-
+xdmf_sigma.close()
 if mpi_rank == 0:
+    plt.figure(figsize=(10, 6))
+
+    plt.loglog(interface_position, error_L2, label='$L^2$ error')
+    plt.loglog(interface_position, error_H1, label='$H^1$ error')
+
+    plt.xlabel('N')
+    plt.ylabel('Error')
+    plt.legend()
+    plt.grid(True)
+    plt.show()
+'''if mpi_rank == 0:
     plt.figure(figsize=(10, 6))
 
     plt.loglog(N, error_L2, label='$L^2$ error')
@@ -148,4 +192,4 @@ if mpi_rank == 0:
     plt.ylabel('Error')
     plt.legend()
     plt.grid(True)
-    plt.show()
+    plt.show()'''

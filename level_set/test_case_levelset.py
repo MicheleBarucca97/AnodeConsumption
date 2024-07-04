@@ -23,7 +23,7 @@ T = 0.05  # Final time
 alpha = 0.1
 
 # Define mesh
-N = 80
+N = 40
 space_step = 1/N
 dt = alpha * space_step**2 # time step size
 num_steps = int(T/dt)
@@ -121,7 +121,7 @@ class delta_func():
 
 delta = delta_func(t, jh, h)
 
-w = v + delta() * dot(jh, grad(v))
+w = v #+ delta() * dot(jh, grad(v))
 theta = 0.5
 a_levelSet = (phi * w * dx + (dt * theta) * dot(jh, grad(phi)) * w * dx)
 L_levelSet = (phi_n * w * dx - dt * (1-theta) * dot(jh, grad(phi_n)) * w * dx)
@@ -145,6 +145,7 @@ solver.setType(PETSc.KSP.Type.PREONLY)
 solver.getPC().setType(PETSc.PC.Type.LU)
 
 for i in range(num_steps):
+    print(i)
     t += dt
 
     phi_ex.t = t

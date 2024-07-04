@@ -1,9 +1,6 @@
-import matplotlib.pyplot as plt
-import pyvista
-import ufl
 from ufl import SpatialCoordinate, TestFunction, TrialFunction, dot, dx, grad, div, FacetNormal,VectorElement, inner
 import numpy as np
-from dolfinx import default_scalar_type
+import ufl
 
 from petsc4py import PETSc
 from mpi4py import MPI
@@ -11,8 +8,6 @@ from mpi4py import MPI
 import dolfinx.mesh
 from dolfinx import fem, mesh, io, plot, cpp
 from dolfinx.fem.petsc import assemble_vector, assemble_matrix, create_vector, create_matrix, apply_lifting, set_bc
-from dolfinx.io import XDMFFile
-
 def project(e, target_func, bcs=[]):
     """Project UFL expression.
     Note
@@ -259,9 +254,8 @@ L_levelSet = (phi_n * w * dx - dt * (1-theta) * dot(k*jh, grad(phi_n)) * w * dx)
 bilinear_form = fem.form(a_levelSet)
 linear_form = fem.form(L_levelSet)
 
-# Observe that the left hand side of the system does not change from one time step to another, thus we
-# only need to assemble it once. The right hand side, which is dependent on the previous time step u_n, has
-# to be assembled every time step.
+# Since the left hand side depends on the potential that is recalculated each iteration, we have to update
+# both the left hand side and the right hand side, which is dependent on the previous time step u_n.
 A = create_matrix(bilinear_form)
 b = create_vector(linear_form)
 
