@@ -8,7 +8,6 @@ The two domains are separated by an interface $\tilde{\Gamma}(t) = \overline{\Si
 
 The mathematical model has been derived from equation (1), assuming the magnetic potential and the magnetic field to be zero. Given the unknown interface $\tilde{\Gamma}(t)$ between the anode and the bath, we search for the electric potential $V: \Sigma=\Sigma_{anode} \cup \Sigma_{bath} \times (0, T] \to \mathbb{R}$ such that,
 
-```math
 \begin{cases}
     -\nabla \cdot \sigma \nabla V = 0 \quad & \text{in} \ \Sigma, \\
     \sigma \nabla V \cdot \mathbf{n} = \frac{I}{|\partial \Sigma_{in}|} \quad & \text{on} \ \partial \Sigma_{in}, \\
