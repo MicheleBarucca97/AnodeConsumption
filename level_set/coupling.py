@@ -4,7 +4,7 @@ import ufl
 
 from petsc4py import PETSc
 from mpi4py import MPI
-
+from basix.ufl import element
 import dolfinx.mesh
 from dolfinx import fem, mesh, io, plot, cpp
 from dolfinx.fem.petsc import assemble_vector, assemble_matrix, create_vector, create_matrix, apply_lifting, set_bc
@@ -56,7 +56,7 @@ T = 0.1  # Final time
 alpha = 2
 
 # Define mesh
-nx, ny = 80, 80
+nx, ny = 120, 120
 space_step = 1/nx
 dt = alpha * space_step**2 # time step size
 num_steps = int(T/dt)
@@ -189,11 +189,10 @@ facets = facet_tag.find(3)
 dofs = fem.locate_dofs_topological(W, fdim, facets)
 facets2 = facet_tag.find(4)
 dofs2 = fem.locate_dofs_topological(W, fdim, facets2)
-BCs = [fem.dirichletbc(PETSc.ScalarType(0.26), dofs, W), fem.dirichletbc(PETSc.ScalarType(1.9), dofs2, W)]
-
-#L = inner(0, csi) * ds(1) + inner(0, csi) * ds(2) + inner(1.9, csi) * ds(4)
-
-L = fem.Constant(domain, PETSc.ScalarType(0.))*csi*dx
+#BCs = [fem.dirichletbc(PETSc.ScalarType(0.26), dofs, W), fem.dirichletbc(PETSc.ScalarType(1.9), dofs2, W)]
+#L = fem.Constant(domain, PETSc.ScalarType(0.))*csi*dx
+BCs = []
+L = 300 * csi * ds(4) - 300 * csi * ds(3)
 
 left_form = fem.form(a)
 right_form = fem.form(L)
@@ -221,9 +220,14 @@ Vh.name = "V"
 xdmf_levelset.write_function(Vh, t)
 
 #######################################################################################################################
-# Variational problem and solver for current (is a vector)
-jh = -sigma * grad(Vh)
+J = fem.FunctionSpace(domain, ("Lagrange", 1, (domain.geometry.dim, )))
+jh = fem.Function(J)
+jh_expr = fem.Expression(ufl.as_vector((-sigma * Vh.dx(0), -sigma * Vh.dx(1))), J.element.interpolation_points())
+jh.interpolate(jh_expr)
 
+xdmf_current = io.XDMFFile(domain.comm, "current.xdmf", "w")
+xdmf_current.write_mesh(domain)
+xdmf_current.write_function(jh, t)
 #######################################################################################################################
 # Variational problem and solver for level set function
 
@@ -309,7 +313,8 @@ for i in range(num_steps):
     solver_pot.solve(b_potential, Vh.vector)
     Vh.x.scatter_forward()
 
-    jh = -sigma * grad(Vh)
+    jh_expr = fem.Expression(ufl.as_vector((-sigma * Vh.dx(0), -sigma * Vh.dx(1))), J.element.interpolation_points())
+    jh.interpolate(jh_expr)
 
     average_potGrad = fem.form(inner(jh, jh) * dx)
     average = fem.assemble_scalar(average_potGrad)
@@ -320,6 +325,8 @@ for i in range(num_steps):
     xdmf_levelset.write_function(phi_h, t)
     xdmf_levelset.write_function(Vh, t)
     xdmf_sigma.write_function(sigma, t)
+    xdmf_current.write_function(jh, t)
 
 xdmf_levelset.close()
 xdmf_sigma.close()
+xdmf_current.close()

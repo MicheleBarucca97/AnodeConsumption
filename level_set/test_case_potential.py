@@ -7,12 +7,12 @@ import numpy as np
 from petsc4py import PETSc
 from mpi4py import MPI
 
-from dolfinx import fem, mesh, io, plot
+from dolfinx import fem, mesh, io, plot, default_scalar_type
 from dolfinx.fem.petsc import assemble_vector, assemble_matrix, create_vector, apply_lifting, set_bc
 
 
 # Define mesh
-nx, ny = 50, 50
+nx, ny = 20, 20
 # For arctan manufactured solution
 #domain = mesh.create_rectangle(MPI.COMM_WORLD, [np.array([-2, -2]), np.array([2, 2])],
 #                               [nx, ny], mesh.CellType.triangle)
@@ -24,6 +24,13 @@ n = FacetNormal(domain)
 # Write the weak formulation
 V = TrialFunction(W)
 csi = TestFunction(W)
+Q = fem.FunctionSpace(domain, ("DG", 0))
+
+def Omega_0(x):
+    return x[1] <= 0.5
+def Omega_1(x):
+    return x[1] >= 0.5
+
 sigma = fem.Constant(domain, PETSc.ScalarType(500))
 a = dot(sigma * grad(V), grad(csi)) * dx
 
