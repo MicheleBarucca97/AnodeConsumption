@@ -17,5 +17,9 @@ The mathematical model has been derived from equation (1), assuming the magnetic
     \{\sigma \nabla V \cdot \mathbf{n}\}_{\tilde{\Gamma}} = 0 \quad & \text{on} \ \tilde{\Gamma}(t).
 \end{cases}
 
+The conductivity $\sigma$ has a constant value in the two media $\sigma_{anode}$ and $\sigma_{bath}$. The interface can be parameterized with the level set function $\tilde{\varphi}$ as $\tilde{\Gamma}(t) = \{\mathbf{x} \in \Sigma : \tilde{\varphi}(\mathbf{x}, t) = 0\}$. The conductivity is then given by:
+
+```math
+\sigma(\tilde{\varphi}) = \sigma_{bath} + (\sigma_{anode} - \sigma_{bath}) H(\tilde{\varphi}),
 
 
