@@ -1,16 +1,17 @@
 import matplotlib.pyplot as plt
-import pyvista
 import ufl
-from ufl import SpatialCoordinate, TestFunction, TrialFunction, dot, ds, dx, grad, div, FacetNormal,VectorElement, inner
+from ufl import TestFunction, TrialFunction, dot, dx, grad, FacetNormal, VectorElement, inner
 import numpy as np
-from dolfinx import default_scalar_type
 from petsc4py import PETSc
 from mpi4py import MPI
 
-from dolfinx import fem, mesh, io, plot, cpp
+from dolfinx import fem, mesh, io, cpp
 from dolfinx.fem.petsc import assemble_vector, assemble_matrix, create_vector, create_matrix, apply_lifting, set_bc
 
 class exact_solution():
+    """
+    Class to define the analytical solution for the level set function 
+    """
     def __init__(self, t):
         self.t = t
 
@@ -19,6 +20,9 @@ class exact_solution():
         return np.tanh(-60*((x[1] - 10*self.t - (10*self.t**3)/3 - 0.25)**2 - 0.01))
 
 class u_exact():
+    """
+    Class to define the analytical solution for the velocity
+    """
     def __init__(self, t):
         self.t = t
 
@@ -30,6 +34,10 @@ class u_exact():
         return values
 
 class delta_func():
+    """
+    Class to define the coefficient for the stabilization term in the level set equation
+    coeff = h_max / (2*||u||)
+    """
     def __init__(self, t, jh, h, domain):
         self.t = t
         self.jh = jh
@@ -42,7 +50,13 @@ class delta_func():
         L2_average = np.sqrt(self.domain.comm.allreduce(average, op=MPI.SUM))
         return self.h.max()/(2*L2_average)
 
-def solve_levelSet(N, degree=1):
+def solve_levelSet(N):
+    """
+    Function to retrive the solution of the level set problem
+
+    Parameter:
+    N (int): number of mesh element
+    """
     t = 0  # Start time
     T = 0.05  # Final time
     alpha = 0.8
@@ -150,6 +164,14 @@ def solve_levelSet(N, degree=1):
     return phi_n, phi_D
 
 def error_L2_func(Vh, V_ex, degree_raise=3):
+    """
+    Function to calculate the L2 error
+    
+    Parameter:
+    Vh (function): numerical solution
+    V_ex (function): analytical dolution
+    degree_raise (int): dimension of the higher order FE space
+    """
     # Create higher order function space
     degree = 1 #Vh.function_space.ufl_element().degree
     family = Vh.function_space.ufl_element().family_name

@@ -1,24 +1,35 @@
 import matplotlib.pyplot as plt
-import pyvista
 import ufl
-from ufl import SpatialCoordinate, TestFunction, TrialFunction, dot, ds, dx, grad, div, FacetNormal,VectorElement, inner
+from ufl import SpatialCoordinate, TestFunction, TrialFunction, dot, dx, grad, div, FacetNormal
 import numpy as np
 from dolfinx import default_scalar_type
 from petsc4py import PETSc
 from mpi4py import MPI
 from dolfinx.io import XDMFFile
-from dolfinx import fem, mesh, io, plot
-from dolfinx.fem.petsc import assemble_vector, assemble_matrix, create_vector, apply_lifting, set_bc
+from dolfinx import fem, mesh, io
+from dolfinx.fem.petsc import assemble_vector, assemble_matrix, apply_lifting, set_bc
 
 def V_exact(mode, interface_position):
-    # The analytical solution need to be chosen in order to respect the condition:
-    # [sigma Grad(V) . n] = 0
+    """
+    The analytical solution need to be chosen in order to respect the condition:
+    [sigma Grad(V) . n] = 0
+
+    Parameter:
+    mode (library): it can be ufl or numpy
+    interface_position (double): position of the interface
+    """
     return lambda x: -mode.cos(mode.pi*x[1]/interface_position)
 
 interface_position = 0.54
 
-#def solve_poisson(domain, interface_position, iter, degree=1):
-def solve_poisson(N, interface_position, degree=1):
+def solve_poisson(N, interface_position):
+    """
+    Function to retrive the solution of the poisson problem
+    
+    Parameter:
+    N (int): number of mesh element
+    interface_position (double): position of the interface
+    """
     domain = mesh.create_rectangle(MPI.COMM_WORLD, [np.array([0, 0]), np.array([1, 1])],
                           [N, N], mesh.CellType.triangle)
     xdmf_sigma = io.XDMFFile(domain.comm, "sigma.xdmf", "w")
@@ -43,7 +54,7 @@ def solve_poisson(N, interface_position, degree=1):
     sigma.x.array[cells_0] = np.full_like(cells_0, 210, dtype=default_scalar_type)
     sigma.x.array[cells_1] = np.full_like(cells_1, anode_conductivity(800), dtype=default_scalar_type)
     xdmf_sigma.write_function(sigma)
-    # sigma = fem.Constant(domain, PETSc.ScalarType(500))
+
     f = -div(sigma * grad(V_ufl(x)))
     W = fem.FunctionSpace(domain, ("Lagrange", 1))
     V = TrialFunction(W)
@@ -76,7 +87,8 @@ def solve_poisson(N, interface_position, degree=1):
 
     g = grad(V_ufl(x))
     n = FacetNormal(domain)
-    L = (f * csi * dx) #- (dot(sigma('+')*g('+'), n('+'))*csi('+') - dot(sigma('-')*g('-'),n('-'))*csi('-'))*dS(5)
+    L = (f * csi * dx)
+    # If you want to consider Neumann b.c. :  #- (dot(sigma('+')*g('+'), n('+'))*csi('+') - dot(sigma('-')*g('-'),n('-'))*csi('-'))*dS(5)
     # Dirichlet condition
     facets = facet_tag.find(3)
     dofs = fem.locate_dofs_topological(W, fdim, facets)
@@ -84,38 +96,24 @@ def solve_poisson(N, interface_position, degree=1):
     dofs2 = fem.locate_dofs_topological(W, fdim, facets2)
     BCs = [fem.dirichletbc(PETSc.ScalarType(-1), dofs, W), fem.dirichletbc(PETSc.ScalarType(-np.cos(np.pi/(interface_position))), dofs2, W)]
 
-    # petsc_options={"ksp_type": "preonly", "pc_type": "lu"}
     default_problem = fem.petsc.LinearProblem(a, L, bcs=BCs,
                                               petsc_options={"ksp_type": "cg", "pc_type": "ilu", "monitor_convergence": True})
-    '''name_file = f"gmres_output_{iter}.txt"
-    gmres_solver = default_problem.solver
-    viewer = PETSc.Viewer().createASCII(name_file)
-    gmres_solver.view(viewer)'''
-
-    '''solver = PETSc.KSP().create(domain.comm)
-    A = assemble_matrix(fem.form(a), bcs=BCs)
-    A.assemble()
-    solver.setOperators(A)
-    solver.setType(PETSc.KSP.Type.CG)
-    pc1 = solver.getPC()
-    pc1.setType(PETSc.PC.Type.ILU)
-    opts = PETSc.Options()
-    opts["monitor_convergence"] = True
-    b = assemble_vector(fem.form(L))
-    apply_lifting(b, [fem.form(a)], [BCs])
-    b.ghostUpdate(addv=PETSc.InsertMode.ADD_VALUES, mode=PETSc.ScatterMode.REVERSE)
-    set_bc(b, BCs)
-    Vh = fem.Function(W)
-    solver.solve(b, Vh.vector)'''
-
+   
     xdmf_sigma.close()
     V_sol = default_problem.solve()
     xdmf_V.write_function(V_sol)
     xdmf_V.close()
-    #return Vh.x.scatter_forward(), V_ufl(x)
     return V_sol, V_ufl(x)
 
 def error_L2_func(Vh, V_ex, degree_raise=3):
+    """
+    Function to calculate the L2 error
+    
+    Parameter:
+    Vh (function): numerical solution
+    V_ex (function): analytical dolution
+    degree_raise (int): dimension of the higher order FE space
+    """
     # Create higher order function space
     degree = 1 #Vh.function_space.ufl_element().degree
     family = Vh.function_space.ufl_element().family_name
@@ -153,9 +151,7 @@ V_numpy = V_exact(np, interface_position)  # which will be used for interpolatio
 V_ufl = V_exact(ufl, interface_position)  # which will be used for defining the source term
 
 for i in range(len(N)):
-    '''domain = mesh.create_rectangle(MPI.COMM_WORLD, [np.array([0, 0]), np.array([1, 1])],
-                                   [N[i], N[i]], mesh.CellType.triangle)'''
-    Vh, Vex = solve_poisson(N[i], interface_position, i)
+    Vh, Vex = solve_poisson(N[i], interface_position)
     comm = Vh.function_space.mesh.comm
 
     error_L2 += [error_L2_func(Vh, V_numpy)]
@@ -172,17 +168,6 @@ for i in range(len(N)):
         print(f"h: {h[i]:.2e} Error L2: {error_L2[i]:.2e}")
         print(f"h: {h[i]:.2e} Error H1: {error_H1[i]:.2e}")
 
-'''if mpi_rank == 0:
-    plt.figure(figsize=(10, 6))
-
-    plt.loglog(interface_position, error_L2, label='$L^2$ error')
-    plt.loglog(interface_position, error_H1, label='$H^1$ error')
-
-    plt.xlabel('N')
-    plt.ylabel('Error')
-    plt.legend()
-    plt.grid(True)
-    plt.show()'''
 if mpi_rank == 0:
     plt.figure(figsize=(10, 6))
 

@@ -1,18 +1,23 @@
-from ufl import SpatialCoordinate, TestFunction, TrialFunction, dot, dx, grad, div, FacetNormal,VectorElement, inner
+from ufl import SpatialCoordinate, TestFunction, TrialFunction, dot, dx, grad, div, FacetNormal, inner
 import numpy as np
 import ufl
 
 from petsc4py import PETSc
 from mpi4py import MPI
 from basix.ufl import element
-import dolfinx.mesh
-from dolfinx import fem, mesh, io, plot, cpp
+from dolfinx import fem, mesh, io, cpp
 from dolfinx.fem.petsc import assemble_vector, assemble_matrix, create_vector, create_matrix, apply_lifting, set_bc
+
 def project(e, target_func, bcs=[]):
     """Project UFL expression.
     Note
     ----
     This method solves a linear system (using KSP defaults).
+
+    Parameters:
+    e (function): function to be projected
+    target_func (function): new projected function
+    bcs (function): possible boundary conditions
     """
 
     # Ensure we have a mesh and attach to measure
@@ -71,6 +76,9 @@ phi_n = fem.Function(W)  # Level set function
 # Initial condition for phi s.t. it is negative in the anode and positive in the bath
 # The unit normal in this case (n = Grad(phi)/||Grad(phi)||) will always point inside the bath (phi >0)
 class exact_solution():
+    """
+    Class to define the analytical solution for the level set function, STEP FUNCTION
+    """
     def __init__(self, t):
         self.t = t
     def __call__(self, x):
@@ -104,7 +112,8 @@ dofs_D = fem.locate_dofs_geometrical(W, boundary_D)
 phi_D = fem.Function(W)
 phi_D.interpolate(phi_ex)
 
-BCs_phi = fem.dirichletbc(phi_D, dofs_D) ########################### You have to update those every iteration
+# You have to update those every iteration
+BCs_phi = fem.dirichletbc(phi_D, dofs_D) 
 
 #######################################################################################################################
 # Potential
@@ -117,6 +126,10 @@ def anode_conductivity(T):
 conductivity_anode = anode_conductivity(800)
 conductivity_bath = 210
 class smoothed_heaviside_func():
+    """ 
+    Class to define the Heaviside function for the definition of the conductivities 
+    in the two media.
+    """
     def __init__(self, phi_n_project, epsilon):
         self.phi_n_project = phi_n_project
         self.epsilon = epsilon
@@ -169,13 +182,13 @@ boundaries = [(1, lambda x: np.isclose(x[0], 0)),
 facet_indices, facet_markers = [], []
 fdim = domain.topology.dim - 1
 for (marker, locator) in boundaries:
-    facets = dolfinx.mesh.locate_entities(domain, fdim, locator)
+    facets = mesh.locate_entities(domain, fdim, locator)
     facet_indices.append(facets)
     facet_markers.append(np.full_like(facets, marker))
 facet_indices = np.hstack(facet_indices).astype(np.int32)
 facet_markers = np.hstack(facet_markers).astype(np.int32)
 sorted_facets = np.argsort(facet_indices)
-facet_tag = dolfinx.mesh.meshtags(domain, fdim, facet_indices[sorted_facets], facet_markers[sorted_facets])
+facet_tag = mesh.meshtags(domain, fdim, facet_indices[sorted_facets], facet_markers[sorted_facets])
 
 domain.topology.create_connectivity(domain.topology.dim-1, domain.topology.dim)
 '''with XDMFFile(domain.comm, "facet_tags.xdmf", "w") as xdmf:
