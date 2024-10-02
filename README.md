@@ -23,7 +23,16 @@ ${\sigma \nabla V \cdot \mathbf{n}}_{\tilde{\Gamma}} = 0$ on $\tilde{\Gamma}(t)$
 
 The conductivity $\sigma$ has a constant value in the two media $\sigma_{anode}$ and $\sigma_{bath}$. The interface can be parameterized with the level set function $\tilde{\varphi}$ as $\tilde{\Gamma}(t) = {\mathbf{x} \in \Sigma : \tilde{\varphi}(\mathbf{x}, t) = 0}$. The conductivity is then given by:
 
-```math
-\sigma(\tilde{\varphi}) = \sigma_{bath} + (\sigma_{anode} - \sigma_{bath}) H(\tilde{\varphi}),
+$\sigma(\tilde{\varphi}) = \sigma_{bath} + (\sigma_{anode} - \sigma_{bath}) H(\tilde{\varphi})$.
+
+The interface moves at speed $k \ \sigma \nabla V$ ($k>0$ is a given coefficient), $\Tilde{\varphi}$ satisfies the level-set equation,
+
+$\frac{\partial \Tilde{\varphi}}{\partial t} + k \sigma \nabla V \cdot \nabla \Tilde{\varphi} = 0$ in  $\ \Sigma \times (0,T]$, 
+
+$\Tilde{\varphi}(\Vec{x}, 0) = \Tilde{\varphi}_0(\Vec{x})$ in $\Sigma$, 
+
+$\Tilde{\varphi}(\Vec{x},t) = \Tilde{\varphi}_D$ on $\partial \Sigma_{out} \times (0,T]$.
+    
+where $\Tilde{\varphi}_D$ is a positive constant.
 
 
