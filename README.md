@@ -2,8 +2,9 @@
 
 The two domains are separated by an interface $\tilde{\Gamma}(t) = \overline{\Sigma_{anode}(t)} \cap \overline{\Sigma_{bath}(t)}$, see Fig. 1.
 
-![Geometry of the simplified problem.](Figures/geometry_anode.png)
-*Figure 1: Geometry of the simplified problem.*
+<p align="center">
+  <img src="Figures/geometry_anode.png" alt="Geometry of the simplified problem." width="300"/>
+</p>
 
 The mathematical model has been derived from equation (1), assuming the magnetic potential and the magnetic field to be zero. Given the unknown interface $\tilde{\Gamma}(t)$ between the anode and the bath, we search for the electric potential $V: \Sigma=\Sigma_{anode} \cup \Sigma_{bath} \times (0, T] \to \mathbb{R}$ such that,
 
