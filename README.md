@@ -1,11 +1,21 @@
 # AnodeConsumption
-Use level set method coupled with elettromagnetic equations to simulate the consumption of the anode
 
-$$-\nabla \cdot \sigma \nabla V = 0 \quad in \ \Omega, $$
-$$V = 1.9 \quad in \ \partial \Omega_{in}, $$
-$$V = 0.26 \quad in \ \partial \Omega_{out}, $$
-$$\sigma \nabla V \cdot n = 0 \quad in \ \partial \Omega / (\partial \Omega_{in} \cup \partial \Omega_{out}), $$
-${V}_{\Gamma} = 0 \quad on \ \Gamma(t), $
-$$\{\sigma \nabla V \cdot n\}_{\Gamma} = 0 \quad on  \ \Gamma(t). $$
+The two domains are separated by an interface $\tilde{\Gamma}(t) = \overline{\Sigma_{anode}(t)} \cap \overline{\Sigma_{bath}(t)}$, see Fig. 1.
+
+![Geometry of the simplified problem.](Figures/geometry_anode.png)
+*Figure 1: Geometry of the simplified problem.*
+
+The mathematical model has been derived from equation (1), assuming the magnetic potential and the magnetic field to be zero. Given the unknown interface $\tilde{\Gamma}(t)$ between the anode and the bath, we search for the electric potential $V: \Sigma=\Sigma_{anode} \cup \Sigma_{bath} \times (0, T] \to \mathbb{R}$ such that,
+
+```math
+\begin{cases}
+    -\nabla \cdot \sigma \nabla V = 0 \quad & \text{in} \ \Sigma, \\
+    \sigma \nabla V \cdot \mathbf{n} = \frac{I}{|\partial \Sigma_{in}|} \quad & \text{on} \ \partial \Sigma_{in}, \\
+    \sigma \nabla V \cdot \mathbf{n} = -\frac{I}{|\partial \Sigma_{out}|} \quad & \text{on} \ \partial \Sigma_{out}, \\
+    \sigma \nabla V \cdot \mathbf{n} = 0 \quad & \text{on} \ \partial \Sigma / (\partial \Sigma_{in} \cup \partial \Sigma_{out}), \\
+    \{V\}_{\tilde{\Gamma}} = 0 \quad & \text{on} \ \tilde{\Gamma}(t), \\
+    \{\sigma \nabla V \cdot \mathbf{n}\}_{\tilde{\Gamma}} = 0 \quad & \text{on} \ \tilde{\Gamma}(t).
+\end{cases}
+
 
 
