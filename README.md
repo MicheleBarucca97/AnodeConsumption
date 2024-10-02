@@ -29,9 +29,9 @@ The interface moves at speed $k \ \sigma \nabla V$ ($k>0$ is a given coefficient
 
 $\frac{\partial \tilde{\varphi}}{\partial t} + k \sigma \nabla V \cdot \nabla \tilde{\varphi} = 0$ in  $\ \Sigma \times (0,T]$, 
 
-$\tilde{\varphi}(\Vec{x}, 0) = \tilde{\varphi}_0(\Vec{x})$ in $\Sigma$, 
+$\tilde{\varphi}(x, 0) = \tilde{\varphi}_0(x)$ in $\Sigma$, 
 
-$\tilde{\varphi}(\Vec{x},t) = \tilde{\varphi}_D$ on $\partial \Sigma_{out} \times (0,T]$.
+$\tilde{\varphi}(x, t) = \tilde{\varphi}_D$ on $\partial \Sigma_{out} \times (0,T]$.
     
 where $\tilde{\varphi}_D$ is a positive constant.
 
