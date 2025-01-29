@@ -1,11 +1,12 @@
 import matplotlib.pyplot as plt
 import ufl
-from ufl import TestFunction, TrialFunction, dot, dx, grad, FacetNormal, VectorElement, inner
+from ufl import dot, dx, grad, FacetNormal, inner
 import numpy as np
 from petsc4py import PETSc
 from mpi4py import MPI
 from basix.ufl import element
 from dolfinx import fem, mesh, io, cpp
+from dolfinx.fem import Constant, Function, functionspace, assemble_scalar, form, locate_dofs_geometrical
 from dolfinx.fem.petsc import assemble_vector, assemble_matrix, create_vector, create_matrix, apply_lifting, set_bc
 
 class exact_solution():
@@ -30,8 +31,8 @@ class u_exact():
     def __call__(self, x):
         values = np.zeros((2, x.shape[1]))
         #values[1] = 10 + 10*self.t**2
-        values[0] = -2*np.sin(np.pi*x[1])*np.cos(np.pi*x[1])*np.sin(np.pi*x[0])*np.sin(np.pi*x[0])*cos(np.pi*self.t/self.T)
-        values[1] = 2*np.sin(np.pi*x[0])*np.cos(np.pi*x[0])*np.sin(np.pi*x[1])*np.sin(np.pi*x[1])*cos(np.pi*self.t/self.T)
+        values[0] = -2*np.sin(np.pi*x[1])*np.cos(np.pi*x[1])*np.sin(np.pi*x[0])*np.sin(np.pi*x[0])*np.cos(np.pi*self.t/self.T)
+        values[1] = 2*np.sin(np.pi*x[0])*np.cos(np.pi*x[0])*np.sin(np.pi*x[1])*np.sin(np.pi*x[1])*np.cos(np.pi*self.t/self.T)
         return values
 
 class delta_func():
@@ -49,15 +50,17 @@ class delta_func():
         average_potGrad = fem.form(inner(self.jh, self.jh) * dx)
         average = fem.assemble_scalar(average_potGrad)
         L2_average = np.sqrt(self.domain.comm.allreduce(average, op=MPI.SUM))
-        return self.h.max()/(2*L2_average)
+        return self.h/(2*L2_average)
     
 def eikonal_L2proj(domain, u, beta, h, phi, DEBUG = 0, bcs = []):
-    W = fem.FunctionSpace(domain, ("Lagrange", 1))
+    #W = fem.FunctionSpace(domain, ("Lagrange", 1))
+    elem = element("Lagrange", domain.topology.cell_name(),1)
+    W = functionspace(domain, elem)
     p, q = ufl.TrialFunction(W), ufl.TestFunction(W)
     norm_L2 = fem.form(inner(u, u) * dx)
     integral_L2 = fem.assemble_scalar(norm_L2)
     L2 = np.sqrt(domain.comm.allreduce(integral_L2, op=MPI.SUM))
-    lambda2 = beta * L2 * h.max()**2 / 2
+    lambda2 = beta * L2 * h**2 / 2
     print("lambda value for the stabilization: ", lambda2)
     a = (p * q * dx)
     L = (lambda2 * q * (ufl.sqrt(inner(grad(phi), grad(phi)))-1) * dx)
@@ -83,7 +86,7 @@ def eikonal_L2proj(domain, u, beta, h, phi, DEBUG = 0, bcs = []):
             print(f"    Iteration {its}, residual norm {rnorm}")
         solver.setMonitor(monitor)
 
-    solver.solve(b, p_h.vector)
+    solver.solve(b, p_h.x.petsc_vec)
     if DEBUG:
         r, c = A.getDiagonal().array.min(), A.getDiagonal().array.max()
         cond_num = c / r
@@ -110,12 +113,13 @@ def solve_levelSet(N, DEBUG = 1):
     alpha = 0.1
     phi_ex = exact_solution(t)
 
-    space_step = 1 / N
-    dt = alpha * space_step ** 2  # time step size
+    h = 1 / N
+    dt = alpha * h ** 2  # time step size
     num_steps = int(T / dt)
     domain = mesh.create_rectangle(MPI.COMM_WORLD, [np.array([0, 0]), np.array([1, 1])],
                                    [N, N], mesh.CellType.triangle)
-    W = fem.FunctionSpace(domain, ("Lagrange", 1))
+    elem = element("Lagrange", domain.topology.cell_name(),1)
+    W = functionspace(domain, elem)
     n = FacetNormal(domain)
 
     phi_n = fem.Function(W)  # Level set function
@@ -141,17 +145,18 @@ def solve_levelSet(N, DEBUG = 1):
 
     phi, v = ufl.TrialFunction(W), ufl.TestFunction(W)
 
-    vec_fe = VectorElement("Lagrange", domain.ufl_cell(), 1)
-    W_vec = fem.FunctionSpace(domain, vec_fe)
+    #vec_fe = VectorElement("Lagrange", domain.ufl_cell(), 1)
+    vec_fe = element("Lagrange", domain.topology.cell_name(),1, shape=(domain.geometry.dim, ))
+    W_vec = functionspace(domain, vec_fe)
 
-    u_ex = u_exact(t)
+    u_ex = u_exact(t, T)
     jh = fem.Function(W_vec)
     jh.interpolate(u_ex)
 
     # Retrieve the cells dimensions
-    tdim = domain.topology.dim
-    num_cells = domain.topology.index_map(tdim).size_local
-    h = cpp.mesh.h(domain._cpp_object, tdim, range(num_cells))
+    #tdim = domain.topology.dim
+    #num_cells = domain.topology.index_map(tdim).size_local
+    #h = cpp.mesh.h(domain._cpp_object, tdim, range(num_cells))
 
     delta = delta_func(t, jh, h, domain)
 
@@ -218,7 +223,7 @@ def solve_levelSet(N, DEBUG = 1):
         t += dt
 
         phi_ex.t = t
-        phi_D.interpolate(phi_ex)
+        #phi_D.interpolate(phi_ex)
 
         #u_ex.t = (t + (t - dt)) / 2
         u_ex.t = t
@@ -242,7 +247,7 @@ def solve_levelSet(N, DEBUG = 1):
             set_bc(b, [BCs])'''
 
             # Solve linear problem
-            solver.solve(b, phi_h.vector)
+            solver.solve(b, phi_h.x.petsc_vec)
             phi_h.x.scatter_forward()
 
         err = 1.
@@ -269,7 +274,7 @@ def solve_levelSet(N, DEBUG = 1):
             b2.ghostUpdate(addv=PETSc.InsertMode.ADD_VALUES, mode=PETSc.ScatterMode.REVERSE)
             set_bc(b2, [BCs2])'''
             # Solve linear problem
-            solver2.solve(b2, delta_phi_h.vector)
+            solver2.solve(b2, delta_phi_h.x.petsc_vec)
             if DEBUG:
                 r, c = A2.getDiagonal().array.min(), A2.getDiagonal().array.max()
                 cond_num = c / r
