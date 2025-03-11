@@ -1,0 +1,843 @@
+Get initial guess for phi^(n+1)
+Newton loop at time step:  0
+    Newton iteration:  0
+lambda value for the stabilization:  0.1250001250000015
+    Iteration 0, residual norm 5.5440860046287976e-05
+    Iteration 1, residual norm 1.7424035778361392e-06
+    Iteration 2, residual norm 4.326953521685831e-08
+    Iteration 3, residual norm 8.272606065486312e-10
+    Iteration 4, residual norm 2.3291802775623935e-11
+    Condition number: 2.6038528723610104
+    Error:  1.9859594536209297e-06
+Minimum gradient norm: 1.1080824736378557e-06
+Norm of the gradient: 5.211705042608277
+MAE (Mean absolut error): 2.049932464231331
+Newton loop at time step:  1
+    Newton iteration:  0
+lambda value for the stabilization:  0.1250011249999986
+    Iteration 0, residual norm 2.0792038687577383
+    Iteration 1, residual norm 0.016906060870488206
+    Iteration 2, residual norm 0.0002731018956411326
+    Iteration 3, residual norm 6.425772936725478e-06
+    Condition number: 2.603851199845925
+    Error:  0.09892560806489292
+    Newton iteration:  1
+lambda value for the stabilization:  0.1250011249999986
+    Iteration 0, residual norm 0.27655328367878423
+    Iteration 1, residual norm 0.0026052803053212715
+    Iteration 2, residual norm 3.638367213761109e-05
+    Iteration 3, residual norm 8.195870281258383e-07
+    Condition number: 2.603851199845925
+    Error:  0.012573860704018542
+    Newton iteration:  2
+lambda value for the stabilization:  0.1250011249999986
+    Iteration 0, residual norm 0.05087381568721885
+    Iteration 1, residual norm 0.000518569154094455
+    Iteration 2, residual norm 6.383640213422598e-06
+    Iteration 3, residual norm 1.2705958615199568e-07
+    Condition number: 2.603851199845925
+    Error:  0.0021400936538932673
+    Newton iteration:  3
+lambda value for the stabilization:  0.1250011249999986
+    Iteration 0, residual norm 0.012264283710597608
+    Iteration 1, residual norm 0.00011190709407734697
+    Iteration 2, residual norm 1.2962395450341777e-06
+    Iteration 3, residual norm 2.254410191423814e-08
+    Condition number: 2.603851199845925
+    Error:  0.0004743895295880684
+Minimum gradient norm: 4.4282198506634374e-07
+Norm of the gradient: 5.167509253554921
+MAE (Mean absolut error): 2.081028565784
+Newton loop at time step:  2
+    Newton iteration:  0
+lambda value for the stabilization:  0.1250031250000024
+    Iteration 0, residual norm 2.061101652202146
+    Iteration 1, residual norm 0.016531583142286674
+    Iteration 2, residual norm 0.00027349961056118355
+    Iteration 3, residual norm 6.489740186925248e-06
+    Condition number: 2.603847855092676
+    Error:  0.09826291127194738
+    Newton iteration:  1
+lambda value for the stabilization:  0.1250031250000024
+    Iteration 0, residual norm 0.26834059872699223
+    Iteration 1, residual norm 0.002414422194316454
+    Iteration 2, residual norm 3.440282378992276e-05
+    Iteration 3, residual norm 7.846070254561433e-07
+    Condition number: 2.603847855092676
+    Error:  0.012308160911945837
+    Newton iteration:  2
+lambda value for the stabilization:  0.1250031250000024
+    Iteration 0, residual norm 0.04709919230561993
+    Iteration 1, residual norm 0.00046207076584228247
+    Iteration 2, residual norm 5.726590444837466e-06
+    Iteration 3, residual norm 1.1762599360083678e-07
+    Condition number: 2.603847855092676
+    Error:  0.002022836638685196
+    Newton iteration:  3
+lambda value for the stabilization:  0.1250031250000024
+    Iteration 0, residual norm 0.010737983505758174
+    Iteration 1, residual norm 9.726377651479258e-05
+    Iteration 2, residual norm 1.1138788170533728e-06
+    Iteration 3, residual norm 2.022194727535441e-08
+    Condition number: 2.603847855092676
+    Error:  0.0004261057649395416
+Minimum gradient norm: 2.0771892642424463e-05
+Norm of the gradient: 5.130289462769686
+MAE (Mean absolut error): 2.143475947661973
+Newton loop at time step:  3
+    Newton iteration:  0
+lambda value for the stabilization:  0.12500612499999703
+    Iteration 0, residual norm 2.0458819502244023
+    Iteration 1, residual norm 0.016197281838874065
+    Iteration 2, residual norm 0.00027360802214989905
+    Iteration 3, residual norm 6.545976744445467e-06
+    Condition number: 2.6038428386550687
+    Error:  0.0976773242712344
+    Newton iteration:  1
+lambda value for the stabilization:  0.12500612499999703
+    Iteration 0, residual norm 0.262124073519615
+    Iteration 1, residual norm 0.002273468334315918
+    Iteration 2, residual norm 3.312009543208339e-05
+    Iteration 3, residual norm 7.583203579395122e-07
+    Condition number: 2.6038428386550687
+    Error:  0.01209526848122904
+    Newton iteration:  2
+lambda value for the stabilization:  0.12500612499999703
+    Iteration 0, residual norm 0.04438986199738033
+    Iteration 1, residual norm 0.0004206660807044589
+    Iteration 2, residual norm 5.283140035093682e-06
+    Iteration 3, residual norm 1.1037248448506825e-07
+    Condition number: 2.6038428386550687
+    Error:  0.001934564695571571
+    Newton iteration:  3
+lambda value for the stabilization:  0.12500612499999703
+    Iteration 0, residual norm 0.009655639290821553
+    Iteration 1, residual norm 8.74028663528623e-05
+    Iteration 2, residual norm 9.927218288282047e-07
+    Iteration 3, residual norm 1.8507217200586456e-08
+    Condition number: 2.6038428386550687
+    Error:  0.00039042700389272793
+Minimum gradient norm: 5.733783325219952e-05
+Norm of the gradient: 5.097632266248786
+MAE (Mean absolut error): 2.0887280248984066
+Newton loop at time step:  4
+    Newton iteration:  0
+lambda value for the stabilization:  0.125010125000001
+    Iteration 0, residual norm 2.0325117137572546
+    Iteration 1, residual norm 0.01589213414798313
+    Iteration 2, residual norm 0.0002729900331182392
+    Iteration 3, residual norm 6.587671548432859e-06
+    Condition number: 2.6038361513637276
+    Error:  0.09714549395249508
+    Newton iteration:  1
+lambda value for the stabilization:  0.125010125000001
+    Iteration 0, residual norm 0.2571047983352531
+    Iteration 1, residual norm 0.002160847741991247
+    Iteration 2, residual norm 3.217491071591952e-05
+    Iteration 3, residual norm 7.376538880487107e-07
+    Condition number: 2.6038361513637276
+    Error:  0.011917097669242654
+    Newton iteration:  2
+lambda value for the stabilization:  0.125010125000001
+    Iteration 0, residual norm 0.042296121021931386
+    Iteration 1, residual norm 0.0003873552919277903
+    Iteration 2, residual norm 4.960706747969255e-06
+    Iteration 3, residual norm 1.0455984677362898e-07
+    Condition number: 2.6038361513637276
+    Error:  0.00186491542522169
+    Newton iteration:  3
+lambda value for the stabilization:  0.125010125000001
+    Iteration 0, residual norm 0.008823553406194307
+    Iteration 1, residual norm 7.951544424937921e-05
+    Iteration 2, residual norm 9.040865819813962e-07
+    Iteration 3, residual norm 1.7154637905961728e-08
+    Condition number: 2.6038361513637276
+    Error:  0.0003627180082438687
+Minimum gradient norm: 0.00012321365986472281
+Norm of the gradient: 5.0681916537554885
+MAE (Mean absolut error): 2.181476215078031
+Newton loop at time step:  5
+    Newton iteration:  0
+lambda value for the stabilization:  0.12501512499999817
+    Iteration 0, residual norm 2.020460771256364
+    Iteration 1, residual norm 0.01561998675310195
+    Iteration 2, residual norm 0.0002716793759003432
+    Iteration 3, residual norm 6.6154595735620405e-06
+    Condition number: 2.6038277943259907
+    Error:  0.09665373524499996
+    Newton iteration:  1
+lambda value for the stabilization:  0.12501512499999817
+    Iteration 0, residual norm 0.2529151906726992
+    Iteration 1, residual norm 0.0020685591720084858
+    Iteration 2, residual norm 3.140346593318383e-05
+    Iteration 3, residual norm 7.211633811569933e-07
+    Condition number: 2.6038277943259907
+    Error:  0.011763608610325728
+    Newton iteration:  2
+lambda value for the stabilization:  0.12501512499999817
+    Iteration 0, residual norm 0.04063087927813692
+    Iteration 1, residual norm 0.0003598015560800319
+    Iteration 2, residual norm 4.714198849640117e-06
+    Iteration 3, residual norm 9.98182116251699e-08
+    Condition number: 2.6038277943259907
+    Error:  0.001808395413242809
+    Newton iteration:  3
+lambda value for the stabilization:  0.12501512499999817
+    Iteration 0, residual norm 0.008167287864277362
+    Iteration 1, residual norm 7.287135311578286e-05
+    Iteration 2, residual norm 8.367339531277218e-07
+    Iteration 3, residual norm 1.6056445478045892e-08
+    Condition number: 2.6038277943259907
+    Error:  0.00034069783611743104
+Minimum gradient norm: 0.0003119430883254294
+Norm of the gradient: 5.04112305293618
+MAE (Mean absolut error): 2.159990630286876
+Newton loop at time step:  6
+    Newton iteration:  0
+lambda value for the stabilization:  0.1250211250000013
+    Iteration 0, residual norm 2.009394788682107
+    Iteration 1, residual norm 0.015381177499427212
+    Iteration 2, residual norm 0.0002698517769540213
+    Iteration 3, residual norm 6.630805710046341e-06
+    Condition number: 2.603817768925771
+    Error:  0.09619302851348749
+    Newton iteration:  1
+lambda value for the stabilization:  0.1250211250000013
+    Iteration 0, residual norm 0.24932379135085822
+    Iteration 1, residual norm 0.0019922751963880646
+    Iteration 2, residual norm 3.072728650205575e-05
+    Iteration 3, residual norm 7.079411212788879e-07
+    Condition number: 2.603817768925771
+    Error:  0.011628329278914884
+    Newton iteration:  2
+lambda value for the stabilization:  0.1250211250000013
+    Iteration 0, residual norm 0.0392748754474395
+    Iteration 1, residual norm 0.0003368519794565157
+    Iteration 2, residual norm 4.516239337310641e-06
+    Iteration 3, residual norm 9.591701283616299e-08
+    Condition number: 2.603817768925771
+    Error:  0.0017614587936714155
+    Newton iteration:  3
+lambda value for the stabilization:  0.1250211250000013
+    Iteration 0, residual norm 0.007640344787312861
+    Iteration 1, residual norm 6.718690196832803e-05
+    Iteration 2, residual norm 7.83899601725099e-07
+    Iteration 3, residual norm 1.515902322049243e-08
+    Condition number: 2.603817768925771
+    Error:  0.00032289023433121084
+Minimum gradient norm: 0.0006713427841197265
+Norm of the gradient: 5.015864020313751
+MAE (Mean absolut error): 2.185899970167144
+Newton loop at time step:  7
+    Newton iteration:  0
+lambda value for the stabilization:  0.12502812499999852
+    Iteration 0, residual norm 1.9990912021563911
+    Iteration 1, residual norm 0.015172372575820244
+    Iteration 2, residual norm 0.00026771839810183396
+    Iteration 3, residual norm 6.6346398521599225e-06
+    Condition number: 2.603806076823379
+    Error:  0.09575713539147512
+    Newton iteration:  1
+lambda value for the stabilization:  0.12502812499999852
+    Iteration 0, residual norm 0.24617804057648798
+    Iteration 1, residual norm 0.0019287892905358063
+    Iteration 2, residual norm 3.0111704662790206e-05
+    Iteration 3, residual norm 6.971957845312863e-07
+    Condition number: 2.603806076823379
+    Error:  0.011506858294152543
+    Newton iteration:  2
+lambda value for the stabilization:  0.12502812499999852
+    Iteration 0, residual norm 0.038148456630575873
+    Iteration 1, residual norm 0.0003176689823264258
+    Iteration 2, residual norm 4.350550866750414e-06
+    Iteration 3, residual norm 9.271259221750036e-08
+    Condition number: 2.603806076823379
+    Error:  0.0017216811990099974
+    Newton iteration:  3
+lambda value for the stabilization:  0.12502812499999852
+    Iteration 0, residual norm 0.007211051634468792
+    Iteration 1, residual norm 6.230017098849952e-05
+    Iteration 2, residual norm 7.417202447012866e-07
+    Iteration 3, residual norm 1.4404812135923678e-08
+    Condition number: 2.603806076823379
+    Error:  0.00030827092797287603
+Minimum gradient norm: 0.000222876927246246
+Norm of the gradient: 4.99202672876308
+MAE (Mean absolut error): 2.2127852739526843
+Newton loop at time step:  8
+    Newton iteration:  0
+lambda value for the stabilization:  0.1250361249999978
+    Iteration 0, residual norm 1.9893948396754286
+    Iteration 1, residual norm 0.01498884843660345
+    Iteration 2, residual norm 0.000265466914276132
+    Iteration 3, residual norm 6.627919740714747e-06
+    Condition number: 2.6037927199553255
+    Error:  0.0953416070413117
+    Newton iteration:  1
+lambda value for the stabilization:  0.1250361249999978
+    Iteration 0, residual norm 0.24337217298508226
+    Iteration 1, residual norm 0.0018755424302830702
+    Iteration 2, residual norm 2.9545248405005156e-05
+    Iteration 3, residual norm 6.881621095093603e-07
+    Condition number: 2.6037927199553255
+    Error:  0.011396108075415889
+    Newton iteration:  2
+lambda value for the stabilization:  0.1250361249999978
+    Iteration 0, residual norm 0.03719577799914993
+    Iteration 1, residual norm 0.0003015978597277105
+    Iteration 2, residual norm 4.206463379843861e-06
+    Iteration 3, residual norm 9.006628284516779e-08
+    Condition number: 2.6037927199553255
+    Error:  0.0016873322948305115
+    Newton iteration:  3
+lambda value for the stabilization:  0.1250361249999978
+    Iteration 0, residual norm 0.006856647604691782
+    Iteration 1, residual norm 5.8042854162630435e-05
+    Iteration 2, residual norm 7.064062847016489e-07
+    Iteration 3, residual norm 1.379754881567196e-08
+    Condition number: 2.6037927199553255
+    Error:  0.0002960845892752315
+Minimum gradient norm: 0.0009905470913196266
+Norm of the gradient: 4.969336238664412
+MAE (Mean absolut error): 2.1574472558477265
+Newton loop at time step:  9
+    Newton iteration:  0
+lambda value for the stabilization:  0.12504512499999657
+    Iteration 0, residual norm 1.9801946333911615
+    Iteration 1, residual norm 0.014825959780230269
+    Iteration 2, residual norm 0.0002632307945977572
+    Iteration 3, residual norm 6.612134185463456e-06
+    Condition number: 2.6037777005340708
+    Error:  0.0949431776688886
+    Newton iteration:  1
+lambda value for the stabilization:  0.12504512499999657
+    Iteration 0, residual norm 0.24083089378099204
+    Iteration 1, residual norm 0.001830357556488684
+    Iteration 2, residual norm 2.9024900693564957e-05
+    Iteration 3, residual norm 6.802843578377293e-07
+    Condition number: 2.6037777005340708
+    Error:  0.011293866008070988
+    Newton iteration:  2
+lambda value for the stabilization:  0.12504512499999657
+    Iteration 0, residual norm 0.03637587686335193
+    Iteration 1, residual norm 0.000288100230527446
+    Iteration 2, residual norm 4.081953083568159e-06
+    Iteration 3, residual norm 8.782481297800678e-08
+    Condition number: 2.6037777005340708
+    Error:  0.001657205768547771
+    Newton iteration:  3
+lambda value for the stabilization:  0.12504512499999657
+    Iteration 0, residual norm 0.006560833682472203
+    Iteration 1, residual norm 5.4417935588365255e-05
+    Iteration 2, residual norm 6.748815952673887e-07
+    Iteration 3, residual norm 1.3259304020712885e-08
+    Condition number: 2.6037777005340708
+    Error:  0.00028576116847855624
+Minimum gradient norm: 0.005240322305351727
+Norm of the gradient: 4.947592708087546
+MAE (Mean absolut error): 2.234637902789646
+Newton loop at time step:  10
+    Newton iteration:  0
+lambda value for the stabilization:  0.12505512500000313
+    Iteration 0, residual norm 1.9714087414538461
+    Iteration 1, residual norm 0.014679839562100073
+    Iteration 2, residual norm 0.00026109258004001476
+    Iteration 3, residual norm 6.5892422196388495e-06
+    Condition number: 2.6037610210477498
+    Error:  0.09455941464846294
+    Newton iteration:  1
+lambda value for the stabilization:  0.12505512500000313
+    Iteration 0, residual norm 0.23850056686314566
+    Iteration 1, residual norm 0.0017916542594693594
+    Iteration 2, residual norm 2.8548259388260808e-05
+    Iteration 3, residual norm 6.731238857633517e-07
+    Condition number: 2.6037610210477498
+    Error:  0.011198465479733848
+    Newton iteration:  2
+lambda value for the stabilization:  0.12505512500000313
+    Iteration 0, residual norm 0.03566000757241828
+    Iteration 1, residual norm 0.00027654703118101153
+    Iteration 2, residual norm 3.969389741865925e-06
+    Iteration 3, residual norm 8.598690599245891e-08
+    Condition number: 2.6037610210477498
+    Error:  0.0016303684812830847
+    Newton iteration:  3
+lambda value for the stabilization:  0.12505512500000313
+    Iteration 0, residual norm 0.006308773138504176
+    Iteration 1, residual norm 5.124883982578804e-05
+    Iteration 2, residual norm 6.508287517550646e-07
+    Iteration 3, residual norm 1.2765532033487798e-08
+    Condition number: 2.6037610210477498
+    Error:  0.000276964828042226
+Minimum gradient norm: 0.001788342726303238
+Norm of the gradient: 4.926646621605971
+MAE (Mean absolut error): 2.176315788211272
+Newton loop at time step:  11
+    Newton iteration:  0
+lambda value for the stabilization:  0.1250661249999999
+    Iteration 0, residual norm 1.9629754163049762
+    Iteration 1, residual norm 0.014547196497825682
+    Iteration 2, residual norm 0.00025908726843618996
+    Iteration 3, residual norm 6.561566687587898e-06
+    Condition number: 2.6037426842598648
+    Error:  0.094188465899735
+    Newton iteration:  1
+lambda value for the stabilization:  0.1250661249999999
+    Iteration 0, residual norm 0.23633860940672716
+    Iteration 1, residual norm 0.0017581179219830268
+    Iteration 2, residual norm 2.8122515348096482e-05
+    Iteration 3, residual norm 6.662911159851427e-07
+    Condition number: 2.6037426842598648
+    Error:  0.01110875699148231
+    Newton iteration:  2
+lambda value for the stabilization:  0.1250661249999999
+    Iteration 0, residual norm 0.03502749946226463
+    Iteration 1, residual norm 0.00026691388167018437
+    Iteration 2, residual norm 3.8647359657444415e-06
+    Iteration 3, residual norm 8.435855675127104e-08
+    Condition number: 2.6037426842598648
+    Error:  0.0016060593844955393
+    Newton iteration:  3
+lambda value for the stabilization:  0.1250661249999999
+    Iteration 0, residual norm 0.006094698145853006
+    Iteration 1, residual norm 4.8289456562417895e-05
+    Iteration 2, residual norm 6.285965121760254e-07
+    Iteration 3, residual norm 1.243605603405549e-08
+    Condition number: 2.6037426842598648
+    Error:  0.0002692821654817568
+Minimum gradient norm: 0.00017779312351029475
+Norm of the gradient: 4.9063893295660135
+MAE (Mean absolut error): 2.225572882592177
+Newton loop at time step:  12
+    Newton iteration:  0
+lambda value for the stabilization:  0.12507812500000287
+    Iteration 0, residual norm 1.9548494272880688
+    Iteration 1, residual norm 0.014425860925070162
+    Iteration 2, residual norm 0.0002572210863410862
+    Iteration 3, residual norm 6.5311857232583334e-06
+    Condition number: 2.6037226932089377
+    Error:  0.09382879328306451
+    Newton iteration:  1
+lambda value for the stabilization:  0.12507812500000287
+    Iteration 0, residual norm 0.234316100495068
+    Iteration 1, residual norm 0.0017282532403643355
+    Iteration 2, residual norm 2.7732824811267302e-05
+    Iteration 3, residual norm 6.599040908088626e-07
+    Condition number: 2.6037226932089377
+    Error:  0.011023810515886289
+    Newton iteration:  2
+lambda value for the stabilization:  0.12507812500000287
+    Iteration 0, residual norm 0.034455379224679804
+    Iteration 1, residual norm 0.00025867311425673657
+    Iteration 2, residual norm 3.781634264013463e-06
+    Iteration 3, residual norm 8.270910257264328e-08
+    Condition number: 2.6037226932089377
+    Error:  0.0015839585390178886
+    Newton iteration:  3
+lambda value for the stabilization:  0.12507812500000287
+    Iteration 0, residual norm 0.005910862225113503
+    Iteration 1, residual norm 4.607133618196118e-05
+    Iteration 2, residual norm 6.037820923963839e-07
+    Iteration 3, residual norm 1.2175668806721884e-08
+    Condition number: 2.6037226932089377
+    Error:  0.00026231175832410196
+Minimum gradient norm: 0.0006469489548543982
+Norm of the gradient: 4.8867268408466344
+MAE (Mean absolut error): 2.2061292267119916
+Newton loop at time step:  13
+    Newton iteration:  0
+lambda value for the stabilization:  0.1250911250000006
+    Iteration 0, residual norm 1.946989667815564
+    Iteration 1, residual norm 0.014314114604964439
+    Iteration 2, residual norm 0.00025550646563681455
+    Iteration 3, residual norm 6.4992684954957476e-06
+    Condition number: 2.6037010512081293
+    Error:  0.0934793284260888
+    Newton iteration:  1
+lambda value for the stabilization:  0.1250911250000006
+    Iteration 0, residual norm 0.23241491434861433
+    Iteration 1, residual norm 0.0017020687723007188
+    Iteration 2, residual norm 2.7363781983081128e-05
+    Iteration 3, residual norm 6.539486168063594e-07
+    Condition number: 2.6037010512081293
+    Error:  0.01094263169020485
+    Newton iteration:  2
+lambda value for the stabilization:  0.1250911250000006
+    Iteration 0, residual norm 0.03393743752874665
+    Iteration 1, residual norm 0.0002507293193595851
+    Iteration 2, residual norm 3.7092047891882983e-06
+    Iteration 3, residual norm 8.135554248795277e-08
+    Condition number: 2.6037010512081293
+    Error:  0.0015636411821586145
+    Newton iteration:  3
+lambda value for the stabilization:  0.1250911250000006
+    Iteration 0, residual norm 0.005740286880499241
+    Iteration 1, residual norm 4.4465858946751326e-05
+    Iteration 2, residual norm 5.881578080696945e-07
+    Iteration 3, residual norm 1.1818523628820678e-08
+    Condition number: 2.6037010512081293
+    Error:  0.00025621609855091355
+Minimum gradient norm: 0.0008411653080409031
+Norm of the gradient: 4.8675865340962
+MAE (Mean absolut error): 2.182243016518624
+Newton loop at time step:  14
+    Newton iteration:  0
+lambda value for the stabilization:  0.12510512500000076
+    Iteration 0, residual norm 1.9393662467477522
+    Iteration 1, residual norm 0.014209391269243957
+    Iteration 2, residual norm 0.0002539176298486957
+    Iteration 3, residual norm 6.467094589231368e-06
+    Condition number: 2.60367776184483
+    Error:  0.0931392911402965
+    Newton iteration:  1
+lambda value for the stabilization:  0.12510512500000076
+    Iteration 0, residual norm 0.23060339006070474
+    Iteration 1, residual norm 0.0016791822211170708
+    Iteration 2, residual norm 2.7046557003449632e-05
+    Iteration 3, residual norm 6.477209000667488e-07
+    Condition number: 2.60367776184483
+    Error:  0.010864889955899766
+    Newton iteration:  2
+lambda value for the stabilization:  0.12510512500000076
+    Iteration 0, residual norm 0.033473216932479836
+    Iteration 1, residual norm 0.00024424559825249575
+    Iteration 2, residual norm 3.6281861204565786e-06
+    Iteration 3, residual norm 8.052519427693397e-08
+    Condition number: 2.60367776184483
+    Error:  0.0015441256686231765
+    Newton iteration:  3
+lambda value for the stabilization:  0.12510512500000076
+    Iteration 0, residual norm 0.00558824451712361
+    Iteration 1, residual norm 4.226768890880547e-05
+    Iteration 2, residual norm 5.798224812190147e-07
+    Iteration 3, residual norm 1.1501280475169772e-08
+    Condition number: 2.60367776184483
+    Error:  0.0002510710626814669
+Minimum gradient norm: 0.00011433168147106442
+Norm of the gradient: 4.84893695642314
+MAE (Mean absolut error): 2.229159230172788
+Newton loop at time step:  15
+    Newton iteration:  0
+lambda value for the stabilization:  0.1251201249999979
+    Iteration 0, residual norm 1.9319696118543705
+    Iteration 1, residual norm 0.014111351951375592
+    Iteration 2, residual norm 0.0002523971895942226
+    Iteration 3, residual norm 6.43604431671043e-06
+    Condition number: 2.603652828980208
+    Error:  0.09280740104773363
+    Newton iteration:  1
+lambda value for the stabilization:  0.1251201249999979
+    Iteration 0, residual norm 0.22886662083258483
+    Iteration 1, residual norm 0.0016565800580260798
+    Iteration 2, residual norm 2.6783305587751858e-05
+    Iteration 3, residual norm 6.414124423775865e-07
+    Condition number: 2.603652828980208
+    Error:  0.01079065367711702
+    Newton iteration:  2
+lambda value for the stabilization:  0.1251201249999979
+    Iteration 0, residual norm 0.033028033150971366
+    Iteration 1, residual norm 0.00024052219337060624
+    Iteration 2, residual norm 3.5644071399739095e-06
+    Iteration 3, residual norm 7.967314259771055e-08
+    Condition number: 2.603652828980208
+    Error:  0.0015253104886432229
+    Newton iteration:  3
+lambda value for the stabilization:  0.1251201249999979
+    Iteration 0, residual norm 0.005470050954131934
+    Iteration 1, residual norm 3.9782469057084595e-05
+    Iteration 2, residual norm 5.629582292340788e-07
+    Iteration 3, residual norm 1.1383875180060912e-08
+    Condition number: 2.603652828980208
+    Error:  0.0002458355579702098
+Minimum gradient norm: 0.00034990685792823934
+Norm of the gradient: 4.830710406841741
+MAE (Mean absolut error): 2.1732925409560724
+Newton loop at time step:  16
+    Newton iteration:  0
+lambda value for the stabilization:  0.12513612500000076
+    Iteration 0, residual norm 1.9247668497613442
+    Iteration 1, residual norm 0.014021172644089402
+    Iteration 2, residual norm 0.00025096885384191055
+    Iteration 3, residual norm 6.405384671129818e-06
+    Condition number: 2.6036262567487305
+    Error:  0.09248273662156553
+    Newton iteration:  1
+lambda value for the stabilization:  0.12513612500000076
+    Iteration 0, residual norm 0.227228469668499
+    Iteration 1, residual norm 0.0016345489951112187
+    Iteration 2, residual norm 2.6518416964195622e-05
+    Iteration 3, residual norm 6.366346606815476e-07
+    Condition number: 2.6036262567487305
+    Error:  0.010718364695739323
+    Newton iteration:  2
+lambda value for the stabilization:  0.12513612500000076
+    Iteration 0, residual norm 0.03258204354396699
+    Iteration 1, residual norm 0.00023678858651624574
+    Iteration 2, residual norm 3.5357736223497237e-06
+    Iteration 3, residual norm 7.833622531543539e-08
+    Condition number: 2.6036262567487305
+    Error:  0.0015085349856203427
+    Newton iteration:  3
+lambda value for the stabilization:  0.12513612500000076
+    Iteration 0, residual norm 0.005357629765830881
+    Iteration 1, residual norm 3.8719383275531904e-05
+    Iteration 2, residual norm 5.433157206827789e-07
+    Iteration 3, residual norm 1.141652791511722e-08
+    Condition number: 2.6036262567487305
+    Error:  0.0002393830440724507
+Minimum gradient norm: 5.037630764537226e-05
+Norm of the gradient: 4.8128095933894155
+MAE (Mean absolut error): 2.214208251406695
+Newton loop at time step:  17
+    Newton iteration:  0
+lambda value for the stabilization:  0.12515312500000184
+    Iteration 0, residual norm 1.9177112800258018
+    Iteration 1, residual norm 0.013934342312425395
+    Iteration 2, residual norm 0.00024969545526207557
+    Iteration 3, residual norm 6.37354253085634e-06
+    Condition number: 2.603598049557641
+    Error:  0.09216611320470129
+    Newton iteration:  1
+lambda value for the stabilization:  0.12515312500000184
+    Iteration 0, residual norm 0.22566006025349808
+    Iteration 1, residual norm 0.0016190353493400669
+    Iteration 2, residual norm 2.6260107093955224e-05
+    Iteration 3, residual norm 6.338942635887e-07
+    Condition number: 2.603598049557641
+    Error:  0.010645764524314554
+    Newton iteration:  2
+lambda value for the stabilization:  0.12515312500000184
+    Iteration 0, residual norm 0.03218825045754887
+    Iteration 1, residual norm 0.00022998095738432684
+    Iteration 2, residual norm 3.502122055638278e-06
+    Iteration 3, residual norm 7.686977330350246e-08
+    Condition number: 2.603598049557641
+    Error:  0.001493545319815649
+    Newton iteration:  3
+lambda value for the stabilization:  0.12515312500000184
+    Iteration 0, residual norm 0.005205221393739774
+    Iteration 1, residual norm 3.89392356198183e-05
+    Iteration 2, residual norm 5.402301762743886e-07
+    Iteration 3, residual norm 1.1509621021036578e-08
+    Condition number: 2.603598049557641
+    Error:  0.00023233874298612888
+Minimum gradient norm: 0.00012117571416858613
+Norm of the gradient: 4.795272672250696
+MAE (Mean absolut error): 2.1930142070766525
+Newton loop at time step:  18
+    Newton iteration:  0
+lambda value for the stabilization:  0.12517112499999794
+    Iteration 0, residual norm 1.910836552429681
+    Iteration 1, residual norm 0.013845160594958012
+    Iteration 2, residual norm 0.0002485292240357815
+    Iteration 3, residual norm 6.34322839268437e-06
+    Condition number: 2.6035682120864223
+    Error:  0.09185713627000085
+    Newton iteration:  1
+lambda value for the stabilization:  0.12517112499999794
+    Iteration 0, residual norm 0.22405926603923335
+    Iteration 1, residual norm 0.0016109324805005482
+    Iteration 2, residual norm 2.609351324355907e-05
+    Iteration 3, residual norm 6.310070841285965e-07
+    Condition number: 2.6035682120864223
+    Error:  0.010574522551585995
+    Newton iteration:  2
+lambda value for the stabilization:  0.12517112499999794
+    Iteration 0, residual norm 0.031877296575624776
+    Iteration 1, residual norm 0.00022257277399608175
+    Iteration 2, residual norm 3.4288952566879954e-06
+    Iteration 3, residual norm 7.590238936985816e-08
+    Condition number: 2.6035682120864223
+    Error:  0.0014761185510312911
+    Newton iteration:  3
+lambda value for the stabilization:  0.12517112499999794
+    Iteration 0, residual norm 0.005024764031146771
+    Iteration 1, residual norm 3.865370620659388e-05
+    Iteration 2, residual norm 5.481182885212309e-07
+    Iteration 3, residual norm 1.1647541179854622e-08
+    Condition number: 2.6035682120864223
+    Error:  0.00022661579133372064
+Minimum gradient norm: 0.00023228322463486606
+Norm of the gradient: 4.778168532390451
+MAE (Mean absolut error): 2.167068875903437
+Newton loop at time step:  19
+    Newton iteration:  0
+lambda value for the stabilization:  0.12519012500000082
+    Iteration 0, residual norm 1.9041946088089954
+    Iteration 1, residual norm 0.013761954167350966
+    Iteration 2, residual norm 0.000247396914583894
+    Iteration 3, residual norm 6.321341581564366e-06
+    Condition number: 2.603536749286203
+    Error:  0.09155013629906836
+    Newton iteration:  1
+lambda value for the stabilization:  0.12519012500000082
+    Iteration 0, residual norm 0.22243393864509994
+    Iteration 1, residual norm 0.001600090859232968
+    Iteration 2, residual norm 2.6014135345604304e-05
+    Iteration 3, residual norm 6.25320057415456e-07
+    Condition number: 2.603536749286203
+    Error:  0.010509865405380611
+    Newton iteration:  2
+lambda value for the stabilization:  0.12519012500000082
+    Iteration 0, residual norm 0.031541150746910274
+    Iteration 1, residual norm 0.00021959561272880582
+    Iteration 2, residual norm 3.351856194399276e-06
+    Iteration 3, residual norm 7.579121724683813e-08
+    Condition number: 2.603536749286203
+    Error:  0.001451281482817557
+    Newton iteration:  3
+lambda value for the stabilization:  0.12519012500000082
+    Iteration 0, residual norm 0.0048789723377744695
+    Iteration 1, residual norm 3.691541363391185e-05
+    Iteration 2, residual norm 5.490166674987513e-07
+    Iteration 3, residual norm 1.1696954119639249e-08
+    Condition number: 2.603536749286203
+    Error:  0.00022300747294879347
+Minimum gradient norm: 0.00010435749091319835
+Norm of the gradient: 4.761209321709727
+MAE (Mean absolut error): 2.190780436083501
+Newton loop at time step:  20
+    Newton iteration:  0
+lambda value for the stabilization:  0.12521012499999706
+    Iteration 0, residual norm 1.8976386582641416
+    Iteration 1, residual norm 0.013703156950363024
+    Iteration 2, residual norm 0.00024641417900304966
+    Iteration 3, residual norm 6.310541255606407e-06
+    Condition number: 2.6035036663791424
+    Error:  0.0912395800434576
+    Newton iteration:  1
+lambda value for the stabilization:  0.12521012499999706
+    Iteration 0, residual norm 0.22098345960627547
+    Iteration 1, residual norm 0.0015770118235356213
+    Iteration 2, residual norm 2.5879117348874874e-05
+    Iteration 3, residual norm 6.162935239233641e-07
+    Condition number: 2.6035036663791424
+    Error:  0.010450543883909676
+    Newton iteration:  2
+lambda value for the stabilization:  0.12521012499999706
+    Iteration 0, residual norm 0.031016471011902823
+    Iteration 1, residual norm 0.00022135435766020638
+    Iteration 2, residual norm 3.328007167396509e-06
+    Iteration 3, residual norm 7.655639267986195e-08
+    Condition number: 2.6035036663791424
+    Error:  0.0014189949454140147
+    Newton iteration:  3
+lambda value for the stabilization:  0.12521012499999706
+    Iteration 0, residual norm 0.004797872711020708
+    Iteration 1, residual norm 3.458749788567937e-05
+    Iteration 2, residual norm 5.318511787470731e-07
+    Iteration 3, residual norm 1.1463135906482846e-08
+    Condition number: 2.6035036663791424
+    Error:  0.0002201110409848109
+Minimum gradient norm: 2.8694915561455758e-05
+Norm of the gradient: 4.74387079731471
+MAE (Mean absolut error): 2.132503411096589
+Newton loop at time step:  21
+    Newton iteration:  0
+lambda value for the stabilization:  0.1252311250000021
+    Iteration 0, residual norm 1.890896243262244
+    Iteration 1, residual norm 0.01366952077304706
+    Iteration 2, residual norm 0.00024580295593326515
+    Iteration 3, residual norm 6.301908703649019e-06
+    Condition number: 2.6034689688577815
+    Error:  0.09093291802586174
+    Newton iteration:  1
+lambda value for the stabilization:  0.1252311250000021
+    Iteration 0, residual norm 0.2198151061440671
+    Iteration 1, residual norm 0.0015464353419138957
+    Iteration 2, residual norm 2.5556036817706894e-05
+    Iteration 3, residual norm 6.055721798834443e-07
+    Condition number: 2.6034689688577815
+    Error:  0.010379326197579569
+    Newton iteration:  2
+lambda value for the stabilization:  0.1252311250000021
+    Iteration 0, residual norm 0.030274670026166534
+    Iteration 1, residual norm 0.00022378901119442796
+    Iteration 2, residual norm 3.3561761219090305e-06
+    Iteration 3, residual norm 7.806537937421811e-08
+    Condition number: 2.6034689688577815
+    Error:  0.0013855142871334555
+    Newton iteration:  3
+lambda value for the stabilization:  0.1252311250000021
+    Iteration 0, residual norm 0.00474224744974066
+    Iteration 1, residual norm 3.3017559530871084e-05
+    Iteration 2, residual norm 5.028741805823504e-07
+    Iteration 3, residual norm 1.0885046128254904e-08
+    Condition number: 2.6034689688577815
+    Error:  0.0002157901670480999
+Minimum gradient norm: 9.277087049675004e-06
+Norm of the gradient: 4.726207991880714
+MAE (Mean absolut error): 2.1526750438751474
+Newton loop at time step:  22
+    Newton iteration:  0
+lambda value for the stabilization:  0.1252531249999985
+    Iteration 0, residual norm 1.8840515184885767
+    Iteration 1, residual norm 0.013629381366219809
+    Iteration 2, residual norm 0.000245521288126144
+    Iteration 3, residual norm 6.2779509643200085e-06
+    Condition number: 2.6034326624843582
+    Error:  0.09064978315988718
+    Newton iteration:  1
+lambda value for the stabilization:  0.1252531249999985
+    Iteration 0, residual norm 0.21859189570045567
+    Iteration 1, residual norm 0.0015240137895648253
+    Iteration 2, residual norm 2.5073248982148147e-05
+    Iteration 3, residual norm 5.959439720228667e-07
+    Condition number: 2.6034326624843582
+    Error:  0.010267302577773915
+    Newton iteration:  2
+lambda value for the stabilization:  0.1252531249999985
+    Iteration 0, residual norm 0.029474567608563488
+    Iteration 1, residual norm 0.00022317901100970066
+    Iteration 2, residual norm 3.3968145666737875e-06
+    Iteration 3, residual norm 7.968044097965557e-08
+    Condition number: 2.6034326624843582
+    Error:  0.001358755858937186
+    Newton iteration:  3
+lambda value for the stabilization:  0.1252531249999985
+    Iteration 0, residual norm 0.004653906250525772
+    Iteration 1, residual norm 3.2268004916633476e-05
+    Iteration 2, residual norm 4.7515707379997296e-07
+    Iteration 3, residual norm 1.0147289892333848e-08
+    Condition number: 2.6034326624843582
+    Error:  0.0002090105531238623
+Minimum gradient norm: 8.783368101727973e-06
+Norm of the gradient: 4.709138688841419
+MAE (Mean absolut error): 2.1308543007195486
+Newton loop at time step:  23
+    Newton iteration:  0
+lambda value for the stabilization:  0.1252761249999974
+    Iteration 0, residual norm 1.8777860721646185
+    Iteration 1, residual norm 0.013541576998266101
+    Iteration 2, residual norm 0.0002450644591415566
+    Iteration 3, residual norm 6.222661316722165e-06
+    Condition number: 2.603394753290091
+    Error:  0.09039148890942343
+    Newton iteration:  1
+lambda value for the stabilization:  0.1252761249999974
+    Iteration 0, residual norm 0.2165853949814222
+    Iteration 1, residual norm 0.0015198776290925857
+    Iteration 2, residual norm 2.460343005003439e-05
+    Iteration 3, residual norm 5.901444191456059e-07
+    Condition number: 2.603394753290091
+    Error:  0.010091123000536988
+    Newton iteration:  2
+lambda value for the stabilization:  0.1252761249999974
+    Iteration 0, residual norm 0.02882975940968997
+    Iteration 1, residual norm 0.00021811608526100206
+    Iteration 2, residual norm 3.407825049354279e-06
+    Iteration 3, residual norm 8.026070309855103e-08
+    Condition number: 2.603394753290091
+    Error:  0.00134209023865872
+    Newton iteration:  3
+lambda value for the stabilization:  0.1252761249999974
+    Iteration 0, residual norm 0.004508573481905107
+    Iteration 1, residual norm 3.1712220872009075e-05
+    Iteration 2, residual norm 4.540423818977519e-07
+    Iteration 3, residual norm 9.651525000480845e-09
+    Condition number: 2.603394753290091
+    Error:  0.00020029178250368453
+Minimum gradient norm: 1.8763305058566715e-05
+Norm of the gradient: 4.693015115911941
+MAE (Mean absolut error): 2.0923577586374775
+h: 5.00e-02 Error L2: 5.11e-02
